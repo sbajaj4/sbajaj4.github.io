@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saumya Bajaj | Quantitative & AI Research Portfolio</title>
+  <title>Saumya Bajaj | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F9F8F5;
       --surface: #FFFFFF;
-      --surface-subtle: #F2EFE9;
-      --border: #E5DFC5;
-      --border-light: #ECE7D5;
-      --text: #1E1B18;
-      --text-muted: #6B655D;
+      --surface-subtle: #F4F1EA;
+      --border: #E2DCC8;
+      --border-light: #EBE7D8;
+      --text: #1C1A17;
+      --text-muted: #666056;
       --accent: #9E4E3B; /* Terracotta */
       --accent-soft: rgba(158, 78, 59, 0.08);
-      --accent-hover: #7E3B2C;
-      --ink-dark: #121110;
-      --shadow-sm: 0 2px 8px rgba(30, 27, 24, 0.04);
-      --shadow-md: 0 8px 24px rgba(30, 27, 24, 0.08);
-      --shadow-lg: 0 16px 40px rgba(30, 27, 24, 0.12);
+      --accent-border: rgba(158, 78, 59, 0.25);
+      --ink: #11100E;
+      --shadow-sm: 0 2px 10px rgba(28, 26, 23, 0.04);
+      --shadow-md: 0 10px 30px rgba(28, 26, 23, 0.08);
+      --shadow-lg: 0 20px 50px rgba(28, 26, 23, 0.14);
       --radius: 12px;
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -34,52 +34,59 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
     }
 
     .container {
-      max-width: 1380px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
     /* HEADER */
     header {
-      padding: 48px 0 32px;
+      padding: 48px 0 36px;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: flex-end;
       margin-bottom: 40px;
     }
     .brand h1 {
       font-family: 'Cinzel', serif;
-      font-size: 26px;
-      letter-spacing: 0.08em;
+      font-size: 28px;
+      letter-spacing: 0.06em;
       font-weight: 700;
-      color: var(--ink-dark);
+      color: var(--ink);
     }
     .brand p {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--accent);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-top: 4px;
     }
-    .nav-links a {
+    .header-contacts {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      text-decoration: none;
+      font-size: 12.5px;
       color: var(--text-muted);
-      margin-left: 28px;
-      transition: var(--transition);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    .nav-links a:hover {
+    .header-contacts a {
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+    .header-contacts a:hover {
       color: var(--accent);
+      border-bottom-color: var(--accent);
     }
 
-    /* CARD 1: HERO / RESUME / TIMELINE */
+    /* CARD 1: FULL WIDTH LEDGER & RESUME */
     .profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -89,18 +96,18 @@
       margin-bottom: 48px;
     }
 
-    .profile-top-grid {
+    .profile-grid {
       display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 44px;
+      margin-bottom: 48px;
     }
     .bio-block h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 34px;
-      font-weight: 500;
+      font-size: 36px;
+      font-weight: 600;
       line-height: 1.25;
-      color: var(--ink-dark);
+      color: var(--ink);
       margin-bottom: 16px;
     }
     .bio-block p {
@@ -108,8 +115,8 @@
       color: var(--text-muted);
       margin-bottom: 14px;
     }
-    .bio-block p strong {
-      color: var(--ink-dark);
+    .bio-block strong {
+      color: var(--ink);
       font-weight: 600;
     }
 
@@ -121,19 +128,19 @@
     }
     .skills-block h3 {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 16px;
     }
     .skill-group {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .skill-title {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
-      color: var(--text);
+      color: var(--ink);
       margin-bottom: 6px;
     }
     .pill-wrap {
@@ -148,111 +155,256 @@
       border: 1px solid var(--border);
       padding: 3px 8px;
       border-radius: 4px;
-      color: var(--ink-dark);
+      color: var(--ink);
     }
 
-    /* HORIZONTAL TIMELINE */
-    .timeline-container {
+    /* PROCESS-ON STYLE HORIZONTAL TIMELINE */
+    .timeline-section {
       border-top: 1px solid var(--border-light);
-      padding-top: 32px;
+      padding-top: 36px;
     }
-    .timeline-title {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
+    .timeline-header-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
+      margin-bottom: 30px;
     }
-    .timeline-title span {
+    .timeline-header-row h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .timeline-legend {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: var(--text-muted);
-      text-transform: none;
-      letter-spacing: 0;
-    }
-    .timeline-track {
-      display: grid;
-      grid-template-columns: repeat(8, minmax(130px, 1fr));
+      display: flex;
       gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 12px;
     }
-    .timeline-node {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
-      cursor: pointer;
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot-sample {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dot-edu { background: var(--accent); }
+    .dot-exp { background: var(--ink); }
+
+    .timeline-scroll-wrap {
+      overflow-x: auto;
+      padding: 40px 10px 30px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .timeline-canvas {
       position: relative;
-      transition: var(--transition);
+      min-width: 1300px;
+      height: 380px;
+    }
+
+    /* Central Axis */
+    .timeline-axis {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      right: 40px;
+      height: 2px;
+      background-color: #8C8275;
+      transform: translateY(-50%);
+    }
+    .timeline-axis::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      top: -5px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 12px solid #8C8275;
+    }
+
+    /* Track Labels (A / B Indicators from image) */
+    .track-tag {
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 64px;
+      background: var(--ink);
+      color: #FFF;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 120px;
-    }
-    .timeline-node:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
-      background: #FFF;
-    }
-    .node-type {
+      align-items: center;
+      justify-content: center;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--accent);
+      font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      line-height: 1.1;
+      padding: 4px;
     }
-    .node-role {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink-dark);
-      margin: 4px 0;
-      line-height: 1.3;
+    .track-tag.top { top: 50px; }
+    .track-tag.bottom { bottom: 50px; }
+
+    /* Nodes & Stalks */
+    .timeline-event-item {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
     }
-    .node-org {
-      font-size: 12px;
-      color: var(--text-muted);
+    .node-pin {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--ink);
+      position: relative;
+      z-index: 3;
+      transition: var(--transition);
+      margin: 0 auto;
     }
-    .node-date {
+    .node-pin.accent {
+      background: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-event-item:hover .node-pin {
+      transform: scale(1.3);
+    }
+
+    .node-stalk {
+      position: absolute;
+      width: 1px;
+      background-color: #8C8275;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .node-stalk.accent {
+      background-color: var(--accent);
+    }
+
+    /* Event Overview Box */
+    .node-box {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      z-index: 2;
+    }
+    .node-box.accent {
+      border: 1px dashed var(--accent);
+    }
+    .timeline-event-item:hover .node-box {
+      box-shadow: var(--shadow-md);
+      transform: translateX(-50%) translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    /* Upward Events */
+    .timeline-event-item.up .node-stalk {
+      bottom: 7px;
+      height: 60px;
+    }
+    .timeline-event-item.up.tall .node-stalk {
+      height: 100px;
+    }
+    .timeline-event-item.up .node-box {
+      bottom: 70px;
+    }
+    .timeline-event-item.up.tall .node-box {
+      bottom: 110px;
+    }
+
+    /* Downward Events */
+    .timeline-event-item.down .node-stalk {
+      top: 7px;
+      height: 60px;
+    }
+    .timeline-event-item.down.tall .node-stalk {
+      height: 100px;
+    }
+    .timeline-event-item.down .node-box {
+      top: 70px;
+    }
+    .timeline-event-item.down.tall .node-box {
+      top: 110px;
+    }
+
+    /* Year / Axis Label */
+    .axis-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
+      font-size: 11px;
+      font-weight: 500;
       color: var(--text-muted);
-      margin-top: 8px;
+      white-space: nowrap;
+    }
+    .timeline-event-item.up .axis-label { top: 12px; }
+    .timeline-event-item.down .axis-label { bottom: 12px; }
+
+    .node-box-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+    .node-box-org {
+      font-size: 11px;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .node-box-dates {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* PROJECTS SECTION */
-    .section-head {
+    .projects-head {
       margin-bottom: 28px;
     }
-    .section-head h2 {
+    .projects-head h2 {
       font-family: 'Cinzel', serif;
-      font-size: 20px;
+      font-size: 22px;
       letter-spacing: 0.08em;
-      color: var(--ink-dark);
-      margin-bottom: 6px;
+      color: var(--ink);
+      margin-bottom: 4px;
     }
-    .section-head p {
+    .projects-head p {
       font-size: 14px;
       color: var(--text-muted);
     }
 
-    /* PINTEREST MASONRY GRID FOR PROJECTS */
+    /* PINTEREST MASONRY CARDS */
     .projects-masonry {
       column-count: 3;
       column-gap: 28px;
     }
-    @media (max-width: 1080px) {
+    @media (max-width: 1100px) {
       .projects-masonry { column-count: 2; }
-      .profile-top-grid { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .projects-masonry { column-count: 1; }
-      header { flex-direction: column; gap: 16px; }
-      .nav-links a { margin-left: 0; margin-right: 18px; }
+      header { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
 
     .project-card {
@@ -277,7 +429,6 @@
     .project-visual {
       background: #181615;
       padding: 24px;
-      position: relative;
       border-bottom: 1px solid var(--border-light);
       display: flex;
       align-items: center;
@@ -299,7 +450,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 24px;
       font-weight: 600;
-      color: var(--ink-dark);
+      color: var(--ink);
       margin-bottom: 8px;
       line-height: 1.25;
     }
@@ -318,7 +469,7 @@
       border-radius: 4px;
       font-weight: 500;
       margin-bottom: 14px;
-      border: 1px solid rgba(158, 78, 59, 0.2);
+      border: 1px solid var(--accent-border);
     }
     .tag-row {
       display: flex;
@@ -335,13 +486,10 @@
       color: var(--text-muted);
     }
 
-    /* MODAL POPUP SYSTEM */
+    /* MODAL SYSTEM */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(18, 17, 16, 0.65);
       backdrop-filter: blur(4px);
       display: none;
@@ -364,9 +512,9 @@
       padding: 40px;
       box-shadow: var(--shadow-lg);
       position: relative;
-      animation: modalFadeIn 0.25s ease-out;
+      animation: modalFade 0.25s ease-out;
     }
-    @keyframes modalFadeIn {
+    @keyframes modalFade {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -392,10 +540,6 @@
       color: #FFF;
       border-color: var(--accent);
     }
-    .modal-header {
-      margin-bottom: 24px;
-      padding-right: 40px;
-    }
     .modal-kicker {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
@@ -408,7 +552,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 32px;
       font-weight: 600;
-      color: var(--ink-dark);
+      color: var(--ink);
       line-height: 1.2;
     }
     .modal-subtitle {
@@ -416,6 +560,7 @@
       font-size: 13px;
       color: var(--text-muted);
       margin-top: 6px;
+      margin-bottom: 24px;
     }
     .modal-content {
       font-size: 15px;
@@ -426,7 +571,7 @@
       font-size: 14px;
       letter-spacing: 0.08em;
       margin: 24px 0 10px;
-      color: var(--ink-dark);
+      color: var(--ink);
       border-bottom: 1px solid var(--border-light);
       padding-bottom: 4px;
     }
@@ -442,7 +587,7 @@
       align-items: center;
       margin-top: 24px;
       padding: 10px 20px;
-      background: var(--ink-dark);
+      background: var(--ink);
       color: #FFF;
       text-decoration: none;
       font-family: 'JetBrains Mono', monospace;
@@ -474,134 +619,193 @@
       <h1>Saumya Bajaj</h1>
       <p>Computational Data Analytics &bullet; Machine Learning &bullet; Mathematical Modeling</p>
     </div>
-    <div class="nav-links">
-      <a href="https://github.com/sbajaj4" target="_blank">GitHub</a>
+    <div class="header-contacts">
+      <span>Atlanta, GA</span>
+      <a href="mailto:saumyabajaj1123@gmail.com">saumyabajaj1123@gmail.com</a>
+      <a href="tel:+14702489307">+1 (470) 248-9307</a>
       <a href="https://linkedin.com/in/saumyabajaj" target="_blank">LinkedIn</a>
-      <a href="mailto:saumyabajaj1123@gmail.com">Contact</a>
+      <a href="https://github.com/sbajaj4" target="_blank">GitHub</a>
     </div>
   </header>
 
   <!-- CARD 1: FULL LENGTH PROFILE & TIMELINE -->
   <section class="profile-card">
-    <div class="profile-top-grid">
+    <div class="profile-grid">
       <div class="bio-block">
         <h2>Mathematical rigor across vision, physics, and autonomous intelligence.</h2>
         <p>
-          I am a graduate analytics student at <strong>Georgia Institute of Technology</strong> (M.S. in Analytics, Computational Track) with a background in Pure Mathematics (B.S. with High Honors). My work spans causal feature disentanglement in vision models, non-linear spatiotemporal generative modeling, and stochastic simulations of frustrated quantum spin topologies.
+          I am a graduate analytics student at <strong>Georgia Institute of Technology</strong> (M.S. in Analytics, Computational Track, GPA 4.00) with a background in Mathematics (B.S. with High Honors). My work spans causal representation learning, non-linear spatiotemporal generative modeling, and stochastic simulations of frustrated quantum spin topologies.
         </p>
         <p>
-          <strong>Target Roles:</strong> Machine Learning Engineer, Research Scientist, Quantitative Modeling / Applied Data Scientist.
+          <strong>Primary Focus:</strong> Machine Learning Engineering, Research Science, Quantitative Modeling &amp; Applied Data Science.
         </p>
       </div>
+
       <div class="skills-block">
-        <h3>Technical Repertoire</h3>
+        <h3>Technical Skills</h3>
         <div class="skill-group">
-          <div class="skill-title">Core Languages</div>
+          <div class="skill-title">Programming Languages</div>
           <div class="pill-wrap">
             <span class="pill">Python</span>
             <span class="pill">Julia</span>
-            <span class="pill">SQL</span>
             <span class="pill">R</span>
             <span class="pill">MATLAB</span>
             <span class="pill">Java</span>
+            <span class="pill">SQL</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-title">Machine Learning & Deep Learning</div>
+          <div class="skill-title">Frameworks &amp; ML Libraries</div>
           <div class="pill-wrap">
             <span class="pill">PyTorch</span>
-            <span class="pill">Gumbel-Softmax STE</span>
-            <span class="pill">Diffusion SDEs</span>
-            <span class="pill">LightGBM / XGBoost</span>
-            <span class="pill">Sunny.jl</span>
-            <span class="pill">Pydantic</span>
+            <span class="pill">TensorFlow</span>
+            <span class="pill">scikit-learn</span>
+            <span class="pill">pandas</span>
+            <span class="pill">numpy</span>
+            <span class="pill">statsmodels</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-title">Systems & Analytics</div>
+          <div class="skill-title">Infrastructure &amp; Tools</div>
           <div class="pill-wrap">
             <span class="pill">Databricks</span>
             <span class="pill">AWS</span>
+            <span class="pill">Azure</span>
             <span class="pill">Docker</span>
-            <span class="pill">Leaflet.js</span>
-            <span class="pill">Tableau</span>
+            <span class="pill">CI/CD</span>
+            <span class="pill">Langchain</span>
+            <span class="pill">Braintrust</span>
             <span class="pill">PostgreSQL</span>
+            <span class="pill">Tableau</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- HORIZONTAL TIMELINE -->
-    <div class="timeline-container">
-      <div class="timeline-title">
-        <span>Curriculum & Experience Ledger</span>
-        <span>Click any node for institutional responsibilities &bullet;</span>
+    <!-- HORIZONTAL PROCESS-ON TIMELINE -->
+    <div class="timeline-section">
+      <div class="timeline-header-row">
+        <h3>Academic &amp; Professional Ledger</h3>
+        <div class="timeline-legend">
+          <div class="legend-item"><span class="dot-sample dot-edu"></span> Education (Track A)</div>
+          <div class="legend-item"><span class="dot-sample dot-exp"></span> Experience (Track B)</div>
+        </div>
       </div>
-      <div class="timeline-track">
-        <!-- Node 1: Beep -->
-        <div class="timeline-node" onclick="openTimelineModal('beep')">
-          <span class="node-type">Practicum</span>
-          <div class="node-role">R&D Intern</div>
-          <div class="node-org">Beep, Inc.</div>
-          <div class="node-date">Aug 2026 – Dec 2026</div>
-        </div>
-        <!-- Node 2: GoFundMe -->
-        <div class="timeline-node" onclick="openTimelineModal('gofundme')">
-          <span class="node-type">Internship</span>
-          <div class="node-role">AI Intern</div>
-          <div class="node-org">GoFundMe</div>
-          <div class="node-date">May 2026 – Aug 2026</div>
-        </div>
-        <!-- Node 3: GT Grad Degree -->
-        <div class="timeline-node" onclick="openTimelineModal('ms-gt')">
-          <span class="node-type">Education</span>
-          <div class="node-role">M.S. Analytics</div>
-          <div class="node-org">Georgia Tech</div>
-          <div class="node-date">Grad: Dec 2026</div>
-        </div>
-        <!-- Node 4: GT EIC Lab -->
-        <div class="timeline-node" onclick="openTimelineModal('eic')">
-          <span class="node-type">Research</span>
-          <div class="node-role">Grad Research Intern</div>
-          <div class="node-org">GT EIC Lab</div>
-          <div class="node-date">Sep 2025 – Dec 2025</div>
-        </div>
-        <!-- Node 5: UHC DS -->
-        <div class="timeline-node" onclick="openTimelineModal('uhc')">
-          <span class="node-type">Internship</span>
-          <div class="node-role">Data Science Intern</div>
-          <div class="node-org">UnitedHealth Group</div>
-          <div class="node-date">Jun 2025 – Aug 2025</div>
-        </div>
-        <!-- Node 6: GT BS Degree -->
-        <div class="timeline-node" onclick="openTimelineModal('bs-gt')">
-          <span class="node-type">Education</span>
-          <div class="node-role">B.S. Mathematics</div>
-          <div class="node-org">Georgia Tech</div>
-          <div class="node-date">High Honors &bullet; 2025</div>
-        </div>
-        <!-- Node 7: Optum -->
-        <div class="timeline-node" onclick="openTimelineModal('optum')">
-          <span class="node-type">Internship</span>
-          <div class="node-role">Data Governance Intern</div>
-          <div class="node-org">Optum Imaging</div>
-          <div class="node-date">Jun 2024 – May 2025</div>
-        </div>
-        <!-- Node 8: iBoss -->
-        <div class="timeline-node" onclick="openTimelineModal('iboss')">
-          <span class="node-type">Consulting</span>
-          <div class="node-role">AI Research Intern</div>
-          <div class="node-org">iBoss Tech Solutions</div>
-          <div class="node-date">Nov 2023 – May 2024</div>
+
+      <div class="timeline-scroll-wrap">
+        <div class="timeline-canvas">
+          <!-- Central Horizontal Line -->
+          <div class="timeline-axis"></div>
+
+          <!-- Axis Track Labels -->
+          <div class="track-tag top">Edu</div>
+          <div class="track-tag bottom">Exp</div>
+
+          <!-- NODE 1: BS Math (UP) -->
+          <div class="timeline-event-item up" style="left: 100px;" onclick="openTimelineModal('bs-gt')">
+            <div class="node-box accent">
+              <div class="node-box-title">B.S. Mathematics</div>
+              <div class="node-box-org">Georgia Tech</div>
+              <div class="node-box-dates">Aug 2022 – May 2025</div>
+            </div>
+            <div class="node-stalk accent"></div>
+            <div class="node-pin accent"></div>
+            <div class="axis-label">2022</div>
+          </div>
+
+          <!-- NODE 2: iBoss (DOWN) -->
+          <div class="timeline-event-item down" style="left: 260px;" onclick="openTimelineModal('iboss')">
+            <div class="axis-label">2023</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">AI Consulting Intern</div>
+              <div class="node-box-org">iBoss Tech Solutions</div>
+              <div class="node-box-dates">Nov 2023 – May 2024</div>
+            </div>
+          </div>
+
+          <!-- NODE 3: Optum (DOWN - TALL) -->
+          <div class="timeline-event-item down tall" style="left: 440px;" onclick="openTimelineModal('optum')">
+            <div class="axis-label">2024</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">Data Analyst Intern</div>
+              <div class="node-box-org">Optum Imaging</div>
+              <div class="node-box-dates">Jun 2024 – May 2025</div>
+            </div>
+          </div>
+
+          <!-- NODE 4: MS Analytics (UP) -->
+          <div class="timeline-event-item up" style="left: 620px;" onclick="openTimelineModal('ms-gt')">
+            <div class="node-box accent">
+              <div class="node-box-title">M.S. in Analytics</div>
+              <div class="node-box-org">Georgia Tech</div>
+              <div class="node-box-dates">Aug 2025 – Dec 2026</div>
+            </div>
+            <div class="node-stalk accent"></div>
+            <div class="node-pin accent"></div>
+            <div class="axis-label">2025 (Aug)</div>
+          </div>
+
+          <!-- NODE 5: UHC DS (DOWN) -->
+          <div class="timeline-event-item down" style="left: 770px;" onclick="openTimelineModal('uhc')">
+            <div class="axis-label">2025 (Jun)</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">Data Science Intern</div>
+              <div class="node-box-org">UnitedHealth Group</div>
+              <div class="node-box-dates">Jun 2025 – Aug 2025</div>
+            </div>
+          </div>
+
+          <!-- NODE 6: GT EIC Lab (DOWN - TALL) -->
+          <div class="timeline-event-item down tall" style="left: 930px;" onclick="openTimelineModal('eic')">
+            <div class="axis-label">2025 (Sep)</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">Graduate Research Intern</div>
+              <div class="node-box-org">GT EIC Lab</div>
+              <div class="node-box-dates">Sep 2025 – Dec 2025</div>
+            </div>
+          </div>
+
+          <!-- NODE 7: GoFundMe (DOWN) -->
+          <div class="timeline-event-item down" style="left: 1100px;" onclick="openTimelineModal('gofundme')">
+            <div class="axis-label">2026 (May)</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">Artificial Intelligence Intern</div>
+              <div class="node-box-org">GoFundMe</div>
+              <div class="node-box-dates">May 2026 – Aug 2026</div>
+            </div>
+          </div>
+
+          <!-- NODE 8: Beep (DOWN - TALL) -->
+          <div class="timeline-event-item down tall" style="left: 1250px;" onclick="openTimelineModal('beep')">
+            <div class="axis-label">2026 (Aug)</div>
+            <div class="node-pin"></div>
+            <div class="node-stalk"></div>
+            <div class="node-box">
+              <div class="node-box-title">R&amp;D Intern (Practicum)</div>
+              <div class="node-box-org">Beep, Inc.</div>
+              <div class="node-box-dates">Aug 2026 – Dec 2026</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS SECTION -->
-  <div class="section-head">
-    <h2>Research & Engineering Projects</h2>
-    <p>Ranked by theoretical depth and empirical validation. Click any card to inspect the methodology.</p>
+  <div class="projects-head">
+    <h2>Research &amp; Engineering Projects</h2>
+    <p>Ranked by theoretical depth and empirical validation. Click any card to inspect technical specifications and repo links.</p>
   </div>
 
   <div class="projects-masonry">
@@ -613,20 +817,20 @@
           <rect x="15" y="20" width="70" height="70" fill="none" stroke="#9E4E3B" stroke-width="1.5" stroke-dasharray="3,3"/>
           <circle cx="50" cy="55" r="22" fill="none" stroke="#E5DFC5" stroke-width="1.5"/>
           <path d="M50 33 L50 77 M28 55 L72 55" stroke="#9E4E3B" stroke-width="1"/>
-          <path d="M100 55 L135 55" stroke="#E5DFC5" stroke-width="2" marker-end="url(#arrow)"/>
+          <path d="M100 55 L135 55" stroke="#E5DFC5" stroke-width="2"/>
           <rect x="150" y="35" width="40" height="40" fill="#9E4E3B" fill-opacity="0.2" stroke="#9E4E3B" stroke-width="1.5"/>
           <text x="170" y="59" fill="#FFF" font-family="'JetBrains Mono'" font-size="10" text-anchor="middle">M&#8857;X</text>
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 01 &bullet; Deep Learning Theory</div>
+        <div class="project-rank">Project 01 &bullet; Deep Learning</div>
         <h3>Causal Feature Identification in CNNs</h3>
-        <p class="project-summary">Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection to enforce an information bottleneck and eliminate shortcut learning on Waterbirds.</p>
-        <div class="metric-badge">Worst-Group: 78.50% | OOD: 88.35%</div>
+        <p class="project-summary">Engineered an Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection and multi-view intervention loops to isolate causally necessary features on Waterbirds.</p>
+        <div class="metric-badge">Worst-Group: 78.5% | OOD: 88.35% (&lt;12% Pixels)</div>
         <div class="tag-row">
           <span class="tag">PyTorch</span>
           <span class="tag">Gumbel-Softmax</span>
-          <span class="tag">Intervention Loss</span>
+          <span class="tag">Intervention Loops</span>
           <span class="tag">Waterbirds</span>
         </div>
       </div>
@@ -645,14 +849,14 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 02 &bullet; Computational Physics</div>
-        <h3>Parallel Tempering of Kitaev Spin Topologies</h3>
-        <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with 30-replica parallel tempering to resolve ground-state degeneracy and classify single-q vs multi-q magnetic phases via DWT.</p>
-        <div class="metric-badge">Wavelet Sparsity: 0.0029 (Vortex)</div>
+        <div class="project-rank">Project 02 &bullet; Modeling &amp; Simulation</div>
+        <h3>Parallel Tempering of Kitaev Spin Systems</h3>
+        <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with Parallel Tempering across 30 replicas, navigating frustrated honeycomb energy manifolds and classifying vortex phases via 2D DWT.</p>
+        <div class="metric-badge">30x Wavelet Efficiency over Fourier</div>
         <div class="tag-row">
           <span class="tag">Julia</span>
-          <span class="tag">Sunny.jl</span>
           <span class="tag">Parallel Tempering</span>
+          <span class="tag">Sunny.jl</span>
           <span class="tag">Wavelets.jl</span>
         </div>
       </div>
@@ -669,13 +873,13 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 03 &bullet; Generative Time Series</div>
-        <h3>Atlanta Traffic Forecasting via LSTM-Diffusion</h3>
-        <p class="project-summary">Continuous conditional diffusion framework benchmarked against 260K+ GDOT station sensor telemetry and hourly Weather Underground data to predict sudden highway congestion spikes.</p>
+        <div class="project-rank">Project 03 &bullet; Data &amp; Visual Analytics</div>
+        <h3>Atlanta Traffic Forecasting and Visualization</h3>
+        <p class="project-summary">LSTM-backed conditional diffusion model predicting near-term highway volume on Atlanta's I-285 perimeter using 260K+ GDOT sensor counts and hourly weather telemetry.</p>
         <div class="metric-badge">RMSE: 510.4 | R²: 0.95 | MAE: 255.3</div>
         <div class="tag-row">
           <span class="tag">PyTorch</span>
-          <span class="tag">Diffusion SDE</span>
+          <span class="tag">LSTM-Diffusion</span>
           <span class="tag">Leaflet.js</span>
           <span class="tag">Pako.js</span>
         </div>
@@ -695,10 +899,10 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 04 &bullet; Autonomous AI Systems</div>
-        <h3>Managed Multi-Agent Clinical Integrity Pipeline</h3>
-        <p class="project-summary">Production-grade automated clinical claim audit architecture pairing deterministic Z-score outlier interception with Gemini LLM semantic verification for billing anomaly detection.</p>
-        <div class="metric-badge">Zero Config uv &bullet; Pydantic Validated</div>
+        <div class="project-rank">Project 04 &bullet; Autonomous Systems</div>
+        <h3>Multi-Agent Clinical Payment Integrity Pipeline</h3>
+        <p class="project-summary">Enterprise claim audit system combining deterministic Z-score statistical bounds with token-efficient Gemini LLM workers for ICD-10 laterality contradiction screening.</p>
+        <div class="metric-badge">Deterministic Guards &bullet; uv Packaging</div>
         <div class="tag-row">
           <span class="tag">Python 3.12</span>
           <span class="tag">Google Gemini</span>
@@ -721,14 +925,14 @@
       </div>
       <div class="project-body">
         <div class="project-rank">Project 05 &bullet; Quantitative Finance</div>
-        <h3>At-The-Money Straddle Exit Optimization</h3>
-        <p class="project-summary">Engineering synthetic Greeks via cubic spline differentiation for short straddle exit classification, comparing lookback dynamics in LSTMs with Random Forest models.</p>
-        <div class="metric-badge">69% RF Accuracy | SPX Intraday</div>
+        <h3>Options Exit Algorithm &amp; Synthetic Greeks</h3>
+        <p class="project-summary">Engineered financial features including cubic spline derivatives (Delta and Gamma proxies) and correlation-aware reduction to classify ideal exit timing for ATM short straddles.</p>
+        <div class="metric-badge">~70% Accuracy | Spline Greeks</div>
         <div class="tag-row">
           <span class="tag">Python</span>
-          <span class="tag">Cubic Splines</span>
-          <span class="tag">Greeks</span>
           <span class="tag">Random Forest</span>
+          <span class="tag">Cubic Splines</span>
+          <span class="tag">GARCH / LSTM</span>
         </div>
       </div>
     </div>
@@ -745,14 +949,14 @@
       </div>
       <div class="project-body">
         <div class="project-rank">Project 06 &bullet; Sports Analytics</div>
-        <h3>NCAA Basketball In-Game Win Probability Engine</h3>
-        <p class="project-summary">Continuous Markov possession-state modeling using college basketball play-by-play telemetry to estimate real-time victory probabilities throughout live match progression.</p>
-        <div class="metric-badge">XGBoost &bullet; Logistic Calibration</div>
+        <h3>College Basketball Win Probability Engine</h3>
+        <p class="project-summary">Estimated in-game victory likelihood using historical play-by-play statistics, comparing interpretable Logistic Regression baselines with calibrated XGBoost models.</p>
+        <div class="metric-badge">XGBoost &bullet; Play-by-Play Telemetry</div>
         <div class="tag-row">
           <span class="tag">Python</span>
           <span class="tag">XGBoost</span>
-          <span class="tag">Play-by-Play</span>
-          <span class="tag">Pandas</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">DSGT</span>
         </div>
       </div>
     </div>
@@ -760,7 +964,7 @@
   </div>
 
   <footer>
-    &copy; 2026 Saumya Bajaj &bullet; Built with mathematical clarity and minimal dependencies.
+    &copy; 2026 Saumya Bajaj &bullet; One-page portfolio built for performance and transparency.
   </footer>
 </div>
 
@@ -768,242 +972,218 @@
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal-window">
     <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-    <div class="modal-header">
-      <div class="modal-kicker" id="modalKicker"></div>
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <div class="modal-subtitle" id="modalSubtitle"></div>
-    </div>
+    <div class="modal-kicker" id="modalKicker"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <div class="modal-subtitle" id="modalSubtitle"></div>
     <div class="modal-content" id="modalContent"></div>
     <div id="modalFooter"></div>
   </div>
 </div>
 
 <script>
-  const modalData = {
-    // TIMELINE MODALS
+  const ledgerData = {
+    // TIMELINE ROLES (Resume bullets verbatim)
     'beep': {
-      kicker: 'Practicum Ledger',
+      kicker: 'Experience &bullet; Practicum',
       title: 'Beep, Inc.',
-      subtitle: 'Research & Development Intern &bullet; Atlanta, GA (Aug 2026 – Dec 2026)',
+      subtitle: 'Research & Development Intern (Practicum) &bullet; Atlanta, GA (August 2026 – December 2026)',
       content: `
-        <h4>Project Focus & Autonomous Logistics</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Developing retrieval evaluation frameworks and knowledge service ingestion configurations for autonomous shuttle fleet operations.</li>
-          <li>Optimizing multi-modal telemetry processing pipelines to diagnose navigation anomaly states and operational edge-cases in real time.</li>
+          <li>Expanding the knowledge base to a representative corpus (&ge; 300 chunks) and creating a labeled gold benchmark set (&ge; 150 queries) with verified inter-annotator agreement.</li>
+          <li>Developing a Python framework to measure core retrieval metrics (Recall@k, MRR), prevent cross-tenant data leaks across permission scopes, and profile distance distributions.</li>
+          <li>Conducting controlled studies to identify the optimal chunking strategy and relevance cutoff threshold, and then directly implementing and deploying those winning changes into the Java/Spring Boot knowledge service.</li>
         </ul>
       `
     },
     'gofundme': {
-      kicker: 'Industry Experience',
+      kicker: 'Experience &bullet; Industry Internship',
       title: 'GoFundMe',
-      subtitle: 'Artificial Intelligence Intern &bullet; San Francisco, CA (May 2026 – Aug 2026)',
+      subtitle: 'Artificial Intelligence Intern &bullet; San Francisco, CA (May 2026 – August 2026)',
       content: `
-        <h4>Data Agent Evaluation & Infrastructure</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Designed and built an end-to-end evaluation harness for an internal natural-language-to-SQL data agent.</li>
-          <li>Implemented systematic golden dataset benchmarking, tracking query fidelity, schema alignment, and hallucination rates across complex relational tables.</li>
-          <li>Engineered automated regression alerts directly into internal development workflows.</li>
+          <li>Designed and built an enterprise LLM evaluation harness for an internal data agent, resolving core analyzer bugs, driving benchmark accuracy from 37% to 86%, and engineering interactive knowledge graphs and coverage heatmaps for executive reporting.</li>
+          <li>Architected a modular, metadata-driven table ranking engine for downstream RAG retrieval, authoring technical PRDs and scoring modules that successfully transitioned the platform from Alpha to Beta while auditing and resolving major security vulnerabilities.</li>
         </ul>
       `
     },
     'ms-gt': {
-      kicker: 'Graduate Education',
+      kicker: 'Education &bullet; Graduate Degree',
       title: 'Georgia Institute of Technology',
-      subtitle: 'Master of Science in Analytics (Computational Track) &bullet; Expected Dec 2026',
+      subtitle: 'Master of Science in Analytics (Computational Data Analytics Track) &bullet; August 2025 – December 2026',
       content: `
-        <h4>Curricular & Methodological Focus</h4>
+        <h4>Academic Highlights</h4>
         <ul>
-          <li><strong>Focus Areas:</strong> Deep Learning, High-Dimensional Statistics, Computational Data Analytics, Stochastic Modeling.</li>
-          <li><strong>Graduate Research:</strong> Diffusion large language models, causal representation learning, and geometric multiresolution decomposition.</li>
+          <li><strong>GPA:</strong> 4.00</li>
+          <li><strong>Track:</strong> Computational Data Analytics</li>
+          <li><strong>Relevant Coursework:</strong> Deep Learning, Artificial Intelligence, Computational Statistics, Modeling and Simulation, Analytics Modeling.</li>
         </ul>
       `
     },
     'eic': {
-      kicker: 'Academic Research',
-      title: 'Efficient and Intelligent Computing (EIC) Lab',
-      subtitle: 'Graduate Research Intern &bullet; Georgia Tech (Sep 2025 – Dec 2025)',
+      kicker: 'Experience &bullet; Academic Research',
+      title: 'GT Efficient and Intelligent Computing (EIC) Lab',
+      subtitle: 'Graduate Research Intern &bullet; Atlanta, GA (September 2025 – December 2025)',
       content: `
-        <h4>Diffusion Model Efficiency</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Investigated structural efficiency and denoising trajectories for generative diffusion language models.</li>
-          <li>Analyzed parameter sensitivity during reverse stochastic differential equation (SDE) sampling, identifying sparsity patterns to accelerate token inference.</li>
+          <li>Analyzed structure and efficiency of diffusion LLMs (LLaDA, Dream) via embedding similarity, layer dynamics, and training behavior.</li>
+          <li>Investigated latent space representations and structural bottlenecks to optimize model compression and sampling efficiency.</li>
         </ul>
       `
     },
     'uhc': {
-      kicker: 'Industry Experience',
+      kicker: 'Experience &bullet; Industry Internship',
       title: 'UnitedHealth Group',
-      subtitle: 'Data Science Intern &bullet; Boston, MA (Jun 2025 – Aug 2025)',
+      subtitle: 'Data Science Intern &bullet; Boston, MA (June 2025 – August 2025)',
       content: `
-        <h4>KPI Architecture & Clinical Analytics</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Formalized enterprise partnership KPIs, translating multi-million record claims datasets into actionable executive metrics.</li>
-          <li>Built and deployed production Tableau performance dashboards monitoring operational hospital throughput and contract compliance.</li>
+          <li>Defined 3+ KPIs measuring the performance of Garner Health partnership, enabling leadership to make a renewal decision.</li>
+          <li>Analyzed performance of 200+ accredited care organizations against individual provider performance to evaluate ACO partnerships.</li>
         </ul>
       `
     },
     'bs-gt': {
-      kicker: 'Undergraduate Education',
+      kicker: 'Education &bullet; Undergraduate Degree',
       title: 'Georgia Institute of Technology',
-      subtitle: 'Bachelor of Science in Mathematics with High Honors &bullet; May 2025',
+      subtitle: 'Bachelor of Science in Mathematics &bullet; August 2022 – May 2025',
       content: `
-        <h4>Mathematical Foundation</h4>
+        <h4>Academic Highlights</h4>
         <ul>
-          <li><strong>Distinction:</strong> Graduated with High Honors.</li>
-          <li><strong>Coursework:</strong> Real & Complex Analysis, Abstract Algebra, Probability & Mathematical Statistics, Numerical Methods, Differential Equations.</li>
-          <li><strong>Leadership:</strong> SGA Arts Committee Chair & FreShGA Advisor (Sep 2022 – May 2025); Code Red Collective Board Member (2017 – 2023).</li>
+          <li><strong>Concentration & Distinction:</strong> Foundations of Data Science with Business Option, High Honors.</li>
+          <li><strong>Relevant Coursework:</strong> Machine Learning, Numerical Analysis, Database Systems, Information Theory, Probability Theory, Graph Theory.</li>
+          <li><strong>Campus Leadership:</strong> Arts Committee Chair & FreShGA Advisor for SGA (Sep 2022 – May 2025), fundraising $7k for sports tournaments.</li>
         </ul>
       `
     },
     'optum': {
-      kicker: 'Industry Experience',
-      title: 'Optum Enterprise Imaging',
-      subtitle: 'Data Analytics & Governance Intern &bullet; (Jun 2024 – May 2025)',
+      kicker: 'Experience &bullet; Industry Internship',
+      title: 'UnitedHealth Group — Optum Enterprise Imaging',
+      subtitle: 'Data Analyst Intern &bullet; Atlanta, GA (June 2024 – May 2025)',
       content: `
-        <h4>Enterprise SQL & Governance Infrastructure</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Integrated multi-facility SQL databases for hospital enterprise imaging architectures.</li>
-          <li>Designed unified data dictionaries and automated schema verification scripts to ensure governance compliance across DICOM and clinical metadata pipelines.</li>
+          <li>Integrated SQL databases across Sales and Support systems, increasing customer support satisfaction by 15%.</li>
+          <li>Designed data governance architecture, adopted as an internal best-practice case study for business-wide data management.</li>
         </ul>
       `
     },
     'iboss': {
-      kicker: 'Consulting & Applied Research',
+      kicker: 'Experience &bullet; Consulting',
       title: 'iBoss Tech Solutions Pvt. Ltd.',
-      subtitle: 'AI Research Intern &bullet; (Nov 2023 – May 2024)',
+      subtitle: 'AI Consulting Intern &bullet; Atlanta, GA (November 2023 – May 2024)',
       content: `
-        <h4>LLM Application Prototyping</h4>
+        <h4>Key Responsibilities & Deliverables</h4>
         <ul>
-          <li>Researched emerging LLM architectures and prompt orchestration pipelines for commercial clients.</li>
-          <li>Engineered machine learning proof-of-concept demos and validation suites for domain-specific NLP applications.</li>
+          <li>Researched applications of LLMs, databases, and neural networks to identify new business opportunities.</li>
+          <li>Implemented end-to-end machine learning demos, securing multiple client pitch opportunities.</li>
         </ul>
       `
     },
 
-    // PROJECT MODALS
+    // PROJECTS (Refined from uploaded reports)
     'causal-ai': {
-      kicker: 'Research Project 01 &bullet; Deep Learning',
-      title: 'Causal Feature Identification in CNNs',
+      kicker: 'Deep Learning &bullet; Team Lead (Jan 2026 – May 2026)',
+      title: 'Causal Feature Identification in CNNs using Reinforcement Learning',
       subtitle: 'Saumya Bajaj, Nikolaos Kakonas, Tejas Khandwekar, Vivek Prakash &bullet; CS 4644/7643',
       content: `
-        <h4>Problem & Motivation</h4>
-        <p>Convolutional neural networks are susceptible to shortcut learning by exploiting spurious correlations (e.g. classifying waterbirds based on water backgrounds rather than avian physiology). When deployed out-of-distribution (OOD), accuracy collapses.</p>
-        
-        <h4>Theoretical Architecture: Agentic Observation Module (AOM)</h4>
+        <h4>Methodological Core</h4>
+        <p>Addresses shortcut learning on the Waterbirds benchmark, where standard CNNs rely on background textures (water vs. land) rather than avian features, causing failure out-of-distribution (OOD).</p>
         <ul>
-          <li><strong>Gumbel-Softmax Discrete Masking:</strong> Generates sparse binary masks M selecting 45x45 spatial patches using Straight-Through Estimators (STE) to maintain differentiability while forcing an information bottleneck revealing &lt;12% of the original image.</li>
-          <li><strong>Intervention Stability Loss:</strong> Implements a Jensen-Shannon Divergence stability penalty across counterfactual views generated by swapping opposing backgrounds from a Places dataset buffer, adding Gaussian noise, and blurring non-selected regions.</li>
-          <li><strong>Multi-Task Optimization:</strong> Loss balances Cross-Entropy, JS stability, delayed-ramp L1 sparsity penalty, Total Variation (for spatial patch contiguity), and entropy regularization.</li>
+          <li><strong>Agentic Observation Module (AOM):</strong> Lightweight patch selector utilizing Gumbel-Softmax discrete relaxation with a Straight-Through Estimator (STE) to produce sparse binary masks selecting 45&times;45 pixel patches.</li>
+          <li><strong>Intervention Training Loop:</strong> Implemented counterfactual testing (background swaps from Places dataset buffer, blur, Gaussian noise) penalized via Jensen-Shannon Divergence stability loss.</li>
+          <li><strong>Multi-Task Loss:</strong> Combined cross-entropy, JS stability, delayed-ramp L1 sparsity penalty, total variation (spatial continuity), and entropy regularization.</li>
         </ul>
-
-        <h4>Key Experimental Findings</h4>
+        <h4>Empirical Results</h4>
         <ul>
-          <li><strong>Worst-Group Accuracy:</strong> 78.50% (outperforming Vanilla ResNet-18 at 47.51%).</li>
+          <li><strong>Worst-Group Accuracy:</strong> 78.50% (vs. Vanilla ResNet-18 at 47.51%).</li>
           <li><strong>OOD Accuracy:</strong> 88.35% (outperforming Group DRO Oracle at 86.14% without requiring group labels during training).</li>
-          <li><strong>Pixel Efficiency:</strong> Retains classification accuracy while filtering out >88% of irrelevant pixel background noise.</li>
+          <li><strong>Information Bottleneck:</strong> Achieved superior robustness using &lt;12% of the original image pixels.</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/CausalAI'
     },
 
     'kitaev-wavelet': {
-      kicker: 'Research Project 02 &bullet; Condensed Matter Physics',
-      title: 'Parallel Tempering of Kitaev Spin Systems',
-      subtitle: 'Saumya Bajaj, Katherine Bridges, Nikolai Simonov, Roshan Trivedi &bullet; May 2026',
+      kicker: 'Modeling & Simulation &bullet; Mathematical Team Lead (Feb 2026 – May 2026)',
+      title: 'Parallel Tempering of Kitaev Spin Systems via Metropolis Monte Carlo Algorithm',
+      subtitle: 'Saumya Bajaj, Katherine Bridges, Nikolai Simonov, Roshan Trivedi',
       content: `
-        <h4>Physics Motivation</h4>
-        <p>Honeycomb cobaltates ($Na_3Co_2SbO_6$) are prominent candidates for Kitaev quantum spin liquid physics. A central unresolved challenge in scattering experiments is distinguishing true coherent multi-q ground states from domain-averaged responses of multiple single-q configurations.</p>
-        
-        <h4>Stochastic Sampler & Computational Engine</h4>
+        <h4>Computational Physics Context</h4>
+        <p>Distinguishing true multi-q magnetic ground states from domain-averaged responses of multiple single-q phases in honeycomb cobaltates (Na<sub>3</sub>Co<sub>2</sub>SbO<sub>6</sub>) is a longstanding challenge in scattering experiments.</p>
         <ul>
-          <li><strong>Custom Metropolis Monte Carlo:</strong> Built a custom MMC engine in Julia integrated with Sunny.jl's energy kernels, using dynamically scaled cone-update proposals: &theta;<sub>max</sub> &prop; 1/&radic;&beta; to sustain 30–50% acceptance.</li>
-          <li><strong>Parallel Tempering Protocol:</strong> Ran 30 replicas distributed across a logarithmic temperature grid (T = 0.005 K to 1.0 K), using replica exchanges: P<sub>swap</sub> = min(1, e<sup>(&Delta;&beta;&Delta;E)</sup>) to overcome flat energy landscapes and deep metastable wells.</li>
-          <li><strong>System Geometry:</strong> Modeled honeycomb extended KH&Gamma;&Gamma;' Hamiltonians and verified supercell size sensitivity (discovering 12&times;12&times;1 supercells uniquely stabilize true double-q zigzag states).</li>
-        </ul>
-
-        <h4>Multiresolution Wavelet Classification</h4>
-        <ul>
-          <li>Applied 2D Discrete Wavelet Transforms (Symlet 4 basis) to spin configurations.</li>
-          <li><strong>Sparsity Metric (n<sub>90</sub>):</strong> Single-q vortex states are captured 30&times; more efficiently by wavelets (n<sub>90</sub> = 0.0029 vs. Fourier 0.0811), while double-q zigzag and triple-q star phases exhibit Fourier sparsity of 0.0029. Wavelet-Fourier sparsity disparity enables unsupervised phase identification.</li>
+          <li><strong>Custom Julia MMC Simulator:</strong> Built a custom Metropolis Monte Carlo engine using cone updates with dynamic temperature scaling (&theta;<sub>max</sub> &prop; 1/&radic;&beta;) to maintain 30–50% acceptance.</li>
+          <li><strong>Parallel Tempering Protocol:</strong> Simulated 30 replicas on a logarithmic temperature grid (T = 0.005 K to 1.0 K) with replica exchanges to overcome flat energy landscapes and deep metastable wells.</li>
+          <li><strong>Lattice Geometry:</strong> Modeled extended KH&Gamma;&Gamma;' Hamiltonians, verifying that a 12&times;12&times;1 supercell stabilizes the true double-q zigzag state.</li>
+          <li><strong>Wavelet Diagnostic:</strong> Applied 2D Discrete Wavelet Transforms (Symlet 4). Demonstrated that the single-q vortex phase is captured 30&times; more efficiently by wavelets (n<sub>90</sub> = 0.0029) than Fourier (0.0811), establishing an unsupervised phase diagnostic.</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/KitaevWavelet_public'
     },
 
     'traffic-diffusion': {
-      kicker: 'Research Project 03 &bullet; Generative Modeling',
-      title: 'Atlanta Traffic Congestion Forecasting',
-      subtitle: 'Saumya Bajaj & Team &bullet; GDOT & Weather Underground Study',
+      kicker: 'Data and Visual Analytics &bullet; Team Lead (Aug 2025 – Nov 2025)',
+      title: 'Atlanta Traffic Forecasting and Visualization',
+      subtitle: 'GDOT & Weather Underground Study',
       content: `
-        <h4>Problem Formulation</h4>
-        <p>Highway traffic volume on major arterial corridors (such as Atlanta's I-285 perimeter) suffers from sudden volatility, regime shifts, and non-linear shocks. Deterministic baselines often fail to capture distribution tails.</p>
-        
-        <h4>Generative Diffusion Methodology</h4>
+        <h4>Generative Time-Series Architecture</h4>
+        <p>Short-term highway congestion forecasting around Atlanta's I-285 perimeter using continuous conditional diffusion.</p>
         <ul>
-          <li><strong>Continuous Conditional Diffusion:</strong> Formulated future 1-hour traffic states as reverse denoising processes over continuous Gaussian distributions, retaining uncertainty bounds rather than outputting isolated point predictions.</li>
-          <li><strong>LSTM Backbone:</strong> Encoded 24-hour historical rolling windows with sinusoidal time embeddings and an MLP denoising head.</li>
-          <li><strong>Telemetry Ingestion:</strong> Merged and standardized over 260,000 hourly GDOT sensor observations across 10+ stations with hourly Weather Underground meteorological conditions.</li>
-        </ul>
-
-        <h4>Empirical Results & Deployment</h4>
-        <ul>
-          <li><strong>Model Performance:</strong> Diffusion achieved <strong>510.4 RMSE, 255.3 MAE, and R² = 0.95</strong>, substantially outperforming LSTM (RMSE 667.3), SARIMAX (RMSE 1348.6), and Random Forest (RMSE 561.9).</li>
-          <li><strong>Single-File Web Dashboard:</strong> Created a standalone client-side dashboard with Leaflet.js, achieving a 75% payload compression ratio via Gzip and Pako.js client-side decompression to stream 300K+ records instantly under 2MB.</li>
+          <li><strong>Model Architecture:</strong> Single-layer LSTM encoder in PyTorch with sinusoidal time embeddings and an MLP denoising head conditioned on 24-hour rolling windows (lagged volume, temporal cycles, weather parameters).</li>
+          <li><strong>Data Ingestion:</strong> Merged, cleaned, and standardized 260K+ hourly vehicle sensor records across 10+ GDOT stations with scraped Weather Underground telemetry.</li>
+          <li><strong>Empirical Superiority:</strong> Diffusion achieved <strong>510.4 RMSE, 255.3 MAE, and R² = 0.95</strong>, outperforming Random Forest (561.9 RMSE), LSTM (667.3 RMSE), and SARIMAX (1348.6 RMSE).</li>
+          <li><strong>Compressed Single-File App:</strong> Designed a standalone HTML dashboard using Leaflet.js and Pako.js client-side decompression, compressing 300K+ records by 75% to under 2MB.</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/TrafficDiffusion_public'
     },
 
     'healthcare-agent': {
-      kicker: 'Engineering Project 04 &bullet; Autonomous AI Systems',
-      title: 'Managed Multi-Agent Clinical Integrity Pipeline',
-      subtitle: 'Enterprise Claim Audit System Proof of Concept',
+      kicker: 'Autonomous Systems &bullet; Engineering PoC',
+      title: 'Managed Multi-Agent Clinical Payment Integrity Pipeline',
+      subtitle: 'Enterprise Automated Claim Audit Engine',
       content: `
-        <h4>Architecture Strategy</h4>
-        <p>Enterprise medical billing requires audit mechanisms that catch complex semantic discrepancies without incurring astronomical LLM token costs or latency bottlenecks.</p>
-        
-        <h4>Hybrid Pipeline Design</h4>
+        <h4>Hybrid Audit Design</h4>
+        <p>High-throughput automated clinical claim audit architecture reconciling billing records with medical documentation.</p>
         <ul>
-          <li><strong>Deterministic Fast-Path Guardrails:</strong> Local statistical Z-score calculations intercept gross unit and cost anomalies prior to invoking LLM inference.</li>
-          <li><strong>Token-Optimized LLM Workers:</strong> Employs <code>gemini-3.1-flash-lite</code> with specialized prompts targeting high-complexity lateral discrepancies (e.g., ICD-10 side codes conflicting with operative prose).</li>
-          <li><strong>Contract Enforcement:</strong> Rigid Pydantic schemas enforce deterministic JSON structure across audit artifacts, preventing schema hallucinations.</li>
-          <li><strong>Environment & Packaging:</strong> Built using Python 3.12 and <code>uv</code> for hermetic, sub-second execution without virtual environment overhead.</li>
+          <li><strong>Deterministic Guardrails:</strong> Local statistical Z-score calculations intercept gross unit and billing outliers deterministically prior to LLM evaluation.</li>
+          <li><strong>Semantic Screening:</strong> Uses <code>gemini-3.1-flash-lite</code> with specialized token-efficient system prompts to identify deep laterality contradictions (e.g. ICD-10 side designations vs. operational prose).</li>
+          <li><strong>Contract Enforcement:</strong> Rigid Pydantic schemas enforce deterministic JSON structure across audit artifacts.</li>
+          <li><strong>Hermetic Tooling:</strong> Built with Python 3.12 and <code>uv</code> for sub-second, isolated execution.</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/healthcare-agent-poc'
     },
 
     'financial-markets': {
-      kicker: 'Research Project 05 &bullet; Quantitative Finance',
-      title: 'At-The-Money Straddle Exit Optimization',
+      kicker: 'Machine Learning for Financial Markets &bullet; Student Researcher (Aug 2023 – May 2024)',
+      title: 'Options Algorithm: At-The-Money Straddle Exit Optimization',
       subtitle: 'Saumya Bajaj, Abinav Chari, Mark Rodrigues, Riya Bhadani, Daniel Wu',
       content: `
-        <h4>Quantitative Objective</h4>
-        <p>Identify optimal trade exit timings for at-the-money (ATM) short straddle options positions using intraday SPX contracts and synthetic Greek derivatives.</p>
-        
-        <h4>Feature Engineering & Spline Derivatives</h4>
+        <h4>Quantitative Modeling</h4>
+        <p>Classification framework determining ideal trade exit times for at-the-money short straddle positions on SPX contracts.</p>
         <ul>
-          <li><strong>Spline Interpolation:</strong> Fitted continuous cubic splines to straddle exit value versus underlying SPX close prices to analytically compute first and second numerical derivatives (&Delta; and &Gamma; proxies).</li>
-          <li><strong>Feature Importance:</strong> Engineered Greek derivatives ranked 6th and 16th in overall feature importance among over 115 technical indicators.</li>
-          <li><strong>Model Benchmarking:</strong> Adding spline-derived Greeks improved Random Forest classification accuracy from 66.8% to 69.0%. Evaluated LSTM architectures with variable lookback windows (5, 10, 20 steps), identifying temporal underfitting challenges in high-frequency regimes.</li>
+          <li><strong>Synthetic Greek Differentiation:</strong> Fitted cubic splines to straddle exit value versus SPX close prices to compute 1st and 2nd numerical derivatives (&Delta; and &Gamma; indicators).</li>
+          <li><strong>Feature Importance:</strong> Engineered Greeks ranked 6th and 16th in overall feature importance among 115+ technical indicators, boosting Random Forest accuracy to 69%.</li>
+          <li><strong>Model Comparison:</strong> Evaluated GARCH, SVM, Gradient Boosting, CNN, and LSTM architectures across multiple lookback windows (5, 10, 20 steps).</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/MLFinancialMarkets'
     },
 
     'gt-athletics': {
-      kicker: 'Applied Project 06 &bullet; Sports Analytics',
-      title: 'NCAA Basketball Live Win Probability Engine',
-      subtitle: 'Data Science @ Georgia Tech (DSGT) Athletics Team',
+      kicker: 'Sports Analytics &bullet; Data Science @ GT (DSGT)',
+      title: 'College Basketball In-Game Win Probability Engine',
+      subtitle: 'GT Athletics Subteam 7',
       content: `
-        <h4>Predictive Modeling</h4>
-        <p>Calculates real-time victory probabilities for college basketball teams at any given elapsed second of game progression.</p>
-        
-        <h4>Methodological Pipeline</h4>
+        <h4>Real-Time Match Modeling</h4>
+        <p>Estimates team win probability throughout college basketball games using play-by-play telemetry.</p>
         <ul>
-          <li>Extracted and cleaned multi-season play-by-play telemetry, standardizing score margins, fouls, elapsed clock duration, and possession sequences.</li>
-          <li>Built and calibrated Logistic Regression baselines alongside an XGBoost Classifier to model non-linear score swings and momentum shifts.</li>
-          <li>Demonstrated that explicit possession-indicator tracking and time-weighted scoring rate features provided the highest marginal gain in predictive calibration.</li>
+          <li>Ingested, cleaned, and aligned play-by-play datasets across multiple NCAA seasons.</li>
+          <li>Engineered differential scoring rates, elapsed time factors, and discrete possession states.</li>
+          <li>Benchmarked interpretable Logistic Regression models against an XGBoost classifier for calibrated live probability curves.</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/GTAthletics'
@@ -1011,7 +1191,7 @@
   };
 
   function openTimelineModal(id) {
-    const data = modalData[id];
+    const data = ledgerData[id];
     if (!data) return;
     document.getElementById('modalKicker').innerText = data.kicker;
     document.getElementById('modalTitle').innerText = data.title;
@@ -1022,7 +1202,7 @@
   }
 
   function openProjectModal(id) {
-    const data = modalData[id];
+    const data = ledgerData[id];
     if (!data) return;
     document.getElementById('modalKicker').innerText = data.kicker;
     document.getElementById('modalTitle').innerText = data.title;
@@ -1041,12 +1221,9 @@
   }
 
   function handleOverlayClick(e) {
-    if (e.target.id === 'modalOverlay') {
-      closeModal();
-    }
+    if (e.target.id === 'modalOverlay') closeModal();
   }
 
-  // Keyboard accessibility (Escape key closes modal)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
