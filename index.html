@@ -351,6 +351,65 @@
       background: #8C8275;
     }
 
+    /* Lane track indicator labels */
+    .track-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .single-lane-experience {
+      height: 40px;
+      margin-bottom: 18px;
+    }
+
+    /* Terminal Next Adventure Flag */
+    .swatch-next {
+      background: var(--ink);
+      border: 1px solid var(--accent);
+    }
+
+    .terminal-milestone {
+      position: absolute;
+      right: -10px;
+      top: -30px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1.5px dashed var(--accent);
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      z-index: 15;
+    }
+    .terminal-milestone:hover {
+      transform: scale(1.06) translateY(-2px);
+      background: var(--accent-soft);
+      box-shadow: var(--shadow-md);
+    }
+    .milestone-star {
+      color: var(--accent);
+      font-size: 14px;
+      animation: pulseStar 2s infinite ease-in-out;
+    }
+    @keyframes pulseStar {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+    .milestone-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
     /* PROJECTS SECTION */
     .projects-head {
       margin-bottom: 28px;
@@ -367,7 +426,7 @@
       color: var(--text-muted);
     }
 
-    /* PINTEREST MASONRY CARDS */
+/* PINTEREST MASONRY CARDS */
     .projects-masonry {
       column-count: 3;
       column-gap: 28px;
@@ -607,10 +666,13 @@
       <div class="bio-block">
         <h2>Unraveling structure in complex, high-dimensional spaces.</h2>
         <p>
-          I'm Saumya—a mathematician and analytics graduate student at <strong>Georgia Tech</strong>. I find genuine joy in navigating messy, non-linear problems: whether that's forcing neural networks to look past convenient shortcuts to learn true causal features, simulating the subtle quantum choreography of frustrated electron spins, or optimizing production retrieval engines.
+          Hi, I'm Saumya! I am a mathematician and data science graduate student at Georgia Tech. I love digging into why algorithms behave the way they do, and I find genuine joy in navigating messy, high-dimensional problems—whether that’s nudging neural networks to learn true causal features instead of convenient shortcuts, or simulating the subtle quantum choreography of frustrated electron spins.
         </p>
         <p>
-          My foundation is pure mathematics, which means I care deeply about <em>why</em> an algorithm behaves the way it does, not just whether the loss curve goes down. Outside of code and equations, I appreciate clean architecture, well-crafted physical objects, and thoughtful visual design. I'm currently looking for collaborative research and machine learning engineering teams where mathematical rigor meets high-impact engineering.
+          Beyond equations and terminal windows, I care a lot about community and craft. Over the years, I’ve served on the board of Code Red Collective, spent plenty of time in student government organizing and planning campus events, and immersed myself in reading and writing. Lately, when I step away from the screen, you can usually find me working with yarn and learning to knit.
+        </p>
+        <p>
+          I am graduating this December and looking for my first full-time role—one where I can collaborate with thoughtful teams, tackle challenging problems, and continue developing and sharpening my technical skills.
         </p>
       </div>
 
@@ -655,19 +717,20 @@
       </div>
     </div>
 
-    <!-- GANTT-STYLE SPAN TIMELINE -->
+<!-- GANTT-STYLE SPAN TIMELINE -->
     <div class="timeline-section">
       <div class="timeline-header-row">
         <h3>Journey &amp; Track Record</h3>
         <div class="timeline-legend">
-          <div class="legend-item"><span class="legend-swatch swatch-edu"></span> Degree Programs</div>
-          <div class="legend-item"><span class="legend-swatch swatch-exp"></span> Professional &amp; Lab Experience</div>
+          <div class="legend-item"><span class="legend-swatch swatch-edu"></span> Education (Degrees)</div>
+          <div class="legend-item"><span class="legend-swatch swatch-exp"></span> Professional Experience (Sequential)</div>
+          <div class="legend-item"><span class="legend-swatch swatch-next"></span> What's Next</div>
         </div>
       </div>
 
       <div class="gantt-scroll-wrap">
-<div class="gantt-board">
-          <!-- Background Grid Guidelines -->
+        <div class="gantt-board">
+          <!-- Background Grid Guidelines (Aug 2022 to Dec 2026 = 52 Months Total) -->
           <div class="gantt-grid">
             <div class="grid-col"></div>
             <div class="grid-col"></div>
@@ -676,9 +739,12 @@
             <div class="grid-col"></div>
           </div>
 
-          <!-- ROW 1: B.S. Mathematics -->
+          <!-- TRACK A: EDUCATION -->
+          <div class="track-header-label">Track A &bullet; Academic Foundations</div>
+          
+          <!-- B.S. Mathematics (Aug 2022 – May 2025: 33 months / 52 = 63.5%) -->
           <div class="gantt-row">
-            <div class="gantt-bar edu" style="left: 0%; width: 62.5%;" onclick="openTimelineModal('bs-gt')" data-tooltip="B.S. in Mathematics (High Honors) • Georgia Tech • Aug 2022 – May 2025">
+            <div class="gantt-bar edu" style="left: 0%; width: 63.5%;" onclick="openTimelineModal('bs-gt')" data-tooltip="B.S. in Mathematics (High Honors) • Georgia Tech • Aug 2022 – May 2025">
               <span class="diamond-cap left"></span>
               <span class="bar-label">B.S. in Mathematics (High Honors) &bullet; Georgia Tech</span>
               <span class="bar-duration">Aug 2022 – May 2025</span>
@@ -686,9 +752,9 @@
             </div>
           </div>
 
-          <!-- ROW 2: M.S. Analytics -->
+          <!-- M.S. Analytics (Aug 2025 – Dec 2026: Month 36 to 52 = 30.7%) -->
           <div class="gantt-row">
-            <div class="gantt-bar edu" style="left: 68.5%; width: 31.5%;" onclick="openTimelineModal('ms-gt')" data-tooltip="M.S. in Analytics (Computational Track, GPA 4.00) • Georgia Tech • Aug 2025 – Dec 2026">
+            <div class="gantt-bar edu" style="left: 69.2%; width: 30.8%;" onclick="openTimelineModal('ms-gt')" data-tooltip="M.S. in Analytics (Computational Track, GPA 4.00) • Georgia Tech • Aug 2025 – Dec 2026">
               <span class="diamond-cap left"></span>
               <span class="bar-label">M.S. in Analytics (GPA 4.00) &bullet; Georgia Tech</span>
               <span class="bar-duration">Aug 2025 – Dec 2026</span>
@@ -696,73 +762,67 @@
             </div>
           </div>
 
-          <!-- ROW 3: iBoss Tech -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp" style="left: 27%; width: 17%;" onclick="openTimelineModal('iboss')" data-tooltip="AI Consulting Intern • iBoss Tech Solutions • Nov 2023 – May 2024">
+          <!-- TRACK B: SEQUENTIAL PROFESSIONAL EXPERIENCE (Single Aligned Lane) -->
+          <div class="track-header-label" style="margin-top: 14px;">Track B &bullet; Industry &amp; Research Track (Continuous)</div>
+          
+          <div class="gantt-row single-lane-experience">
+            <!-- 1. iBoss (Nov 2023 – May 2024: m15 to m21 = 11.5%) -->
+            <div class="gantt-bar exp compact" style="left: 28.8%; width: 11.5%;" onclick="openTimelineModal('iboss')" data-tooltip="AI Consulting Intern • iBoss Tech Solutions • Nov 2023 – May 2024">
               <span class="diamond-cap left"></span>
-              <span class="bar-label">AI Consulting Intern &bullet; iBoss Tech</span>
-              <span class="bar-duration">Nov '23 – May '24</span>
+              <span class="bar-label">iBoss Tech</span>
               <span class="diamond-cap right"></span>
             </div>
-          </div>
 
-          <!-- ROW 4: Optum Enterprise Imaging -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp" style="left: 40%; width: 24%;" onclick="openTimelineModal('optum')" data-tooltip="Data Analyst Intern • Optum Enterprise Imaging • Jun 2024 – May 2025">
+            <!-- 2. Optum (Jun 2024 – May 2025: m22 to m33 = 21.1%) -->
+            <div class="gantt-bar exp" style="left: 42.3%; width: 21.1%;" onclick="openTimelineModal('optum')" data-tooltip="Data Analyst Intern • Optum Enterprise Imaging • Jun 2024 – May 2025">
               <span class="diamond-cap left"></span>
-              <span class="bar-label">Data Analyst Intern &bullet; Optum Imaging</span>
+              <span class="bar-label">Optum Imaging</span>
               <span class="bar-duration">Jun '24 – May '25</span>
               <span class="diamond-cap right"></span>
             </div>
-          </div>
 
-          <!-- ROW 5: UnitedHealth Group DS (Compact) -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp compact" style="left: 64%; width: 15%;" onclick="openTimelineModal('uhc')" data-tooltip="Data Science Intern • UnitedHealth Group • Jun 2025 – Aug 2025">
+            <!-- 3. UHC DS (Jun 2025 – Aug 2025: m34 to m36 = 5.8%) -->
+            <div class="gantt-bar exp compact" style="left: 65.4%; width: 5.8%;" onclick="openTimelineModal('uhc')" data-tooltip="Data Science Intern • UnitedHealth Group • Jun 2025 – Aug 2025">
               <span class="diamond-cap left"></span>
-              <span class="bar-label">Data Science Intern &bullet; UHC</span>
-              <span class="bar-duration">Jun – Aug '25</span>
+              <span class="bar-label">UHC</span>
+              <span class="diamond-cap right"></span>
+            </div>
+
+            <!-- 4. GT EIC Lab (Sep 2025 – Dec 2025: m37 to m40 = 7.7%) -->
+            <div class="gantt-bar exp compact" style="left: 71.2%; width: 7.7%;" onclick="openTimelineModal('eic')" data-tooltip="Graduate Research Intern • GT EIC Lab • Sep 2025 – Dec 2025">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">EIC Lab</span>
+              <span class="diamond-cap right"></span>
+            </div>
+
+            <!-- 5. GoFundMe (May 2026 – Aug 2026: m45 to m48 = 7.7%) -->
+            <div class="gantt-bar exp compact" style="left: 84.6%; width: 7.7%;" onclick="openTimelineModal('gofundme')" data-tooltip="Artificial Intelligence Intern • GoFundMe • May 2026 – Aug 2026">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">GoFundMe</span>
+              <span class="diamond-cap right"></span>
+            </div>
+
+            <!-- 6. Beep (Aug 2026 – Dec 2026: m48 to m52 = 7.7%) -->
+            <div class="gantt-bar exp compact" style="left: 92.3%; width: 7.7%;" onclick="openTimelineModal('beep')" data-tooltip="R&D Intern (Practicum) • Beep, Inc. • Aug 2026 – Dec 2026">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">Beep R&amp;D</span>
               <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- ROW 6: GT EIC Lab (Compact) -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp compact" style="left: 70%; width: 15.5%;" onclick="openTimelineModal('eic')" data-tooltip="Graduate Research Intern • GT EIC Lab • Sep 2025 – Dec 2025">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">Research Intern &bullet; GT EIC Lab</span>
-              <span class="bar-duration">Sep – Dec '25</span>
-              <span class="diamond-cap right"></span>
-            </div>
-          </div>
-
-          <!-- ROW 7: GoFundMe (Compact) -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp compact" style="left: 83%; width: 15%;" onclick="openTimelineModal('gofundme')" data-tooltip="Artificial Intelligence Intern • GoFundMe • May 2026 – Aug 2026">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">AI Intern &bullet; GoFundMe</span>
-              <span class="bar-duration">May – Aug '26</span>
-              <span class="diamond-cap right"></span>
-            </div>
-          </div>
-
-          <!-- ROW 8: Beep Practicum (Compact) -->
-          <div class="gantt-row">
-            <div class="gantt-bar exp compact" style="left: 88.5%; width: 15.5%;" onclick="openTimelineModal('beep')" data-tooltip="R&D Intern (Practicum) • Beep, Inc. • Aug 2026 – Dec 2026">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">R&amp;D Intern &bullet; Beep</span>
-              <span class="bar-duration">Aug – Dec '26</span>
-              <span class="diamond-cap right"></span>
-            </div>
-          </div>
-
-          <!-- TIME AXIS -->
+          <!-- TIME AXIS WITH FINAL ADVENTURE MILESTONE -->
           <div class="gantt-axis">
-            <div class="axis-tick">2022 (Fall)</div>
+            <div class="axis-tick">Fall 2022</div>
             <div class="axis-tick">2023</div>
             <div class="axis-tick">2024</div>
             <div class="axis-tick">2025</div>
-            <div class="axis-tick">2026 (End)</div>
+            <div class="axis-tick">2026</div>
+
+            <!-- TERMINAL MILESTONE: Finding My Next Adventure -->
+            <div class="terminal-milestone" onclick="openTimelineModal('next-adventure')" data-tooltip="Ready for full-time ML/AI roles starting 2027!">
+              <div class="milestone-star">&#10022;</div>
+              <div class="milestone-text">Finding my next adventure!</div>
+            </div>
           </div>
         </div>
       </div>
@@ -949,6 +1009,20 @@
 
 <script>
   const ledgerData = {
+    'next-adventure': {
+      kicker: 'Future Horizons • 2027 & Beyond',
+      title: 'Finding My Next Adventure',
+      subtitle: 'Open to Full-Time Machine Learning, AI Research & Quantitative Analytics Roles',
+      content: `
+        <h4>What I\'m Looking For</h4>
+        <p>Graduating with my M.S. in Analytics from Georgia Tech in December 2026, I am actively seeking full-time roles where mathematical reasoning meets high-scale engineering.</p>
+        <ul>
+          <li><strong>What I Bring:</strong> Proven track record designing autonomous agent evaluation frameworks, publishing benchmark-beating causal vision architectures, and deploying generative models.</li>
+          <li><strong>Location:</strong> Open to anywhere in the US.</li>
+        </ul>
+        <p style="margin-top: 14px;">Feel free to reach out via <a href="mailto:saumyabajaj1123@gmail.com" style="color: var(--accent); font-weight: 600;">saumyabajaj1123@gmail.com</a> or connect on <a href="https://linkedin.com/in/saumyabajaj" target="_blank" style="color: var(--accent); font-weight: 600;">LinkedIn</a>!</p>
+      `
+    },
     'beep': {
       kicker: 'Experience &bullet; Practicum',
       title: 'Beep, Inc.',
