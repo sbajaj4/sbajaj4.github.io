@@ -20,6 +20,8 @@
       --accent-soft: rgba(158, 78, 59, 0.08);
       --accent-border: rgba(158, 78, 59, 0.25);
       --ink: #11100E;
+      --edu-bar: #3D5A5B; /* Deep Spruce */
+      --exp-bar: #9E4E3B; /* Terracotta */
       --shadow-sm: 0 2px 10px rgba(28, 26, 23, 0.04);
       --shadow-md: 0 10px 30px rgba(28, 26, 23, 0.08);
       --shadow-lg: 0 20px 50px rgba(28, 26, 23, 0.14);
@@ -100,11 +102,11 @@
       display: grid;
       grid-template-columns: 1.55fr 1fr;
       gap: 44px;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
     }
     .bio-block h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 600;
       line-height: 1.25;
       color: var(--ink);
@@ -158,7 +160,7 @@
       color: var(--ink);
     }
 
-    /* PROCESS-ON STYLE HORIZONTAL TIMELINE */
+    /* GANTT-STYLE SPAN TIMELINE */
     .timeline-section {
       border-top: 1px solid var(--border-light);
       padding-top: 36px;
@@ -167,7 +169,7 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
     .timeline-header-row h3 {
       font-family: 'Cinzel', serif;
@@ -181,200 +183,133 @@
       font-size: 11px;
       color: var(--text-muted);
       display: flex;
-      gap: 16px;
+      gap: 20px;
     }
     .legend-item {
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .dot-sample {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .legend-swatch {
+      width: 14px;
+      height: 6px;
+      border-radius: 2px;
     }
-    .dot-edu { background: var(--accent); }
-    .dot-exp { background: var(--ink); }
+    .swatch-edu { background: var(--edu-bar); }
+    .swatch-exp { background: var(--exp-bar); }
 
-    .timeline-scroll-wrap {
+    .gantt-scroll-wrap {
       overflow-x: auto;
-      padding: 40px 10px 30px;
+      padding: 10px 0 20px;
       -webkit-overflow-scrolling: touch;
     }
-    .timeline-canvas {
+    .gantt-board {
+      min-width: 1100px;
       position: relative;
-      min-width: 1300px;
-      height: 380px;
     }
 
-    /* Central Axis */
-    .timeline-axis {
+    /* Grid vertical guidelines */
+    .gantt-grid {
       position: absolute;
-      top: 50%;
-      left: 30px;
-      right: 40px;
-      height: 2px;
-      background-color: #8C8275;
-      transform: translateY(-50%);
+      top: 0; left: 0; right: 0; bottom: 44px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      pointer-events: none;
+      border-left: 1px dashed var(--border);
+      border-right: 1px dashed var(--border);
     }
-    .timeline-axis::after {
-      content: '';
-      position: absolute;
-      right: -12px;
-      top: -5px;
-      width: 0;
-      height: 0;
-      border-top: 6px solid transparent;
-      border-bottom: 6px solid transparent;
-      border-left: 12px solid #8C8275;
+    .grid-col {
+      border-right: 1px dashed rgba(226, 220, 200, 0.6);
+      height: 100%;
     }
 
-    /* Track Labels (A / B Indicators from image) */
-    .track-tag {
-      position: absolute;
-      left: 0;
-      width: 24px;
-      height: 64px;
-      background: var(--ink);
-      color: #FFF;
-      border-radius: 12px;
+    /* Rows */
+    .gantt-row {
+      position: relative;
+      height: 48px;
+      margin-bottom: 10px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      padding: 4px;
     }
-    .track-tag.top { top: 50px; }
-    .track-tag.bottom { bottom: 50px; }
 
-    /* Nodes & Stalks */
-    .timeline-event-item {
+    /* Spanning Activity Bar */
+    .gantt-bar {
       position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      height: 32px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
       cursor: pointer;
-    }
-    .node-pin {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--ink);
-      border: 3px solid var(--surface);
-      box-shadow: 0 0 0 2px var(--ink);
-      position: relative;
-      z-index: 3;
       transition: var(--transition);
-      margin: 0 auto;
-    }
-    .node-pin.accent {
-      background: var(--accent);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-    .timeline-event-item:hover .node-pin {
-      transform: scale(1.3);
-    }
-
-    .node-stalk {
-      position: absolute;
-      width: 1px;
-      background-color: #8C8275;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-    }
-    .node-stalk.accent {
-      background-color: var(--accent);
-    }
-
-    /* Event Overview Box */
-    .node-box {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 170px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 12px;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      color: #FFF;
+    }
+    .gantt-bar.edu {
+      background: var(--edu-bar);
+    }
+    .gantt-bar.exp {
+      background: var(--exp-bar);
+    }
+    .gantt-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      filter: brightness(1.08);
+    }
+
+    /* Diamond Terminal Ends */
+    .diamond-cap {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      background: inherit;
+      top: 11px;
+    }
+    .diamond-cap.left { left: -5px; }
+    .diamond-cap.right { right: -5px; }
+
+    .bar-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       z-index: 2;
     }
-    .node-box.accent {
-      border: 1px dashed var(--accent);
-    }
-    .timeline-event-item:hover .node-box {
-      box-shadow: var(--shadow-md);
-      transform: translateX(-50%) translateY(-3px);
-      border-color: var(--accent);
-    }
-
-    /* Upward Events */
-    .timeline-event-item.up .node-stalk {
-      bottom: 7px;
-      height: 60px;
-    }
-    .timeline-event-item.up.tall .node-stalk {
-      height: 100px;
-    }
-    .timeline-event-item.up .node-box {
-      bottom: 70px;
-    }
-    .timeline-event-item.up.tall .node-box {
-      bottom: 110px;
-    }
-
-    /* Downward Events */
-    .timeline-event-item.down .node-stalk {
-      top: 7px;
-      height: 60px;
-    }
-    .timeline-event-item.down.tall .node-stalk {
-      height: 100px;
-    }
-    .timeline-event-item.down .node-box {
-      top: 70px;
-    }
-    .timeline-event-item.down.tall .node-box {
-      top: 110px;
-    }
-
-    /* Year / Axis Label */
-    .axis-label {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    .bar-duration {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .timeline-event-item.up .axis-label { top: 12px; }
-    .timeline-event-item.down .axis-label { bottom: 12px; }
-
-    .node-box-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.25;
-      margin-bottom: 2px;
-    }
-    .node-box-org {
-      font-size: 11px;
-      color: var(--accent);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .node-box-dates {
       font-size: 9.5px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      opacity: 0.85;
+      margin-left: 8px;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    /* Bottom Axis */
+    .gantt-axis {
+      margin-top: 14px;
+      border-top: 2px solid #8C8275;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding-top: 10px;
+      position: relative;
+    }
+    .axis-tick {
       font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      position: relative;
+    }
+    .axis-tick::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 0;
+      width: 1px;
+      height: 6px;
+      background: #8C8275;
     }
 
     /* PROJECTS SECTION */
@@ -617,12 +552,13 @@
   <header>
     <div class="brand">
       <h1>Saumya Bajaj</h1>
-      <p>Computational Data Analytics ; Machine Learning ; Mathematical Modeling</p>
+      <p>Computational Analytics &bullet; Machine Learning &bullet; Mathematical Modeling</p>
     </div>
     <div class="header-contacts">
       <span>Atlanta, GA</span>
       <a href="https://linkedin.com/in/saumyabajaj" target="_blank">LinkedIn</a>
       <a href="https://github.com/sbajaj4" target="_blank">GitHub</a>
+      <a href="mailto:saumyabajaj1123@gmail.com">Contact</a>
     </div>
   </header>
 
@@ -630,12 +566,12 @@
   <section class="profile-card">
     <div class="profile-grid">
       <div class="bio-block">
-        <h2>Mathematical rigor across vision, physics, and autonomous intelligence.</h2>
+        <h2>Unraveling structure in complex, high-dimensional spaces.</h2>
         <p>
-          I am a graduate analytics student at <strong>Georgia Institute of Technology</strong> (M.S. in Analytics, Computational Track, GPA 4.00) with a background in Mathematics (B.S. with High Honors). My work spans causal representation learning, non-linear spatiotemporal generative modeling, and stochastic simulations of frustrated quantum spin topologies.
+          I'm Saumya—a mathematician and analytics graduate student at <strong>Georgia Tech</strong>. I find genuine joy in navigating messy, non-linear problems: whether that's forcing neural networks to look past convenient shortcuts to learn true causal features, simulating the subtle quantum choreography of frustrated electron spins, or optimizing production retrieval engines.
         </p>
         <p>
-          <strong>Primary Focus:</strong> Machine Learning Engineering, Research Science, Quantitative Modeling &amp; Applied Data Science.
+          My foundation is pure mathematics, which means I care deeply about <em>why</em> an algorithm behaves the way it does, not just whether the loss curve goes down. Outside of code and equations, I appreciate clean architecture, well-crafted physical objects, and thoughtful visual design. I'm currently looking for collaborative research and machine learning engineering teams where mathematical rigor meets high-impact engineering.
         </p>
       </div>
 
@@ -680,113 +616,115 @@
       </div>
     </div>
 
-    <!-- HORIZONTAL PROCESS-ON TIMELINE -->
+    <!-- GANTT-STYLE SPAN TIMELINE -->
     <div class="timeline-section">
       <div class="timeline-header-row">
-        <h3>My Journey</h3>
+        <h3>Journey &amp; Track Record</h3>
+        <div class="timeline-legend">
+          <div class="legend-item"><span class="legend-swatch swatch-edu"></span> Degree Programs</div>
+          <div class="legend-item"><span class="legend-swatch swatch-exp"></span> Professional &amp; Lab Experience</div>
+        </div>
       </div>
 
-      <div class="timeline-scroll-wrap">
-        <div class="timeline-canvas">
-          <!-- Central Horizontal Line -->
-          <div class="timeline-axis"></div>
-
-          <!-- NODE 1: BS Math (UP) -->
-          <div class="timeline-event-item up" style="left: 100px;" onclick="openTimelineModal('bs-gt')">
-            <div class="node-box accent">
-              <div class="node-box-title">B.S. Mathematics</div>
-              <div class="node-box-org">Georgia Tech</div>
-              <div class="node-box-dates">Aug 2022 – May 2025</div>
-            </div>
-            <div class="node-stalk accent"></div>
-            <div class="node-pin accent"></div>
-            <div class="axis-label">2022</div>
+      <div class="gantt-scroll-wrap">
+        <div class="gantt-board">
+          <!-- Background Grid Guidelines -->
+          <div class="gantt-grid">
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
           </div>
 
-          <!-- NODE 2: iBoss (DOWN) -->
-          <div class="timeline-event-item down" style="left: 260px;" onclick="openTimelineModal('iboss')">
-            <div class="axis-label">2023</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">AI Consulting Intern</div>
-              <div class="node-box-org">iBoss Tech Solutions</div>
-              <div class="node-box-dates">Nov 2023 – May 2024</div>
+          <!-- ROW 1: B.S. Mathematics (Aug 2022 – May 2025) ~ 62% of timeline -->
+          <div class="gantt-row">
+            <div class="gantt-bar edu" style="left: 0%; width: 62.5%;" onclick="openTimelineModal('bs-gt')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">B.S. in Mathematics (High Honors) &bullet; Georgia Tech</span>
+              <span class="bar-duration">Aug 2022 – May 2025</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- NODE 3: Optum (DOWN - TALL) -->
-          <div class="timeline-event-item down tall" style="left: 440px;" onclick="openTimelineModal('optum')">
-            <div class="axis-label">2024</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">Data Analyst Intern</div>
-              <div class="node-box-org">Optum Imaging</div>
-              <div class="node-box-dates">Jun 2024 – May 2025</div>
+          <!-- ROW 2: M.S. Analytics (Aug 2025 – Dec 2026) ~ 31.5% of timeline -->
+          <div class="gantt-row">
+            <div class="gantt-bar edu" style="left: 68.5%; width: 31.5%;" onclick="openTimelineModal('ms-gt')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">M.S. in Analytics (Computational Track, GPA 4.00) &bullet; Georgia Tech</span>
+              <span class="bar-duration">Aug 2025 – Dec 2026</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- NODE 4: MS Analytics (UP) -->
-          <div class="timeline-event-item up" style="left: 620px;" onclick="openTimelineModal('ms-gt')">
-            <div class="node-box accent">
-              <div class="node-box-title">M.S. in Analytics</div>
-              <div class="node-box-org">Georgia Tech</div>
-              <div class="node-box-dates">Aug 2025 – Dec 2026</div>
-            </div>
-            <div class="node-stalk accent"></div>
-            <div class="node-pin accent"></div>
-            <div class="axis-label">2025 (Aug)</div>
-          </div>
-
-          <!-- NODE 5: UHC DS (DOWN) -->
-          <div class="timeline-event-item down" style="left: 770px;" onclick="openTimelineModal('uhc')">
-            <div class="axis-label">2025 (Jun)</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">Data Science Intern</div>
-              <div class="node-box-org">UnitedHealth Group</div>
-              <div class="node-box-dates">Jun 2025 – Aug 2025</div>
+          <!-- ROW 3: iBoss Tech (Nov 2023 – May 2024) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 27%; width: 13%;" onclick="openTimelineModal('iboss')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">AI Consulting &bullet; iBoss Tech</span>
+              <span class="bar-duration">Nov '23 – May '24</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- NODE 6: GT EIC Lab (DOWN - TALL) -->
-          <div class="timeline-event-item down tall" style="left: 930px;" onclick="openTimelineModal('eic')">
-            <div class="axis-label">2025 (Sep)</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">Graduate Research Intern</div>
-              <div class="node-box-org">GT EIC Lab</div>
-              <div class="node-box-dates">Sep 2025 – Dec 2025</div>
+          <!-- ROW 4: Optum Enterprise Imaging (Jun 2024 – May 2025) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 40%; width: 22.5%;" onclick="openTimelineModal('optum')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">Data Analyst Intern &bullet; Optum Imaging</span>
+              <span class="bar-duration">Jun '24 – May '25</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- NODE 7: GoFundMe (DOWN) -->
-          <div class="timeline-event-item down" style="left: 1100px;" onclick="openTimelineModal('gofundme')">
-            <div class="axis-label">2026 (May)</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">Artificial Intelligence Intern</div>
-              <div class="node-box-org">GoFundMe</div>
-              <div class="node-box-dates">May 2026 – Aug 2026</div>
+          <!-- ROW 5: UnitedHealth Group DS (Jun 2025 – Aug 2025) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 64%; width: 5.5%;" onclick="openTimelineModal('uhc')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">Data Science &bullet; UHC</span>
+              <span class="bar-duration">Jun – Aug '25</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
-          <!-- NODE 8: Beep (DOWN - TALL) -->
-          <div class="timeline-event-item down tall" style="left: 1250px;" onclick="openTimelineModal('beep')">
-            <div class="axis-label">2026 (Aug)</div>
-            <div class="node-pin"></div>
-            <div class="node-stalk"></div>
-            <div class="node-box">
-              <div class="node-box-title">R&amp;D Intern (Practicum)</div>
-              <div class="node-box-org">Beep, Inc.</div>
-              <div class="node-box-dates">Aug 2026 – Dec 2026</div>
+          <!-- ROW 6: GT EIC Lab (Sep 2025 – Dec 2025) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 70%; width: 7.5%;" onclick="openTimelineModal('eic')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">Research Intern &bullet; GT EIC Lab</span>
+              <span class="bar-duration">Sep – Dec '25</span>
+              <span class="diamond-cap right"></span>
             </div>
           </div>
 
+          <!-- ROW 7: GoFundMe (May 2026 – Aug 2026) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 85%; width: 6.5%;" onclick="openTimelineModal('gofundme')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">AI Intern &bullet; GoFundMe</span>
+              <span class="bar-duration">May – Aug '26</span>
+              <span class="diamond-cap right"></span>
+            </div>
+          </div>
+
+          <!-- ROW 8: Beep Practicum (Aug 2026 – Dec 2026) -->
+          <div class="gantt-row">
+            <div class="gantt-bar exp" style="left: 91.5%; width: 8.5%;" onclick="openTimelineModal('beep')">
+              <span class="diamond-cap left"></span>
+              <span class="bar-label">R&amp;D Intern &bullet; Beep</span>
+              <span class="bar-duration">Aug – Dec '26</span>
+              <span class="diamond-cap right"></span>
+            </div>
+          </div>
+
+          <!-- TIME AXIS -->
+          <div class="gantt-axis">
+            <div class="axis-tick">2022 (Fall)</div>
+            <div class="axis-tick">2023</div>
+            <div class="axis-tick">2024</div>
+            <div class="axis-tick">2025</div>
+            <div class="axis-tick">2026 (End)</div>
+          </div>
         </div>
       </div>
     </div>
@@ -813,7 +751,7 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 01 ; Deep Learning</div>
+        <div class="project-rank">Project 01 &bullet; Deep Learning</div>
         <h3>Causal Feature Identification in CNNs</h3>
         <p class="project-summary">Engineered an Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection and multi-view intervention loops to isolate causally necessary features on Waterbirds.</p>
         <div class="metric-badge">Worst-Group: 78.5% | OOD: 88.35% (&lt;12% Pixels)</div>
@@ -839,7 +777,7 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 02 ; Modeling &amp; Simulation</div>
+        <div class="project-rank">Project 02 &bullet; Modeling &amp; Simulation</div>
         <h3>Parallel Tempering of Kitaev Spin Systems</h3>
         <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with Parallel Tempering across 30 replicas, navigating frustrated honeycomb energy manifolds and classifying vortex phases via 2D DWT.</p>
         <div class="metric-badge">30x Wavelet Efficiency over Fourier</div>
@@ -863,7 +801,7 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 03 ; Data &amp; Visual Analytics</div>
+        <div class="project-rank">Project 03 &bullet; Data &amp; Visual Analytics</div>
         <h3>Atlanta Traffic Forecasting and Visualization</h3>
         <p class="project-summary">LSTM-backed conditional diffusion model predicting near-term highway volume on Atlanta's I-285 perimeter using 260K+ GDOT sensor counts and hourly weather telemetry.</p>
         <div class="metric-badge">RMSE: 510.4 | R²: 0.95 | MAE: 255.3</div>
@@ -889,10 +827,10 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 04 ; Autonomous Systems</div>
+        <div class="project-rank">Project 04 &bullet; Autonomous Systems</div>
         <h3>Multi-Agent Clinical Payment Integrity Pipeline</h3>
         <p class="project-summary">Enterprise claim audit system combining deterministic Z-score statistical bounds with token-efficient Gemini LLM workers for ICD-10 laterality contradiction screening.</p>
-        <div class="metric-badge">Deterministic Guards ; uv Packaging</div>
+        <div class="metric-badge">Deterministic Guards &bullet; uv Packaging</div>
         <div class="tag-row">
           <span class="tag">Python 3.12</span>
           <span class="tag">Google Gemini</span>
@@ -914,7 +852,7 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 05 ; Quantitative Finance</div>
+        <div class="project-rank">Project 05 &bullet; Quantitative Finance</div>
         <h3>Options Exit Algorithm &amp; Synthetic Greeks</h3>
         <p class="project-summary">Engineered financial features including cubic spline derivatives (Delta and Gamma proxies) and correlation-aware reduction to classify ideal exit timing for ATM short straddles.</p>
         <div class="metric-badge">~70% Accuracy | Spline Greeks</div>
@@ -938,10 +876,10 @@
         </svg>
       </div>
       <div class="project-body">
-        <div class="project-rank">Project 06 ; Sports Analytics</div>
+        <div class="project-rank">Project 06 &bullet; Sports Analytics</div>
         <h3>College Basketball Win Probability Engine</h3>
         <p class="project-summary">Estimated in-game victory likelihood using historical play-by-play statistics, comparing interpretable Logistic Regression baselines with calibrated XGBoost models.</p>
-        <div class="metric-badge">XGBoost ; Play-by-Play Telemetry</div>
+        <div class="metric-badge">XGBoost &bullet; Play-by-Play Telemetry</div>
         <div class="tag-row">
           <span class="tag">Python</span>
           <span class="tag">XGBoost</span>
@@ -954,7 +892,7 @@
   </div>
 
   <footer>
-    &copy; 2026 Saumya Bajaj ; One-page portfolio built for performance and transparency.
+    &copy; 2026 Saumya Bajaj &bullet; One-page portfolio built for performance and transparency.
   </footer>
 </div>
 
@@ -972,11 +910,10 @@
 
 <script>
   const ledgerData = {
-    // TIMELINE ROLES (Resume bullets verbatim)
     'beep': {
-      kicker: 'Experience ; Practicum',
+      kicker: 'Experience &bullet; Practicum',
       title: 'Beep, Inc.',
-      subtitle: 'Research & Development Intern (Practicum) ; Atlanta, GA (August 2026 – December 2026)',
+      subtitle: 'Research & Development Intern (Practicum) &bullet; Atlanta, GA (August 2026 – December 2026)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -987,9 +924,9 @@
       `
     },
     'gofundme': {
-      kicker: 'Experience ; Industry Internship',
+      kicker: 'Experience &bullet; Industry Internship',
       title: 'GoFundMe',
-      subtitle: 'Artificial Intelligence Intern ; San Francisco, CA (May 2026 – August 2026)',
+      subtitle: 'Artificial Intelligence Intern &bullet; San Francisco, CA (May 2026 – August 2026)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -999,9 +936,9 @@
       `
     },
     'ms-gt': {
-      kicker: 'Education ; Graduate Degree',
+      kicker: 'Education &bullet; Graduate Degree',
       title: 'Georgia Institute of Technology',
-      subtitle: 'Master of Science in Analytics (Computational Data Analytics Track) ; August 2025 – December 2026',
+      subtitle: 'Master of Science in Analytics (Computational Data Analytics Track) &bullet; August 2025 – December 2026',
       content: `
         <h4>Academic Highlights</h4>
         <ul>
@@ -1012,9 +949,9 @@
       `
     },
     'eic': {
-      kicker: 'Experience ; Academic Research',
+      kicker: 'Experience &bullet; Academic Research',
       title: 'GT Efficient and Intelligent Computing (EIC) Lab',
-      subtitle: 'Graduate Research Intern ; Atlanta, GA (September 2025 – December 2025)',
+      subtitle: 'Graduate Research Intern &bullet; Atlanta, GA (September 2025 – December 2025)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -1024,9 +961,9 @@
       `
     },
     'uhc': {
-      kicker: 'Experience ; Industry Internship',
+      kicker: 'Experience &bullet; Industry Internship',
       title: 'UnitedHealth Group',
-      subtitle: 'Data Science Intern ; Boston, MA (June 2025 – August 2025)',
+      subtitle: 'Data Science Intern &bullet; Boston, MA (June 2025 – August 2025)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -1036,9 +973,9 @@
       `
     },
     'bs-gt': {
-      kicker: 'Education ; Undergraduate Degree',
+      kicker: 'Education &bullet; Undergraduate Degree',
       title: 'Georgia Institute of Technology',
-      subtitle: 'Bachelor of Science in Mathematics ; August 2022 – May 2025',
+      subtitle: 'Bachelor of Science in Mathematics &bullet; August 2022 – May 2025',
       content: `
         <h4>Academic Highlights</h4>
         <ul>
@@ -1049,9 +986,9 @@
       `
     },
     'optum': {
-      kicker: 'Experience ; Industry Internship',
+      kicker: 'Experience &bullet; Industry Internship',
       title: 'UnitedHealth Group — Optum Enterprise Imaging',
-      subtitle: 'Data Analyst Intern ; Atlanta, GA (June 2024 – May 2025)',
+      subtitle: 'Data Analyst Intern &bullet; Atlanta, GA (June 2024 – May 2025)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -1061,9 +998,9 @@
       `
     },
     'iboss': {
-      kicker: 'Experience ; Consulting',
+      kicker: 'Experience &bullet; Consulting',
       title: 'iBoss Tech Solutions Pvt. Ltd.',
-      subtitle: 'AI Consulting Intern ; Atlanta, GA (November 2023 – May 2024)',
+      subtitle: 'AI Consulting Intern &bullet; Atlanta, GA (November 2023 – May 2024)',
       content: `
         <h4>Key Responsibilities & Deliverables</h4>
         <ul>
@@ -1073,11 +1010,10 @@
       `
     },
 
-    // PROJECTS (Refined from uploaded reports)
     'causal-ai': {
-      kicker: 'Deep Learning ; Team Lead (Jan 2026 – May 2026)',
+      kicker: 'Deep Learning &bullet; Team Lead (Jan 2026 – May 2026)',
       title: 'Causal Feature Identification in CNNs using Reinforcement Learning',
-      subtitle: 'Saumya Bajaj, Nikolaos Kakonas, Tejas Khandwekar, Vivek Prakash ; CS 4644/7643',
+      subtitle: 'Saumya Bajaj, Nikolaos Kakonas, Tejas Khandwekar, Vivek Prakash &bullet; CS 4644/7643',
       content: `
         <h4>Methodological Core</h4>
         <p>Addresses shortcut learning on the Waterbirds benchmark, where standard CNNs rely on background textures (water vs. land) rather than avian features, causing failure out-of-distribution (OOD).</p>
@@ -1097,7 +1033,7 @@
     },
 
     'kitaev-wavelet': {
-      kicker: 'Modeling & Simulation ; Mathematical Team Lead (Feb 2026 – May 2026)',
+      kicker: 'Modeling & Simulation &bullet; Mathematical Team Lead (Feb 2026 – May 2026)',
       title: 'Parallel Tempering of Kitaev Spin Systems via Metropolis Monte Carlo Algorithm',
       subtitle: 'Saumya Bajaj, Katherine Bridges, Nikolai Simonov, Roshan Trivedi',
       content: `
@@ -1114,7 +1050,7 @@
     },
 
     'traffic-diffusion': {
-      kicker: 'Data and Visual Analytics ; Team Lead (Aug 2025 – Nov 2025)',
+      kicker: 'Data and Visual Analytics &bullet; Team Lead (Aug 2025 – Nov 2025)',
       title: 'Atlanta Traffic Forecasting and Visualization',
       subtitle: 'GDOT & Weather Underground Study',
       content: `
@@ -1131,7 +1067,7 @@
     },
 
     'healthcare-agent': {
-      kicker: 'Autonomous Systems ; Engineering PoC',
+      kicker: 'Autonomous Systems &bullet; Engineering PoC',
       title: 'Managed Multi-Agent Clinical Payment Integrity Pipeline',
       subtitle: 'Enterprise Automated Claim Audit Engine',
       content: `
@@ -1148,7 +1084,7 @@
     },
 
     'financial-markets': {
-      kicker: 'Machine Learning for Financial Markets ; Student Researcher (Aug 2023 – May 2024)',
+      kicker: 'Machine Learning for Financial Markets &bullet; Student Researcher (Aug 2023 – May 2024)',
       title: 'Options Algorithm: At-The-Money Straddle Exit Optimization',
       subtitle: 'Saumya Bajaj, Abinav Chari, Mark Rodrigues, Riya Bhadani, Daniel Wu',
       content: `
@@ -1164,7 +1100,7 @@
     },
 
     'gt-athletics': {
-      kicker: 'Sports Analytics ; Data Science @ GT (DSGT)',
+      kicker: 'Sports Analytics &bullet; Data Science @ GT (DSGT)',
       title: 'College Basketball In-Game Win Probability Engine',
       subtitle: 'GT Athletics Subteam 7',
       content: `
