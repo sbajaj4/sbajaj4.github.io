@@ -1,967 +1,1055 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S. Bajaj — Machine Learning & Quantitative Systems</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        mono: ['"JetBrains Mono"', 'monospace']
-                    },
-                    colors: {
-                        parchment: '#F8F6F0',
-                        chalk: '#FFFFFF',
-                        noir: '#151413',
-                        slatewood: '#2B2826',
-                        stoneborder: '#E5DFD6',
-                        terracotta: '#9E4E3B',
-                        terracottaSoft: '#F6ECE8',
-                        dustyrose: '#C98A7D',
-                        sageash: '#6C7E6D',
-                        mosssoft: '#EEF2EE',
-                        sandstone: '#EFEBE4'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Multi-column Pinterest-style responsive masonry */
-        .masonry-board {
-            column-count: 1;
-            column-gap: 1.5rem;
-        }
-        @media (min-width: 640px) {
-            .masonry-board {
-                column-count: 2;
-                column-gap: 1.75rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .masonry-board {
-                column-count: 3;
-                column-gap: 2rem;
-            }
-        }
-        .masonry-pin {
-            break-inside: avoid;
-            margin-bottom: 2rem;
-            transform: translateZ(0);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-        }
-        .masonry-pin:hover {
-            transform: translateY(-6px);
-        }
-        
-        /* Subtle editorial scrollbars */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F8F6F0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D9D2C7;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9E4E3B;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saumya Bajaj | Quantitative & AI Research Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F9F8F5;
+      --surface: #FFFFFF;
+      --surface-subtle: #F2EFE9;
+      --border: #E5DFC5;
+      --border-light: #ECE7D5;
+      --text: #1E1B18;
+      --text-muted: #6B655D;
+      --accent: #9E4E3B; /* Terracotta */
+      --accent-soft: rgba(158, 78, 59, 0.08);
+      --accent-hover: #7E3B2C;
+      --ink-dark: #121110;
+      --shadow-sm: 0 2px 8px rgba(30, 27, 24, 0.04);
+      --shadow-md: 0 8px 24px rgba(30, 27, 24, 0.08);
+      --shadow-lg: 0 16px 40px rgba(30, 27, 24, 0.12);
+      --radius: 12px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* HEADER */
+    header {
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 40px;
+    }
+    .brand h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--ink-dark);
+    }
+    .brand p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--text-muted);
+      margin-left: 28px;
+      transition: var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* CARD 1: HERO / RESUME / TIMELINE */
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 44px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 48px;
+    }
+
+    .profile-top-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .bio-block h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--ink-dark);
+      margin-bottom: 16px;
+    }
+    .bio-block p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .bio-block p strong {
+      color: var(--ink-dark);
+      font-weight: 600;
+    }
+
+    .skills-block {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .skills-block h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .skill-group {
+      margin-bottom: 12px;
+    }
+    .skill-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--ink-dark);
+    }
+
+    /* HORIZONTAL TIMELINE */
+    .timeline-container {
+      border-top: 1px solid var(--border-light);
+      padding-top: 32px;
+    }
+    .timeline-title {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .timeline-title span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .timeline-track {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(130px, 1fr));
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+    }
+    .timeline-node {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+    .timeline-node:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+      background: #FFF;
+    }
+    .node-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .node-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-dark);
+      margin: 4px 0;
+      line-height: 1.3;
+    }
+    .node-org {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .node-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* PROJECTS SECTION */
+    .section-head {
+      margin-bottom: 28px;
+    }
+    .section-head h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      color: var(--ink-dark);
+      margin-bottom: 6px;
+    }
+    .section-head p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* PINTEREST MASONRY GRID FOR PROJECTS */
+    .projects-masonry {
+      column-count: 3;
+      column-gap: 28px;
+    }
+    @media (max-width: 1080px) {
+      .projects-masonry { column-count: 2; }
+      .profile-top-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .projects-masonry { column-count: 1; }
+      header { flex-direction: column; gap: 16px; }
+      .nav-links a { margin-left: 0; margin-right: 18px; }
+    }
+
+    .project-card {
+      break-inside: avoid;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+    }
+
+    .project-visual {
+      background: #181615;
+      padding: 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+    .project-body {
+      padding: 24px;
+    }
+    .project-rank {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .project-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ink-dark);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .project-summary {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .metric-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      margin-bottom: 14px;
+      border: 1px solid rgba(158, 78, 59, 0.2);
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-light);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+
+    /* MODAL POPUP SYSTEM */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(18, 17, 16, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-window {
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      max-width: 820px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--text);
+      transition: var(--transition);
+    }
+    .modal-close-btn:hover {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .modal-header {
+      margin-bottom: 24px;
+      padding-right: 40px;
+    }
+    .modal-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--ink-dark);
+      line-height: 1.2;
+    }
+    .modal-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .modal-content {
+      font-size: 15px;
+      color: var(--text);
+    }
+    .modal-content h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      margin: 24px 0 10px;
+      color: var(--ink-dark);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 4px;
+    }
+    .modal-content ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    .modal-content li {
+      margin-bottom: 8px;
+    }
+    .modal-repo-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 24px;
+      padding: 10px 20px;
+      background: var(--ink-dark);
+      color: #FFF;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .modal-repo-link:hover {
+      background: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 0;
+      margin-top: 60px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
 </head>
-<body class="bg-parchment text-noir selection:bg-terracotta selection:text-white min-h-screen flex flex-col font-sans">
+<body>
 
-    <header class="sticky top-0 z-40 bg-parchment/90 backdrop-blur-md border-b border-stoneborder px-6 sm:px-12 py-3.5 transition-all">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#projects" class="group flex items-center space-x-3.5">
-                <div class="w-9 h-9 rounded-full bg-noir text-parchment flex items-center justify-center font-serif text-lg font-bold group-hover:bg-terracotta transition-colors shadow-sm">
-                    SB
-                </div>
-                <div class="leading-tight">
-                    <span class="font-bold text-xs tracking-wider uppercase block text-slatewood font-mono">sbajaj4</span>
-                    <span class="text-[11px] text-neutral-500 font-serif italic">Quantitative Systems & AI Research</span>
-                </div>
-            </a>
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <h1>Saumya Bajaj</h1>
+      <p>Computational Data Analytics &bullet; Machine Learning &bullet; Mathematical Modeling</p>
+    </div>
+    <div class="nav-links">
+      <a href="https://github.com/sbajaj4" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/saumyabajaj" target="_blank">LinkedIn</a>
+      <a href="mailto:saumyabajaj1123@gmail.com">Contact</a>
+    </div>
+  </header>
 
-            <!-- Editorial Nav Pills -->
-            <nav class="hidden md:flex items-center space-x-1 font-mono text-xs bg-sandstone/70 p-1 rounded-full border border-stoneborder">
-                <a href="#projects" id="nav-projects" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Curated Board</a>
-                <a href="#experience" id="nav-experience" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Experience & Ledger</a>
-                <a href="#about" id="nav-about" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Perspective</a>
-            </nav>
-
-            <!-- External Profiles & Direct Actions -->
-            <div class="flex items-center space-x-2.5 font-mono text-xs">
-                <a href="https://github.com/sbajaj4" target="_blank" rel="noopener noreferrer" 
-                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-stoneborder bg-white/80 hover:bg-noir hover:text-white transition-all shadow-2xs">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                    <span>GitHub</span>
-                </a>
-                <button onclick="copyShareLink()" class="p-2 rounded-full border border-stoneborder bg-white/80 hover:border-terracotta hover:text-terracotta transition-colors" title="Copy Portfolio Link">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                </button>
-            </div>
+  <!-- CARD 1: FULL LENGTH PROFILE & TIMELINE -->
+  <section class="profile-card">
+    <div class="profile-top-grid">
+      <div class="bio-block">
+        <h2>Mathematical rigor across vision, physics, and autonomous intelligence.</h2>
+        <p>
+          I am a graduate analytics student at <strong>Georgia Institute of Technology</strong> (M.S. in Analytics, Computational Track) with a background in Pure Mathematics (B.S. with High Honors). My work spans causal feature disentanglement in vision models, non-linear spatiotemporal generative modeling, and stochastic simulations of frustrated quantum spin topologies.
+        </p>
+        <p>
+          <strong>Target Roles:</strong> Machine Learning Engineer, Research Scientist, Quantitative Modeling / Applied Data Scientist.
+        </p>
+      </div>
+      <div class="skills-block">
+        <h3>Technical Repertoire</h3>
+        <div class="skill-group">
+          <div class="skill-title">Core Languages</div>
+          <div class="pill-wrap">
+            <span class="pill">Python</span>
+            <span class="pill">Julia</span>
+            <span class="pill">SQL</span>
+            <span class="pill">R</span>
+            <span class="pill">MATLAB</span>
+            <span class="pill">Java</span>
+          </div>
         </div>
-
-        <!-- Mobile Navigation Row -->
-        <div class="flex md:hidden justify-center space-x-2 font-mono text-xs pt-3 border-t border-stoneborder/60 mt-3">
-            <a href="#projects" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Projects</a>
-            <a href="#experience" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Experience</a>
-            <a href="#about" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Perspective</a>
+        <div class="skill-group">
+          <div class="skill-title">Machine Learning & Deep Learning</div>
+          <div class="pill-wrap">
+            <span class="pill">PyTorch</span>
+            <span class="pill">Gumbel-Softmax STE</span>
+            <span class="pill">Diffusion SDEs</span>
+            <span class="pill">LightGBM / XGBoost</span>
+            <span class="pill">Sunny.jl</span>
+            <span class="pill">Pydantic</span>
+          </div>
         </div>
-    </header>
-
-    <main class="flex-grow max-w-7xl mx-auto px-6 sm:px-12 py-10 w-full">
-
-        <!-- ========================================================= -->
-        <!-- VIEW 1: CURATED PROJECTS BOARD (Pinterest-style Masonry) -->
-        <!-- ========================================================= -->
-        <section id="view-projects" class="portfolio-view">
-            <!-- Editorial Hero -->
-            <div class="mb-12 border-b border-stoneborder pb-10">
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-                    <div class="max-w-3xl space-y-4">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider">
-                            <span class="w-1.5 h-1.5 rounded-full bg-terracotta animate-ping"></span>
-                            Production AI & Quantitative Engineering
-                        </div>
-                        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-noir leading-[1.04]">
-                            Structured models in <span class="italic text-terracotta font-serif">diffusion</span>, topological physics & markets.
-                        </h1>
-                        <p class="text-slatewood/80 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-                            A curated index of open-source research codebases spanning continuous-time diffusion forecasting, topological Kitaev wavelets, structural causal CNN disentanglement, and agentic evaluation harnesses.
-                        </p>
-                    </div>
-
-                    <!-- Compact Metric Pill Box -->
-                    <div class="bg-white p-4 rounded-2xl border border-stoneborder shadow-2xs flex items-center divide-x divide-stoneborder self-start lg:self-end font-mono text-xs">
-                        <div class="px-3 text-center">
-                            <span class="block text-xl font-serif font-bold text-noir">6</span>
-                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Systems</span>
-                        </div>
-                        <div class="px-3 text-center">
-                            <span class="block text-xl font-serif font-bold text-terracotta">Py • JL</span>
-                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Engines</span>
-                        </div>
-                        <div class="px-3 text-center">
-                            <span class="block text-xl font-serif font-bold text-sageash">SOTA</span>
-                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Benchmarked</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category Filters -->
-                <div class="flex flex-wrap items-center gap-2 pt-8">
-                    <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mr-2">Filter Board:</span>
-                    <button onclick="filterBoard('all')" id="tag-all" class="board-filter active-filter px-4 py-1.5 rounded-full text-xs font-mono border border-noir bg-noir text-white transition-all">All Works (6)</button>
-                    <button onclick="filterBoard('generative')" id="tag-generative" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Generative & SDEs</button>
-                    <button onclick="filterBoard('physics-quant')" id="tag-physics-quant" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Physics & Derivatives</button>
-                    <button onclick="filterBoard('agentic')" id="tag-agentic" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Agentic & Causal</button>
-                </div>
-            </div>
-
-            <!-- The Masonry Grid -->
-            <div id="masonry-container" class="masonry-board w-full">
-
-                <!-- CARD 1: TrafficDiffusion -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="generative">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#181615] relative p-5 flex flex-col justify-between overflow-hidden">
-                        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-terracotta/20 rounded-full blur-2xl"></div>
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-dustyrose rounded-full backdrop-blur-xs border border-white/10">
-                                SDE Diffusion
-                            </span>
-                            <a href="https://github.com/sbajaj4/TrafficDiffusion_public" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <div class="z-10">
-                            <svg class="w-full h-16 stroke-dustyrose fill-none opacity-85" viewBox="0 0 280 60">
-                                <path d="M0,35 Q35,5 70,35 T140,35 T210,15 T280,45" stroke-width="2.5" />
-                                <path d="M0,40 Q45,65 90,40 T180,20 T280,30" stroke-width="1.2" stroke-dasharray="3,3" />
-                                <circle cx="70" cy="35" r="3" class="fill-terracotta"/>
-                                <circle cx="140" cy="35" r="3" class="fill-terracotta"/>
-                                <circle cx="210" cy="15" r="3" class="fill-terracotta"/>
-                            </svg>
-                            <div class="text-[10px] font-mono text-neutral-400 flex justify-between pt-1">
-                                <span>Spatiotemporal SDE Noise Schedule</span>
-                                <span class="text-terracotta font-semibold">PeMS-08</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/TrafficDiffusion_public</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Atlanta Traffic Diffusion</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Continuous-time score-based diffusion model designed for non-linear metropolitan highway sensor topologies. Integrates spatio-temporal graph neural networks with stochastic denoisers to conquer structural covariate shifts.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Score-Based SDEs</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">ST-GCNs</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">PyTorch</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/traffic-diffusion" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Generative Modeling</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CARD 2: KitaevWavelet -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="physics-quant">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#121715] relative p-5 flex flex-col justify-between overflow-hidden">
-                        <div class="absolute -left-6 -top-6 w-36 h-36 bg-sageash/25 rounded-full blur-2xl"></div>
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-emerald-200 rounded-full backdrop-blur-xs border border-white/10">
-                                Quantum Matter
-                            </span>
-                            <a href="https://github.com/sbajaj4/KitaevWavelet_public" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <div class="z-10 flex items-center justify-center">
-                            <svg class="w-48 h-18 stroke-[#8DA893] fill-none opacity-80" viewBox="0 0 180 65">
-                                <polygon points="30,10 50,10 60,28 50,45 30,45 20,28" stroke-width="1.8"/>
-                                <polygon points="60,28 80,28 90,45 80,62 60,62 50,45" stroke-width="1.8"/>
-                                <polygon points="90,10 110,10 120,28 110,45 90,45 80,28" stroke-width="1.8"/>
-                                <circle cx="30" cy="10" r="2.5" class="fill-[#8DA893]"/>
-                                <circle cx="50" cy="10" r="2.5" class="fill-[#8DA893]"/>
-                                <circle cx="60" cy="28" r="2.5" class="fill-terracotta"/>
-                            </svg>
-                        </div>
-                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                            <span>Honeycomb Lattice Kitaev</span>
-                            <span class="text-[#8DA893]">H = -∑ J_γ S_i^γ S_j^γ</span>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-sageash uppercase tracking-wider block">sbajaj4/KitaevWavelet_public</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Kitaev Wavelet Classifier</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Topological phase classification of Quantum Spin Liquids on honeycomb lattices. Combines 2D Continuous Wavelet Transforms (CWT) with vectorized high-performance Monte Carlo parallel tempering in Julia.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Multiscale Wavelets</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Julia Monte Carlo</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Parallel Tempering</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/kitaev-wavelet" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Statistical Physics</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CARD 3: CausalAI -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="agentic">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#181413] relative p-5 flex flex-col justify-between overflow-hidden">
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-dustyrose rounded-full border border-white/10">
-                                Counterfactual DAGs
-                            </span>
-                            <a href="https://github.com/sbajaj4/CausalAI" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <div class="z-10 flex items-center justify-center">
-                            <svg class="w-48 h-18 stroke-dustyrose fill-none" viewBox="0 0 200 60">
-                                <circle cx="30" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                                <text x="30" y="34" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">X</text>
-                                <circle cx="100" cy="18" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                                <text x="100" y="22" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">Z*</text>
-                                <circle cx="170" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                                <text x="170" y="34" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">Y</text>
-                                <path d="M42,30 L88,20" stroke-width="1.5"/>
-                                <path d="M112,20 L158,30" stroke-width="1.5"/>
-                                <path d="M42,33 Q100,52 158,33" stroke-width="1" stroke-dasharray="2,2"/>
-                            </svg>
-                        </div>
-                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                            <span>Gumbel-Softmax Agentic Masks</span>
-                            <span class="text-terracotta">do(X := x)</span>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/CausalAI</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Causal CNN Disentanglement</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Disentangles spurious background correlation from invariant causal semantic features in deep vision networks using an Agentic Observation Module with Gumbel-Softmax discrete latent sampling.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Structural Causal Models</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Gumbel-Softmax</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">CNN Latent Interventions</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/causal-ai" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Explainability</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CARD 4: healthcare-agent-poc -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="agentic">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#17191C] relative p-5 flex flex-col justify-between font-mono text-xs overflow-hidden">
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] tracking-widest uppercase px-2.5 py-1 bg-white/10 text-slate-300 rounded-full border border-white/10">
-                                Multimodal Agent
-                            </span>
-                            <a href="https://github.com/sbajaj4/healthcare-agent-poc" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <div class="bg-black/50 rounded-xl p-3 text-[10px] space-y-1 text-slate-300 border border-white/5 z-10">
-                            <div class="flex items-center gap-1.5 text-terracotta font-semibold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
-                                <span>[Clinical Evaluator] Grounding Pass</span>
-                            </div>
-                            <div class="text-neutral-400">FHIR / EHR Query &rarr; Hybrid Dense-Sparse RAG</div>
-                            <div class="text-emerald-400">Safety &amp; Hallucination Check: Verified (0.982)</div>
-                        </div>
-                        <div class="text-[10px] text-neutral-400 flex justify-between z-10">
-                            <span>Clinical RAG Safety Harness</span>
-                            <span class="text-slate-300">HIPAA-Aware</span>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block">sbajaj4/healthcare-agent-poc</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Clinical Healthcare Agent</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Enterprise-grade medical agent test harness incorporating self-correcting RAG loops, medical ontology alignment, and deterministic safety verification across complex unstructured clinical documents.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Agent Evaluation Harness</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">LlamaIndex / LangChain</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">EHR Guardrails</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/healthcare-agent" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Agentic AI</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CARD 5: MLFinancialMarkets -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="physics-quant">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#151918] relative p-5 flex flex-col justify-between overflow-hidden">
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-emerald-200 rounded-full border border-white/10">
-                                Derivatives & Volatility
-                            </span>
-                            <a href="https://github.com/sbajaj4/MLFinancialMarkets" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <!-- Candlestick Visual Graphic -->
-                        <div class="z-10 flex items-center justify-around h-16 px-6">
-                            <div class="flex flex-col items-center">
-                                <div class="w-0.5 h-3 bg-emerald-400/60"></div>
-                                <div class="w-2.5 h-8 bg-emerald-500 rounded-xs"></div>
-                                <div class="w-0.5 h-4 bg-emerald-400/60"></div>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-0.5 h-4 bg-rose-400/60"></div>
-                                <div class="w-2.5 h-6 bg-rose-500 rounded-xs"></div>
-                                <div class="w-0.5 h-2 bg-rose-400/60"></div>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-0.5 h-2 bg-emerald-400/60"></div>
-                                <div class="w-2.5 h-11 bg-emerald-500 rounded-xs"></div>
-                                <div class="w-0.5 h-2 bg-emerald-400/60"></div>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-0.5 h-5 bg-emerald-400/60"></div>
-                                <div class="w-2.5 h-5 bg-emerald-500 rounded-xs"></div>
-                                <div class="w-0.5 h-3 bg-emerald-400/60"></div>
-                            </div>
-                        </div>
-                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                            <span>Implied Volatility Smile</span>
-                            <span class="text-emerald-300">GBDT + Deep Hedging</span>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/MLFinancialMarkets</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">ML Financial Derivatives</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Mathematical frameworks evaluating options surface calibration, stochastic arbitrage constraints, and deep reinforcement learning hedging policies against high-frequency market order dynamics.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Volatility Surfaces</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Options Pricing</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Risk Regularization</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/financial-markets" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Quant Finance</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CARD 6: GTAthletics -->
-                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="generative">
-                    <!-- Pin Header Visual -->
-                    <div class="h-48 bg-[#1C1814] relative p-5 flex flex-col justify-between overflow-hidden">
-                        <div class="flex justify-between items-start z-10">
-                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-amber-200 rounded-full border border-white/10">
-                                Dynamic Probability
-                            </span>
-                            <a href="https://github.com/sbajaj4/GTAthletics" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                            </a>
-                        </div>
-                        <div class="z-10 py-1">
-                            <svg class="w-full h-14 stroke-amber-200 fill-none opacity-85" viewBox="0 0 260 50">
-                                <line x1="0" y1="25" x2="260" y2="25" stroke="#443D36" stroke-width="1" stroke-dasharray="3,3"/>
-                                <path d="M0,25 Q30,20 60,38 T120,14 T180,44 T220,12 T260,6" stroke-width="2" />
-                                <circle cx="260" cy="6" r="3" class="fill-terracotta"/>
-                            </svg>
-                            <div class="text-[10px] font-mono text-neutral-400 flex justify-between pt-1">
-                                <span>Play-by-Play Possessions (NCAA)</span>
-                                <span class="text-amber-200 font-semibold">P(Win): 94.8%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-6 space-y-3.5">
-                        <div class="space-y-1">
-                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/GTAthletics</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">GT Athletics In-Game WP</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
-                            Real-time in-game win probability model and live telemetric dashboard for Division I NCAA basketball. Implements game-state Markov transitions and LightGBM calibrated against high-density play-by-play logs.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Win Probability</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Markov State Space</span>
-                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">LightGBM Calibration</span>
-                        </div>
-                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
-                            <a href="#project/gt-athletics" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
-                            <span class="text-neutral-400">Sports Modeling</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-
-        <!-- ========================================================= -->
-        <!-- VIEW 2: EXPERIENCE & INDUSTRY LEDGER (Tailored for Jobs) -->
-        <!-- ========================================================= -->
-        <section id="view-experience" class="portfolio-view hidden">
-            <div class="max-w-4xl mx-auto space-y-14">
-                
-                <!-- Section Header -->
-                <div class="border-b border-stoneborder pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider mb-3">
-                            Curriculum &amp; Industry Impact
-                        </div>
-                        <h2 class="font-serif text-4xl sm:text-5xl font-light text-noir">Experience &amp; Systems Ledger</h2>
-                        <p class="text-slatewood/80 text-sm sm:text-base font-light mt-2 max-w-xl">
-                            Proven experience spanning machine learning research laboratories, production retrieval evaluation frameworks, and enterprise clinical data platforms.
-                        </p>
-                    </div>
-                    <a href="https://github.com/sbajaj4" target="_blank" rel="noreferrer" class="self-start md:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-noir text-white text-xs font-mono hover:bg-terracotta transition-colors shadow-sm">
-                        <span>sbajaj4 on GitHub</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </a>
-                </div>
-
-                <!-- Structured Timeline -->
-                <div class="space-y-12">
-                    
-                    <!-- ROLE 1 -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
-                        <div class="md:col-span-4 space-y-1">
-                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Summer 2024</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir">GoFundMe</h3>
-                            <div class="text-xs font-mono text-neutral-500">Artificial Intelligence Intern</div>
-                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-terracottaSoft text-terracotta rounded-full">
-                                Agent Evaluation &amp; Retrieval
-                            </div>
-                        </div>
-                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
-                            <p>
-                                Developed end-to-end evaluation harness architectures and benchmark datasets for internal data-retrieval agents. Spearheaded rigorous evaluation criteria calculating context relevancy, ground truth fidelity, and hallucination bounds over mission-critical internal data lakes.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Agent Evaluation</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Internal Data Agents</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Retrieval Benchmarking</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Python</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ROLE 2 -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
-                        <div class="md:col-span-4 space-y-1">
-                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Spring 2024</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir">Beep Inc.</h3>
-                            <div class="text-xs font-mono text-neutral-500">R&amp;D Machine Learning Practicum</div>
-                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-mosssoft text-sageash rounded-full">
-                                Autonomous Knowledge Services
-                            </div>
-                        </div>
-                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
-                            <p>
-                                Engineered production-grade retrieval evaluation frameworks and continuous test suites for autonomous mobility telematics and passenger assistance systems. Streamlined domain-adapted knowledge distillation for low-latency edge retrieval.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Autonomous Systems</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Evaluation Frameworks</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Low-Latency Vector Indices</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ROLE 3 -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
-                        <div class="md:col-span-4 space-y-1">
-                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">2022 &mdash; 2023</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir">UnitedHealth Group</h3>
-                            <div class="text-xs font-mono text-neutral-500">Data Science &amp; Analytics Intern</div>
-                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-sandstone text-slatewood rounded-full">
-                                Healthcare BI &amp; Diagnostics
-                            </div>
-                        </div>
-                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
-                            <p>
-                                Designed high-impact executive dashboards and partner performance metrics across millions of insured lives. Formulated statistical anomaly detection routines identifying claims distribution skews and operational discrepancies.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Healthcare Analytics</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Partner KPIs</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Statistical Modeling</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ROLE 4 -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
-                        <div class="md:col-span-4 space-y-1">
-                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Prior Practicum</span>
-                            <h3 class="font-serif text-2xl font-bold text-noir">Optum Enterprise Imaging</h3>
-                            <div class="text-xs font-mono text-neutral-500">Data Engineering &amp; SQL Architecture</div>
-                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-sandstone text-slatewood rounded-full">
-                                High-Throughput Pipelines
-                            </div>
-                        </div>
-                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
-                            <p>
-                                Architected robust relational schemas, optimized complex multi-table SQL stored procedures, and enforced data integrity pipelines managing clinical radiology repositories and multi-hospital diagnostic imaging systems.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">SQL Optimization</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Enterprise DICOM / EHR</span>
-                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Relational Schemas</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RESEARCH LAB -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-[#171615] text-parchment rounded-3xl border border-noir shadow-md">
-                        <div class="md:col-span-4 space-y-1">
-                            <span class="text-xs font-mono uppercase tracking-wider text-dustyrose font-semibold">Academic Lab</span>
-                            <h3 class="font-serif text-2xl font-bold text-white">Efficient &amp; Intelligent Computing Lab</h3>
-                            <div class="text-xs font-mono text-neutral-400">Undergraduate Research Fellow</div>
-                        </div>
-                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">
-                            <p>
-                                Investigated algorithmic pruning and structural efficiency in generative architectures. Benchmarked parameter redundancy, continuous diffusion formulations, and latency trade-offs on high-throughput compute clusters.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
-                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">Diffusion Efficiency</span>
-                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">Model Compression</span>
-                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">PyTorch Profiling</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ========================================================= -->
-        <!-- VIEW 3: ABOUT / PERSPECTIVE (Human Profile & Aesthetic) -->
-        <!-- ========================================================= -->
-        <section id="view-about" class="portfolio-view hidden">
-            <div class="max-w-4xl mx-auto space-y-16">
-                
-                <!-- Hero Bio Header -->
-                <div class="border-b border-stoneborder pb-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                    <div class="space-y-4 max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider">
-                            About &amp; Intellectual Taste
-                        </div>
-                        <h2 class="font-serif text-4xl sm:text-6xl font-light text-noir leading-[1.08]">
-                            At the intersection of <span class="italic text-terracotta font-serif">mathematical rigor</span> and deliberate aesthetic systems.
-                        </h2>
-                    </div>
-
-                    <!-- Stylized Monogram Pin -->
-                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white border border-stoneborder shadow-xs flex flex-col items-center justify-center p-4 text-center shrink-0">
-                        <span class="font-serif text-4xl font-bold text-terracotta">SB</span>
-                        <span class="text-[10px] font-mono text-neutral-400 mt-1 uppercase tracking-widest">Atlanta, GA</span>
-                    </div>
-                </div>
-
-                <!-- Editorial Columns -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="space-y-5 text-sm sm:text-base font-light text-slatewood/85 leading-relaxed">
-                        <h3 class="font-serif text-2xl font-bold text-noir">Computational Philosophy</h3>
-                        <p>
-                            I view machine learning not merely as function approximation, but as an empirical laboratory for discovering structure. Whether that manifests as uncovering the boundary between topological spin liquid states with 2D Continuous Wavelet Transforms, or preventing hallucination in high-stakes clinical retrieval harnesses, the underlying mandate remains identical: <em>clarity over spurious correlation</em>.
-                        </p>
-                        <p>
-                            My background combines rigorous computational analytics with deep technical immersion in PyTorch, Julia, and distributed systems. I care as much about numerical stability and reproducible seeds as I do about clean APIs and human-centered design.
-                        </p>
-                    </div>
-
-                    <div class="space-y-5 text-sm sm:text-base font-light text-slatewood/85 leading-relaxed">
-                        <h3 class="font-serif text-2xl font-bold text-noir">Taste, Mediums &amp; Structure</h3>
-                        <p>
-                            This portfolio is designed to mimic an editorial moodboard: crisp Swiss typography, architectural proportions, and warm ecru textures. Beyond the terminal, I draw inspiration from brutalist architecture, editorial book printing, continuous stochastic mechanics, and collegiate athletics dynamics.
-                        </p>
-                        <div class="p-5 rounded-2xl bg-white border border-stoneborder space-y-2 text-xs font-mono">
-                            <div class="text-terracotta font-semibold uppercase tracking-wider">Core Tooling Stack:</div>
-                            <div class="text-slatewood/80">• PyTorch, Julia Lang, JAX, Python, C++</div>
-                            <div class="text-slatewood/80">• LangChain, LlamaIndex, ChromaDB, Cohere</div>
-                            <div class="text-slatewood/80">• Monte Carlo Tempering, Score SDEs, SCMs</div>
-                            <div class="text-slatewood/80">• PostgreSQL, Redis, Scikit-Learn, LightGBM</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Direct Contact / Touchpoints -->
-                <div class="p-8 sm:p-10 bg-white rounded-3xl border border-stoneborder flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <div class="space-y-1 text-center sm:text-left">
-                        <h4 class="font-serif text-2xl font-bold text-noir">Ready to discuss engineering or research?</h4>
-                        <p class="text-xs sm:text-sm text-neutral-500 font-light">Available for AI Engineering, Quantitative Research, and Data Science opportunities.</p>
-                    </div>
-                    <div class="flex items-center gap-3 font-mono text-xs">
-                        <a href="https://github.com/sbajaj4" target="_blank" rel="noreferrer" class="px-5 py-2.5 rounded-full bg-noir text-white hover:bg-terracotta transition-colors shadow-sm">
-                            Inspect GitHub Repos
-                        </a>
-                        <button onclick="copyShareLink()" class="px-4 py-2.5 rounded-full border border-stoneborder hover:border-terracotta transition-colors">
-                            Copy Portfolio
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ========================================================= -->
-    <!-- DEDICATED CASE STUDY MODAL / PAGE CONTAINER -->
-    <!-- ========================================================= -->
-    <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4 sm:p-6 transition-opacity">
-        <div class="bg-parchment w-full max-w-3xl rounded-3xl border border-stoneborder shadow-2xl p-6 sm:p-10 space-y-6 max-h-[92vh] overflow-y-auto">
-            
-            <div class="flex items-start justify-between border-b border-stoneborder pb-5">
-                <div class="space-y-1">
-                    <span id="modal-tag" class="text-xs font-mono text-terracotta uppercase tracking-wider block font-semibold">Category</span>
-                    <h2 id="modal-title" class="font-serif text-3xl sm:text-4xl font-bold text-noir">Project Title</h2>
-                    <span id="modal-repo-name" class="text-xs font-mono text-neutral-400 block">github.com/...</span>
-                </div>
-                <button onclick="closeModal()" class="w-9 h-9 rounded-full border border-stoneborder flex items-center justify-center hover:bg-noir hover:text-white transition-all text-lg" title="Close modal">
-                    &times;
-                </button>
-            </div>
-
-            <!-- Deep Dive Body -->
-            <div id="modal-body" class="space-y-5 text-sm sm:text-base text-slatewood/90 leading-relaxed font-light">
-                <!-- Dynamic Content injected via JS -->
-            </div>
-
-            <!-- Modal Footer Links -->
-            <div class="pt-5 border-t border-stoneborder flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs">
-                <a id="modal-github-btn" href="#" target="_blank" rel="noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-full bg-noir text-white text-center hover:bg-terracotta transition-colors inline-flex items-center justify-center gap-2">
-                    <span>Inspect Codebase on GitHub</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                </a>
-                <button onclick="closeModal()" class="text-neutral-500 hover:text-noir transition-colors">
-                    Back to Portfolio Board
-                </button>
-            </div>
-
+        <div class="skill-group">
+          <div class="skill-title">Systems & Analytics</div>
+          <div class="pill-wrap">
+            <span class="pill">Databricks</span>
+            <span class="pill">AWS</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Leaflet.js</span>
+            <span class="pill">Tableau</span>
+            <span class="pill">PostgreSQL</span>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- Toast Notification for Copy -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-noir text-white px-4 py-2.5 rounded-2xl shadow-xl font-mono text-xs opacity-0 pointer-events-none transition-opacity duration-300">
-        Portfolio link copied to clipboard
+    <!-- HORIZONTAL TIMELINE -->
+    <div class="timeline-container">
+      <div class="timeline-title">
+        <span>Curriculum & Experience Ledger</span>
+        <span>Click any node for institutional responsibilities &bullet;</span>
+      </div>
+      <div class="timeline-track">
+        <!-- Node 1: Beep -->
+        <div class="timeline-node" onclick="openTimelineModal('beep')">
+          <span class="node-type">Practicum</span>
+          <div class="node-role">R&D Intern</div>
+          <div class="node-org">Beep, Inc.</div>
+          <div class="node-date">Aug 2026 – Dec 2026</div>
+        </div>
+        <!-- Node 2: GoFundMe -->
+        <div class="timeline-node" onclick="openTimelineModal('gofundme')">
+          <span class="node-type">Internship</span>
+          <div class="node-role">AI Intern</div>
+          <div class="node-org">GoFundMe</div>
+          <div class="node-date">May 2026 – Aug 2026</div>
+        </div>
+        <!-- Node 3: GT Grad Degree -->
+        <div class="timeline-node" onclick="openTimelineModal('ms-gt')">
+          <span class="node-type">Education</span>
+          <div class="node-role">M.S. Analytics</div>
+          <div class="node-org">Georgia Tech</div>
+          <div class="node-date">Grad: Dec 2026</div>
+        </div>
+        <!-- Node 4: GT EIC Lab -->
+        <div class="timeline-node" onclick="openTimelineModal('eic')">
+          <span class="node-type">Research</span>
+          <div class="node-role">Grad Research Intern</div>
+          <div class="node-org">GT EIC Lab</div>
+          <div class="node-date">Sep 2025 – Dec 2025</div>
+        </div>
+        <!-- Node 5: UHC DS -->
+        <div class="timeline-node" onclick="openTimelineModal('uhc')">
+          <span class="node-type">Internship</span>
+          <div class="node-role">Data Science Intern</div>
+          <div class="node-org">UnitedHealth Group</div>
+          <div class="node-date">Jun 2025 – Aug 2025</div>
+        </div>
+        <!-- Node 6: GT BS Degree -->
+        <div class="timeline-node" onclick="openTimelineModal('bs-gt')">
+          <span class="node-type">Education</span>
+          <div class="node-role">B.S. Mathematics</div>
+          <div class="node-org">Georgia Tech</div>
+          <div class="node-date">High Honors &bullet; 2025</div>
+        </div>
+        <!-- Node 7: Optum -->
+        <div class="timeline-node" onclick="openTimelineModal('optum')">
+          <span class="node-type">Internship</span>
+          <div class="node-role">Data Governance Intern</div>
+          <div class="node-org">Optum Imaging</div>
+          <div class="node-date">Jun 2024 – May 2025</div>
+        </div>
+        <!-- Node 8: iBoss -->
+        <div class="timeline-node" onclick="openTimelineModal('iboss')">
+          <span class="node-type">Consulting</span>
+          <div class="node-role">AI Research Intern</div>
+          <div class="node-org">iBoss Tech Solutions</div>
+          <div class="node-date">Nov 2023 – May 2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <div class="section-head">
+    <h2>Research & Engineering Projects</h2>
+    <p>Ranked by theoretical depth and empirical validation. Click any card to inspect the methodology.</p>
+  </div>
+
+  <div class="projects-masonry">
+
+    <!-- PROJECT 1: CAUSAL AI -->
+    <div class="project-card" onclick="openProjectModal('causal-ai')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <rect x="15" y="20" width="70" height="70" fill="none" stroke="#9E4E3B" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <circle cx="50" cy="55" r="22" fill="none" stroke="#E5DFC5" stroke-width="1.5"/>
+          <path d="M50 33 L50 77 M28 55 L72 55" stroke="#9E4E3B" stroke-width="1"/>
+          <path d="M100 55 L135 55" stroke="#E5DFC5" stroke-width="2" marker-end="url(#arrow)"/>
+          <rect x="150" y="35" width="40" height="40" fill="#9E4E3B" fill-opacity="0.2" stroke="#9E4E3B" stroke-width="1.5"/>
+          <text x="170" y="59" fill="#FFF" font-family="'JetBrains Mono'" font-size="10" text-anchor="middle">M&#8857;X</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 01 &bullet; Deep Learning Theory</div>
+        <h3>Causal Feature Identification in CNNs</h3>
+        <p class="project-summary">Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection to enforce an information bottleneck and eliminate shortcut learning on Waterbirds.</p>
+        <div class="metric-badge">Worst-Group: 78.50% | OOD: 88.35%</div>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Gumbel-Softmax</span>
+          <span class="tag">Intervention Loss</span>
+          <span class="tag">Waterbirds</span>
+        </div>
+      </div>
     </div>
 
-    <footer class="border-t border-stoneborder py-10 px-6 sm:px-12 bg-white/40 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
-            <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-terracotta"></span>
-                <span>Editorial board engineered for GitHub Pages &mdash; sbajaj4.github.io</span>
-            </div>
-            <div>
-                &copy; <span id="year-tag"></span> S. Bajaj. All rights reserved.
-            </div>
+    <!-- PROJECT 2: KITAEV WAVELET -->
+    <div class="project-card" onclick="openProjectModal('kitaev-wavelet')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <polygon points="50,25 75,40 75,70 50,85 25,70 25,40" fill="none" stroke="#9E4E3B" stroke-width="1.5"/>
+          <polygon points="100,25 125,40 125,70 100,85 75,70 75,40" fill="none" stroke="#E5DFC5" stroke-width="1.5"/>
+          <polygon points="150,25 175,40 175,70 150,85 125,70 125,40" fill="none" stroke="#9E4E3B" stroke-width="1.5"/>
+          <line x1="50" y1="55" x2="60" y2="40" stroke="#FFF" stroke-width="1.5"/>
+          <line x1="100" y1="55" x2="110" y2="70" stroke="#FFF" stroke-width="1.5"/>
+          <line x1="150" y1="55" x2="140" y2="40" stroke="#FFF" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 02 &bullet; Computational Physics</div>
+        <h3>Parallel Tempering of Kitaev Spin Topologies</h3>
+        <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with 30-replica parallel tempering to resolve ground-state degeneracy and classify single-q vs multi-q magnetic phases via DWT.</p>
+        <div class="metric-badge">Wavelet Sparsity: 0.0029 (Vortex)</div>
+        <div class="tag-row">
+          <span class="tag">Julia</span>
+          <span class="tag">Sunny.jl</span>
+          <span class="tag">Parallel Tempering</span>
+          <span class="tag">Wavelets.jl</span>
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <!-- ========================================================= -->
-    <!-- CLIENT-SIDE ROUTER & MODAL LOGIC -->
-    <!-- ========================================================= -->
-    <script>
-        document.getElementById('year-tag').textContent = new Date().getFullYear();
+    <!-- PROJECT 3: TRAFFIC DIFFUSION -->
+    <div class="project-card" onclick="openProjectModal('traffic-diffusion')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <path d="M20 100 Q 60 20, 110 70 T 200 40" fill="none" stroke="#9E4E3B" stroke-width="2"/>
+          <path d="M20 100 Q 60 40, 110 85 T 200 55" fill="none" stroke="#E5DFC5" stroke-width="1" stroke-dasharray="2,3"/>
+          <circle cx="110" cy="70" r="4" fill="#FFF"/>
+          <circle cx="200" cy="40" r="4" fill="#9E4E3B"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 03 &bullet; Generative Time Series</div>
+        <h3>Atlanta Traffic Forecasting via LSTM-Diffusion</h3>
+        <p class="project-summary">Continuous conditional diffusion framework benchmarked against 260K+ GDOT station sensor telemetry and hourly Weather Underground data to predict sudden highway congestion spikes.</p>
+        <div class="metric-badge">RMSE: 510.4 | R²: 0.95 | MAE: 255.3</div>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Diffusion SDE</span>
+          <span class="tag">Leaflet.js</span>
+          <span class="tag">Pako.js</span>
+        </div>
+      </div>
+    </div>
 
-        // Technical deep dive documentation for all 6 repositories
-        const projectsData = {
-            'traffic-diffusion': {
-                tag: 'Deep Generative Continuous SDEs',
-                title: 'Atlanta Traffic Diffusion',
-                repoName: 'sbajaj4/TrafficDiffusion_public',
-                url: 'https://github.com/sbajaj4/TrafficDiffusion_public',
-                html: `
-                    <p>Metropolitan highway networks exhibit severe non-linear spatiotemporal volatility. Conventional autoregressive LSTM or generic graph convolutional networks collapse under sudden covariate shifts, such as multi-car pileups or flash adverse weather.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
-                        <div>• Continuous-time score-based reverse Stochastic Differential Equation (SDE) formulation.</div>
-                        <div>• Spatio-temporal graph convolution blocks (ST-GCN) extracting highway sensor adjacency dynamics.</div>
-                        <div>• Continuous denoising diffusion objective (DDPM) calibrated on PeMS-04 and PeMS-08 telemetry streams.</div>
-                    </div>
-                    <p>The system reformulates traffic speed forecasting as a stochastic denoising process, outputting probabilistic confidence intervals rather than brittle point estimates. This allows city traffic operators to quantify downside congestion tail-risks.</p>
-                `
-            },
-            'kitaev-wavelet': {
-                tag: 'Condensed Matter Physics & Multiscale Decomposition',
-                title: 'Kitaev Honeycomb Wavelet Analysis',
-                repoName: 'sbajaj4/KitaevWavelet_public',
-                url: 'https://github.com/sbajaj4/KitaevWavelet_public',
-                html: `
-                    <p>Quantum spin liquids (QSLs) are exotic states of matter featuring topological order and long-range quantum entanglement without conventional broken symmetries. Because traditional local order parameters fail, detecting QSL phase boundaries requires novel diagnostic metrics.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-sageash font-semibold">Technical Architecture:</div>
-                        <div>• Vectorized Monte Carlo simulation engine with parallel tempering implemented in Julia.</div>
-                        <div>• Simulated Kitaev Hamiltonian on 2D honeycomb crystal lattices: <em>H = -∑ J_γ S_i^γ S_j^γ</em>.</div>
-                        <div>• 2D Continuous Wavelet Transforms (CWT) to extract multiscale spatial invariant correlation textures.</div>
-                    </div>
-                    <p>By mapping multiscale scale-space coefficients directly to supervised and unsupervised boundary classifiers, this pipeline isolates the topological spin liquid regime from trivial ordered magnetic phases at near-zero thermal noise.</p>
-                `
-            },
-            'causal-ai': {
-                tag: 'Structural Causal Models & Vision Interpretability',
-                title: 'Causal CNN Feature Disentanglement',
-                repoName: 'sbajaj4/CausalAI',
-                url: 'https://github.com/sbajaj4/CausalAI',
-                html: `
-                    <p>Convolutional Neural Networks frequently rely on spurious contextual correlations (e.g., classifying a waterbird solely based on a water background). Conventional saliency maps simply highlight correlations rather than actual counterfactual causes.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
-                        <div>• Agentic Observation Module utilizing Gumbel-Softmax discrete latent masks.</div>
-                        <div>• Structural Causal Model (SCM) formulation applying interventional testing <em>do(X := x)</em>.</div>
-                        <div>• Optimization loss balancing minimal sufficient feature size against invariant class prediction fidelity.</div>
-                    </div>
-                    <p>This method explicitly suppresses non-causal background signals, guaranteeing that deep vision models maintain robustness even when tested on hostile out-of-distribution background alterations.</p>
-                `
-            },
-            'healthcare-agent': {
-                tag: 'Agent Evaluation Harness & Clinical RAG',
-                title: 'Clinical Healthcare Agent POC',
-                repoName: 'sbajaj4/healthcare-agent-poc',
-                url: 'https://github.com/sbajaj4/healthcare-agent-poc',
-                html: `
-                    <p>High-stakes medical retrieval demands zero-tolerance hallucination guardrails and auditable medical ontology citations. This proof-of-concept harness was constructed to systematically benchmark clinical LLM agent workflows.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-neutral-600 font-semibold">Technical Architecture:</div>
-                        <div>• Automated evaluation harness verifying clinical claim grounding against PubMed &amp; EHR schemas.</div>
-                        <div>• Dynamic query decomposition with dense vector retrieval paired with Cohere reranking.</div>
-                        <div>• Self-correcting reflection loops assessing citation consistency prior to answer dispatch.</div>
-                    </div>
-                    <p>Demonstrates sub-500ms retrieval latencies across complex medical literature while filtering unauthorized queries via deterministic HIPAA-compliant boundary checks.</p>
-                `
-            },
-            'financial-markets': {
-                tag: 'Quantitative Modeling & Stochastic Volatility',
-                title: 'ML in Financial Derivatives',
-                repoName: 'sbajaj4/MLFinancialMarkets',
-                url: 'https://github.com/sbajaj4/MLFinancialMarkets',
-                html: `
-                    <p>Option pricing and dynamic portfolio hedging require estimating complex implied volatility surfaces that respect non-arbitrage constraints and extreme market tail events.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
-                        <div>• Black-Scholes benchmark comparisons against Gradient Boosted Decision Trees and Deep Hedging networks.</div>
-                        <div>• Microstructure feature engineering across limit order books, bid-ask spread liquidity, and rolling skew.</div>
-                        <div>• Sharpe ratio and Maximum Drawdown regularization enforcing downside risk penalties.</div>
-                    </div>
-                    <p>This repository provides production notebooks and backtesting harnesses for evaluating hedging performance in volatile high-frequency asset pricing environments.</p>
-                `
-            },
-            'gt-athletics': {
-                tag: 'Dynamic Game Telemetry & Bayesian Updating',
-                title: 'Georgia Tech Athletics Win Probability',
-                repoName: 'sbajaj4/GTAthletics',
-                url: 'https://github.com/sbajaj4/GTAthletics',
-                html: `
-                    <p>In-game win probability modeling in Division I college basketball requires handling high tempo shifts, foul bonuses, momentum scoring runs, and variable possession lengths.</p>
-                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
-                        <div class="text-amber-700 font-semibold">Technical Architecture:</div>
-                        <div>• Possession-level Markov chain transitions representing clock state, point differentials, and timeouts.</div>
-                        <div>• LightGBM and logistic calibration on thousands of historical NCAA basketball possession records.</div>
-                        <div>• Real-time second-by-second win probability calculation and swing chart generation.</div>
-                    </div>
-                    <p>Engineered for real-time telemetry streaming, translating possession-level play outcomes into dynamic probabilistic forecasts for coaches and sports analytics desks.</p>
-                `
-            }
-        };
+    <!-- PROJECT 4: HEALTHCARE AGENT -->
+    <div class="project-card" onclick="openProjectModal('healthcare-agent')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <rect x="25" y="30" width="60" height="70" rx="4" fill="none" stroke="#E5DFC5" stroke-width="1.5"/>
+          <line x1="35" y1="45" x2="75" y2="45" stroke="#E5DFC5" stroke-width="1.5"/>
+          <line x1="35" y1="60" x2="65" y2="60" stroke="#E5DFC5" stroke-width="1.5"/>
+          <circle cx="140" cy="65" r="28" fill="none" stroke="#9E4E3B" stroke-width="1.5"/>
+          <text x="140" y="70" fill="#9E4E3B" font-family="'JetBrains Mono'" font-size="11" text-anchor="middle">Z &ge; 3.0</text>
+          <line x1="85" y1="65" x2="112" y2="65" stroke="#9E4E3B" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 04 &bullet; Autonomous AI Systems</div>
+        <h3>Managed Multi-Agent Clinical Integrity Pipeline</h3>
+        <p class="project-summary">Production-grade automated clinical claim audit architecture pairing deterministic Z-score outlier interception with Gemini LLM semantic verification for billing anomaly detection.</p>
+        <div class="metric-badge">Zero Config uv &bullet; Pydantic Validated</div>
+        <div class="tag-row">
+          <span class="tag">Python 3.12</span>
+          <span class="tag">Google Gemini</span>
+          <span class="tag">Pydantic</span>
+          <span class="tag">uv</span>
+        </div>
+      </div>
+    </div>
 
-        // Router Implementation
-        function handleRouting() {
-            const hash = window.location.hash || '#projects';
-            
-            // Check if hash is a project deep-dive
-            if (hash.startsWith('#project/')) {
-                const slug = hash.replace('#project/', '');
-                openModal(slug);
-                return;
-            } else {
-                closeModal(false);
-            }
+    <!-- PROJECT 5: FINANCIAL MARKETS -->
+    <div class="project-card" onclick="openProjectModal('financial-markets')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <line x1="20" y1="110" x2="200" y2="110" stroke="#E5DFC5" stroke-width="1"/>
+          <line x1="20" y1="20" x2="20" y2="110" stroke="#E5DFC5" stroke-width="1"/>
+          <path d="M25 90 C 70 85, 100 40, 140 30 C 170 20, 185 70, 195 40" fill="none" stroke="#9E4E3B" stroke-width="1.5"/>
+          <circle cx="140" cy="30" r="3" fill="#FFF"/>
+          <text x="145" y="25" fill="#E5DFC5" font-family="'JetBrains Mono'" font-size="9">&part;²S/&part;t²</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 05 &bullet; Quantitative Finance</div>
+        <h3>At-The-Money Straddle Exit Optimization</h3>
+        <p class="project-summary">Engineering synthetic Greeks via cubic spline differentiation for short straddle exit classification, comparing lookback dynamics in LSTMs with Random Forest models.</p>
+        <div class="metric-badge">69% RF Accuracy | SPX Intraday</div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Cubic Splines</span>
+          <span class="tag">Greeks</span>
+          <span class="tag">Random Forest</span>
+        </div>
+      </div>
+    </div>
 
-            // Normal Tab Routing
-            const views = document.querySelectorAll('.portfolio-view');
-            views.forEach(v => v.classList.add('hidden'));
+    <!-- PROJECT 6: GT ATHLETICS -->
+    <div class="project-card" onclick="openProjectModal('gt-athletics')">
+      <div class="project-visual">
+        <svg width="220" height="130" viewBox="0 0 220 130">
+          <rect x="25" y="30" width="170" height="70" rx="6" fill="none" stroke="#E5DFC5" stroke-width="1"/>
+          <line x1="110" y1="30" x2="110" y2="100" stroke="#E5DFC5" stroke-width="1"/>
+          <circle cx="110" cy="65" r="16" fill="none" stroke="#9E4E3B" stroke-width="1.5"/>
+          <path d="M40 85 Q 80 50, 120 40 T 180 35" fill="none" stroke="#9E4E3B" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-rank">Project 06 &bullet; Sports Analytics</div>
+        <h3>NCAA Basketball In-Game Win Probability Engine</h3>
+        <p class="project-summary">Continuous Markov possession-state modeling using college basketball play-by-play telemetry to estimate real-time victory probabilities throughout live match progression.</p>
+        <div class="metric-badge">XGBoost &bullet; Logistic Calibration</div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Play-by-Play</span>
+          <span class="tag">Pandas</span>
+        </div>
+      </div>
+    </div>
 
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(l => {
-                l.classList.remove('bg-noir', 'text-white', 'shadow-2xs');
-                l.classList.add('text-neutral-600');
-            });
+  </div>
 
-            if (hash === '#experience') {
-                document.getElementById('view-experience').classList.remove('hidden');
-                document.getElementById('nav-experience')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
-                document.getElementById('nav-experience')?.classList.remove('text-neutral-600');
-            } else if (hash === '#about') {
-                document.getElementById('view-about').classList.remove('hidden');
-                document.getElementById('nav-about')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
-                document.getElementById('nav-about')?.classList.remove('text-neutral-600');
-            } else {
-                document.getElementById('view-projects').classList.remove('hidden');
-                document.getElementById('nav-projects')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
-                document.getElementById('nav-projects')?.classList.remove('text-neutral-600');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+  <footer>
+    &copy; 2026 Saumya Bajaj &bullet; Built with mathematical clarity and minimal dependencies.
+  </footer>
+</div>
 
-        window.addEventListener('hashchange', handleRouting);
-        window.addEventListener('load', handleRouting);
+<!-- MODAL CONTAINER -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-window">
+    <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+    <div class="modal-header">
+      <div class="modal-kicker" id="modalKicker"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-subtitle" id="modalSubtitle"></div>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+    <div id="modalFooter"></div>
+  </div>
+</div>
 
-        // Filter Board Pins
-        function filterBoard(cat) {
-            const pins = document.querySelectorAll('.masonry-pin');
-            const btns = document.querySelectorAll('.board-filter');
+<script>
+  const modalData = {
+    // TIMELINE MODALS
+    'beep': {
+      kicker: 'Practicum Ledger',
+      title: 'Beep, Inc.',
+      subtitle: 'Research & Development Intern &bullet; Atlanta, GA (Aug 2026 – Dec 2026)',
+      content: `
+        <h4>Project Focus & Autonomous Logistics</h4>
+        <ul>
+          <li>Developing retrieval evaluation frameworks and knowledge service ingestion configurations for autonomous shuttle fleet operations.</li>
+          <li>Optimizing multi-modal telemetry processing pipelines to diagnose navigation anomaly states and operational edge-cases in real time.</li>
+        </ul>
+      `
+    },
+    'gofundme': {
+      kicker: 'Industry Experience',
+      title: 'GoFundMe',
+      subtitle: 'Artificial Intelligence Intern &bullet; San Francisco, CA (May 2026 – Aug 2026)',
+      content: `
+        <h4>Data Agent Evaluation & Infrastructure</h4>
+        <ul>
+          <li>Designed and built an end-to-end evaluation harness for an internal natural-language-to-SQL data agent.</li>
+          <li>Implemented systematic golden dataset benchmarking, tracking query fidelity, schema alignment, and hallucination rates across complex relational tables.</li>
+          <li>Engineered automated regression alerts directly into internal development workflows.</li>
+        </ul>
+      `
+    },
+    'ms-gt': {
+      kicker: 'Graduate Education',
+      title: 'Georgia Institute of Technology',
+      subtitle: 'Master of Science in Analytics (Computational Track) &bullet; Expected Dec 2026',
+      content: `
+        <h4>Curricular & Methodological Focus</h4>
+        <ul>
+          <li><strong>Focus Areas:</strong> Deep Learning, High-Dimensional Statistics, Computational Data Analytics, Stochastic Modeling.</li>
+          <li><strong>Graduate Research:</strong> Diffusion large language models, causal representation learning, and geometric multiresolution decomposition.</li>
+        </ul>
+      `
+    },
+    'eic': {
+      kicker: 'Academic Research',
+      title: 'Efficient and Intelligent Computing (EIC) Lab',
+      subtitle: 'Graduate Research Intern &bullet; Georgia Tech (Sep 2025 – Dec 2025)',
+      content: `
+        <h4>Diffusion Model Efficiency</h4>
+        <ul>
+          <li>Investigated structural efficiency and denoising trajectories for generative diffusion language models.</li>
+          <li>Analyzed parameter sensitivity during reverse stochastic differential equation (SDE) sampling, identifying sparsity patterns to accelerate token inference.</li>
+        </ul>
+      `
+    },
+    'uhc': {
+      kicker: 'Industry Experience',
+      title: 'UnitedHealth Group',
+      subtitle: 'Data Science Intern &bullet; Boston, MA (Jun 2025 – Aug 2025)',
+      content: `
+        <h4>KPI Architecture & Clinical Analytics</h4>
+        <ul>
+          <li>Formalized enterprise partnership KPIs, translating multi-million record claims datasets into actionable executive metrics.</li>
+          <li>Built and deployed production Tableau performance dashboards monitoring operational hospital throughput and contract compliance.</li>
+        </ul>
+      `
+    },
+    'bs-gt': {
+      kicker: 'Undergraduate Education',
+      title: 'Georgia Institute of Technology',
+      subtitle: 'Bachelor of Science in Mathematics with High Honors &bullet; May 2025',
+      content: `
+        <h4>Mathematical Foundation</h4>
+        <ul>
+          <li><strong>Distinction:</strong> Graduated with High Honors.</li>
+          <li><strong>Coursework:</strong> Real & Complex Analysis, Abstract Algebra, Probability & Mathematical Statistics, Numerical Methods, Differential Equations.</li>
+          <li><strong>Leadership:</strong> SGA Arts Committee Chair & FreShGA Advisor (Sep 2022 – May 2025); Code Red Collective Board Member (2017 – 2023).</li>
+        </ul>
+      `
+    },
+    'optum': {
+      kicker: 'Industry Experience',
+      title: 'Optum Enterprise Imaging',
+      subtitle: 'Data Analytics & Governance Intern &bullet; (Jun 2024 – May 2025)',
+      content: `
+        <h4>Enterprise SQL & Governance Infrastructure</h4>
+        <ul>
+          <li>Integrated multi-facility SQL databases for hospital enterprise imaging architectures.</li>
+          <li>Designed unified data dictionaries and automated schema verification scripts to ensure governance compliance across DICOM and clinical metadata pipelines.</li>
+        </ul>
+      `
+    },
+    'iboss': {
+      kicker: 'Consulting & Applied Research',
+      title: 'iBoss Tech Solutions Pvt. Ltd.',
+      subtitle: 'AI Research Intern &bullet; (Nov 2023 – May 2024)',
+      content: `
+        <h4>LLM Application Prototyping</h4>
+        <ul>
+          <li>Researched emerging LLM architectures and prompt orchestration pipelines for commercial clients.</li>
+          <li>Engineered machine learning proof-of-concept demos and validation suites for domain-specific NLP applications.</li>
+        </ul>
+      `
+    },
 
-            btns.forEach(b => {
-                b.classList.remove('bg-noir', 'text-white', 'border-noir');
-                b.classList.add('bg-white', 'text-slatewood', 'border-stoneborder');
-            });
+    // PROJECT MODALS
+    'causal-ai': {
+      kicker: 'Research Project 01 &bullet; Deep Learning',
+      title: 'Causal Feature Identification in CNNs',
+      subtitle: 'Saumya Bajaj, Nikolaos Kakonas, Tejas Khandwekar, Vivek Prakash &bullet; CS 4644/7643',
+      content: `
+        <h4>Problem & Motivation</h4>
+        <p>Convolutional neural networks are susceptible to shortcut learning by exploiting spurious correlations (e.g. classifying waterbirds based on water backgrounds rather than avian physiology). When deployed out-of-distribution (OOD), accuracy collapses.</p>
+        
+        <h4>Theoretical Architecture: Agentic Observation Module (AOM)</h4>
+        <ul>
+          <li><strong>Gumbel-Softmax Discrete Masking:</strong> Generates sparse binary masks M selecting 45x45 spatial patches using Straight-Through Estimators (STE) to maintain differentiability while forcing an information bottleneck revealing &lt;12% of the original image.</li>
+          <li><strong>Intervention Stability Loss:</strong> Implements a Jensen-Shannon Divergence stability penalty across counterfactual views generated by swapping opposing backgrounds from a Places dataset buffer, adding Gaussian noise, and blurring non-selected regions.</li>
+          <li><strong>Multi-Task Optimization:</strong> Loss balances Cross-Entropy, JS stability, delayed-ramp L1 sparsity penalty, Total Variation (for spatial patch contiguity), and entropy regularization.</li>
+        </ul>
 
-            const current = document.getElementById(`tag-${cat}`);
-            if (current) {
-                current.classList.add('bg-noir', 'text-white', 'border-noir');
-                current.classList.remove('bg-white', 'text-slatewood', 'border-stoneborder');
-            }
+        <h4>Key Experimental Findings</h4>
+        <ul>
+          <li><strong>Worst-Group Accuracy:</strong> 78.50% (outperforming Vanilla ResNet-18 at 47.51%).</li>
+          <li><strong>OOD Accuracy:</strong> 88.35% (outperforming Group DRO Oracle at 86.14% without requiring group labels during training).</li>
+          <li><strong>Pixel Efficiency:</strong> Retains classification accuracy while filtering out >88% of irrelevant pixel background noise.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/CausalAI'
+    },
 
-            pins.forEach(pin => {
-                const pinCat = pin.getAttribute('data-category');
-                if (cat === 'all' || pinCat === cat) {
-                    pin.style.display = 'block';
-                    setTimeout(() => { pin.style.opacity = '1'; }, 20);
-                } else {
-                    pin.style.opacity = '0';
-                    setTimeout(() => { pin.style.display = 'none'; }, 200);
-                }
-            });
-        }
+    'kitaev-wavelet': {
+      kicker: 'Research Project 02 &bullet; Condensed Matter Physics',
+      title: 'Parallel Tempering of Kitaev Spin Systems',
+      subtitle: 'Saumya Bajaj, Katherine Bridges, Nikolai Simonov, Roshan Trivedi &bullet; May 2026',
+      content: `
+        <h4>Physics Motivation</h4>
+        <p>Honeycomb cobaltates ($Na_3Co_2SbO_6$) are prominent candidates for Kitaev quantum spin liquid physics. A central unresolved challenge in scattering experiments is distinguishing true coherent multi-q ground states from domain-averaged responses of multiple single-q configurations.</p>
+        
+        <h4>Stochastic Sampler & Computational Engine</h4>
+        <ul>
+          <li><strong>Custom Metropolis Monte Carlo:</strong> Built a custom MMC engine in Julia integrated with Sunny.jl's energy kernels, using dynamically scaled cone-update proposals: &theta;<sub>max</sub> &prop; 1/&radic;&beta; to sustain 30–50% acceptance.</li>
+          <li><strong>Parallel Tempering Protocol:</strong> Ran 30 replicas distributed across a logarithmic temperature grid (T = 0.005 K to 1.0 K), using replica exchanges: P<sub>swap</sub> = min(1, e<sup>(&Delta;&beta;&Delta;E)</sup>) to overcome flat energy landscapes and deep metastable wells.</li>
+          <li><strong>System Geometry:</strong> Modeled honeycomb extended KH&Gamma;&Gamma;' Hamiltonians and verified supercell size sensitivity (discovering 12&times;12&times;1 supercells uniquely stabilize true double-q zigzag states).</li>
+        </ul>
 
-        // Modal Deep Dive Handlers
-        function openModal(key) {
-            const item = projectsData[key];
-            if (!item) return;
+        <h4>Multiresolution Wavelet Classification</h4>
+        <ul>
+          <li>Applied 2D Discrete Wavelet Transforms (Symlet 4 basis) to spin configurations.</li>
+          <li><strong>Sparsity Metric (n<sub>90</sub>):</strong> Single-q vortex states are captured 30&times; more efficiently by wavelets (n<sub>90</sub> = 0.0029 vs. Fourier 0.0811), while double-q zigzag and triple-q star phases exhibit Fourier sparsity of 0.0029. Wavelet-Fourier sparsity disparity enables unsupervised phase identification.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/KitaevWavelet_public'
+    },
 
-            document.getElementById('modal-tag').textContent = item.tag;
-            document.getElementById('modal-title').textContent = item.title;
-            document.getElementById('modal-repo-name').textContent = item.repoName;
-            document.getElementById('modal-body').innerHTML = item.html;
-            document.getElementById('modal-github-btn').setAttribute('href', item.url);
+    'traffic-diffusion': {
+      kicker: 'Research Project 03 &bullet; Generative Modeling',
+      title: 'Atlanta Traffic Congestion Forecasting',
+      subtitle: 'Saumya Bajaj & Team &bullet; GDOT & Weather Underground Study',
+      content: `
+        <h4>Problem Formulation</h4>
+        <p>Highway traffic volume on major arterial corridors (such as Atlanta's I-285 perimeter) suffers from sudden volatility, regime shifts, and non-linear shocks. Deterministic baselines often fail to capture distribution tails.</p>
+        
+        <h4>Generative Diffusion Methodology</h4>
+        <ul>
+          <li><strong>Continuous Conditional Diffusion:</strong> Formulated future 1-hour traffic states as reverse denoising processes over continuous Gaussian distributions, retaining uncertainty bounds rather than outputting isolated point predictions.</li>
+          <li><strong>LSTM Backbone:</strong> Encoded 24-hour historical rolling windows with sinusoidal time embeddings and an MLP denoising head.</li>
+          <li><strong>Telemetry Ingestion:</strong> Merged and standardized over 260,000 hourly GDOT sensor observations across 10+ stations with hourly Weather Underground meteorological conditions.</li>
+        </ul>
 
-            const modal = document.getElementById('project-modal');
-            modal.classList.remove('hidden');
-        }
+        <h4>Empirical Results & Deployment</h4>
+        <ul>
+          <li><strong>Model Performance:</strong> Diffusion achieved <strong>510.4 RMSE, 255.3 MAE, and R² = 0.95</strong>, substantially outperforming LSTM (RMSE 667.3), SARIMAX (RMSE 1348.6), and Random Forest (RMSE 561.9).</li>
+          <li><strong>Single-File Web Dashboard:</strong> Created a standalone client-side dashboard with Leaflet.js, achieving a 75% payload compression ratio via Gzip and Pako.js client-side decompression to stream 300K+ records instantly under 2MB.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/TrafficDiffusion_public'
+    },
 
-        function closeModal(updateHash = true) {
-            const modal = document.getElementById('project-modal');
-            modal.classList.add('hidden');
-            if (updateHash && window.location.hash.startsWith('#project/')) {
-                window.location.hash = '#projects';
-            }
-        }
+    'healthcare-agent': {
+      kicker: 'Engineering Project 04 &bullet; Autonomous AI Systems',
+      title: 'Managed Multi-Agent Clinical Integrity Pipeline',
+      subtitle: 'Enterprise Claim Audit System Proof of Concept',
+      content: `
+        <h4>Architecture Strategy</h4>
+        <p>Enterprise medical billing requires audit mechanisms that catch complex semantic discrepancies without incurring astronomical LLM token costs or latency bottlenecks.</p>
+        
+        <h4>Hybrid Pipeline Design</h4>
+        <ul>
+          <li><strong>Deterministic Fast-Path Guardrails:</strong> Local statistical Z-score calculations intercept gross unit and cost anomalies prior to invoking LLM inference.</li>
+          <li><strong>Token-Optimized LLM Workers:</strong> Employs <code>gemini-3.1-flash-lite</code> with specialized prompts targeting high-complexity lateral discrepancies (e.g., ICD-10 side codes conflicting with operative prose).</li>
+          <li><strong>Contract Enforcement:</strong> Rigid Pydantic schemas enforce deterministic JSON structure across audit artifacts, preventing schema hallucinations.</li>
+          <li><strong>Environment & Packaging:</strong> Built using Python 3.12 and <code>uv</code> for hermetic, sub-second execution without virtual environment overhead.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/healthcare-agent-poc'
+    },
 
-        // Click outside modal to close
-        document.getElementById('project-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'project-modal') {
-                closeModal();
-            }
-        });
+    'financial-markets': {
+      kicker: 'Research Project 05 &bullet; Quantitative Finance',
+      title: 'At-The-Money Straddle Exit Optimization',
+      subtitle: 'Saumya Bajaj, Abinav Chari, Mark Rodrigues, Riya Bhadani, Daniel Wu',
+      content: `
+        <h4>Quantitative Objective</h4>
+        <p>Identify optimal trade exit timings for at-the-money (ATM) short straddle options positions using intraday SPX contracts and synthetic Greek derivatives.</p>
+        
+        <h4>Feature Engineering & Spline Derivatives</h4>
+        <ul>
+          <li><strong>Spline Interpolation:</strong> Fitted continuous cubic splines to straddle exit value versus underlying SPX close prices to analytically compute first and second numerical derivatives (&Delta; and &Gamma; proxies).</li>
+          <li><strong>Feature Importance:</strong> Engineered Greek derivatives ranked 6th and 16th in overall feature importance among over 115 technical indicators.</li>
+          <li><strong>Model Benchmarking:</strong> Adding spline-derived Greeks improved Random Forest classification accuracy from 66.8% to 69.0%. Evaluated LSTM architectures with variable lookback windows (5, 10, 20 steps), identifying temporal underfitting challenges in high-frequency regimes.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/MLFinancialMarkets'
+    },
 
-        // Copy Share Link Helper
-        function copyShareLink() {
-            const temp = document.createElement("input");
-            document.body.appendChild(temp);
-            temp.value = window.location.origin + window.location.pathname;
-            temp.select();
-            document.execCommand("copy");
-            document.body.removeChild(temp);
+    'gt-athletics': {
+      kicker: 'Applied Project 06 &bullet; Sports Analytics',
+      title: 'NCAA Basketball Live Win Probability Engine',
+      subtitle: 'Data Science @ Georgia Tech (DSGT) Athletics Team',
+      content: `
+        <h4>Predictive Modeling</h4>
+        <p>Calculates real-time victory probabilities for college basketball teams at any given elapsed second of game progression.</p>
+        
+        <h4>Methodological Pipeline</h4>
+        <ul>
+          <li>Extracted and cleaned multi-season play-by-play telemetry, standardizing score margins, fouls, elapsed clock duration, and possession sequences.</li>
+          <li>Built and calibrated Logistic Regression baselines alongside an XGBoost Classifier to model non-linear score swings and momentum shifts.</li>
+          <li>Demonstrated that explicit possession-indicator tracking and time-weighted scoring rate features provided the highest marginal gain in predictive calibration.</li>
+        </ul>
+      `,
+      repo: 'https://github.com/sbajaj4/GTAthletics'
+    }
+  };
 
-            const toast = document.getElementById('toast');
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 2500);
-        }
-    </script>
+  function openTimelineModal(id) {
+    const data = modalData[id];
+    if (!data) return;
+    document.getElementById('modalKicker').innerText = data.kicker;
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalSubtitle').innerText = data.subtitle;
+    document.getElementById('modalContent').innerHTML = data.content;
+    document.getElementById('modalFooter').innerHTML = '';
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function openProjectModal(id) {
+    const data = modalData[id];
+    if (!data) return;
+    document.getElementById('modalKicker').innerText = data.kicker;
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalSubtitle').innerText = data.subtitle;
+    document.getElementById('modalContent').innerHTML = data.content;
+    document.getElementById('modalFooter').innerHTML = `
+      <a class="modal-repo-link" href="${data.repo}" target="_blank">
+        Inspect Source Code on GitHub &rarr;
+      </a>
+    `;
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target.id === 'modalOverlay') {
+      closeModal();
+    }
+  }
+
+  // Keyboard accessibility (Escape key closes modal)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 </body>
 </html>
