@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S. Bajaj — Machine Learning & Quantitative Systems Portfolio</title>
+    <title>S. Bajaj — Machine Learning & Quantitative Systems</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -15,684 +15,946 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-                        display: ['Cinzel', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
                         mono: ['"JetBrains Mono"', 'monospace']
                     },
                     colors: {
-                        parchment: '#F9F8F5',
-                        sandstone: '#F2EFE9',
+                        parchment: '#F8F6F0',
                         chalk: '#FFFFFF',
-                        noir: '#171615',
-                        slatewood: '#2E2B2A',
+                        noir: '#151413',
+                        slatewood: '#2B2826',
+                        stoneborder: '#E5DFD6',
                         terracotta: '#9E4E3B',
-                        rosedust: '#C98B7C',
-                        sageash: '#7C8A7D',
-                        claymuted: '#E6DDD5',
-                        borderline: '#E2DDD6'
+                        terracottaSoft: '#F6ECE8',
+                        dustyrose: '#C98A7D',
+                        sageash: '#6C7E6D',
+                        mosssoft: '#EEF2EE',
+                        sandstone: '#EFEBE4'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Pinterest-style dynamic multi-column masonry */
-        .masonry-grid {
+        /* Multi-column Pinterest-style responsive masonry */
+        .masonry-board {
             column-count: 1;
             column-gap: 1.5rem;
         }
         @media (min-width: 640px) {
-            .masonry-grid {
+            .masonry-board {
                 column-count: 2;
                 column-gap: 1.75rem;
             }
         }
         @media (min-width: 1024px) {
-            .masonry-grid {
+            .masonry-board {
                 column-count: 3;
                 column-gap: 2rem;
             }
         }
-        .masonry-item {
+        .masonry-pin {
             break-inside: avoid;
             margin-bottom: 2rem;
             transform: translateZ(0);
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, opacity 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
         }
-        .masonry-item:hover {
-            transform: translateY(-5px);
+        .masonry-pin:hover {
+            transform: translateY(-6px);
         }
         
-        /* Subtle custom scrollbar */
+        /* Subtle editorial scrollbars */
         ::-webkit-scrollbar {
-            width: 7px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #F2EFE9;
+            background: #F8F6F0;
         }
         ::-webkit-scrollbar-thumb {
-            background: #C98B7C;
-            border-radius: 999px;
+            background: #D9D2C7;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9E4E3B;
         }
     </style>
 </head>
-<body class="bg-parchment text-noir antialiased selection:bg-rosedust selection:text-white min-h-screen flex flex-col font-sans">
+<body class="bg-parchment text-noir selection:bg-terracotta selection:text-white min-h-screen flex flex-col font-sans">
 
-    <header class="sticky top-0 z-40 bg-parchment/90 backdrop-blur-md border-b border-borderline/80 px-6 sm:px-12 py-4 transition-all">
+    <header class="sticky top-0 z-40 bg-parchment/90 backdrop-blur-md border-b border-stoneborder px-6 sm:px-12 py-3.5 transition-all">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#" class="group flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-full bg-noir text-parchment flex items-center justify-center font-serif text-lg font-bold group-hover:bg-terracotta transition-colors">
+            <a href="#projects" class="group flex items-center space-x-3.5">
+                <div class="w-9 h-9 rounded-full bg-noir text-parchment flex items-center justify-center font-serif text-lg font-bold group-hover:bg-terracotta transition-colors shadow-sm">
                     SB
                 </div>
-                <div>
-                    <span class="font-semibold text-sm tracking-wider uppercase block text-slatewood font-mono">sbajaj4</span>
-                    <span class="text-xs text-neutral-500 font-serif italic">Research & Engineering Index</span>
+                <div class="leading-tight">
+                    <span class="font-bold text-xs tracking-wider uppercase block text-slatewood font-mono">sbajaj4</span>
+                    <span class="text-[11px] text-neutral-500 font-serif italic">Quantitative Systems & AI Research</span>
                 </div>
             </a>
 
-            <!-- Quick Action Links -->
-            <div class="flex items-center space-x-3 sm:space-x-5 text-sm font-mono">
+            <!-- Editorial Nav Pills -->
+            <nav class="hidden md:flex items-center space-x-1 font-mono text-xs bg-sandstone/70 p-1 rounded-full border border-stoneborder">
+                <a href="#projects" id="nav-projects" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Curated Board</a>
+                <a href="#experience" id="nav-experience" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Experience & Ledger</a>
+                <a href="#about" id="nav-about" class="nav-link px-4 py-1.5 rounded-full transition-all text-neutral-600 hover:text-noir">Perspective</a>
+            </nav>
+
+            <!-- External Profiles & Direct Actions -->
+            <div class="flex items-center space-x-2.5 font-mono text-xs">
                 <a href="https://github.com/sbajaj4" target="_blank" rel="noopener noreferrer" 
-                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-borderline bg-white/70 hover:bg-noir hover:text-white transition-all shadow-xs text-xs">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                    </svg>
+                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-stoneborder bg-white/80 hover:bg-noir hover:text-white transition-all shadow-2xs">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                     <span>GitHub</span>
                 </a>
-                <button onclick="copyPortfolioLink()" class="p-2 rounded-full border border-borderline hover:border-terracotta hover:text-terracotta transition-colors text-xs" title="Copy Portfolio URL">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                    </svg>
+                <button onclick="copyShareLink()" class="p-2 rounded-full border border-stoneborder bg-white/80 hover:border-terracotta hover:text-terracotta transition-colors" title="Copy Portfolio Link">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 </button>
             </div>
+        </div>
+
+        <!-- Mobile Navigation Row -->
+        <div class="flex md:hidden justify-center space-x-2 font-mono text-xs pt-3 border-t border-stoneborder/60 mt-3">
+            <a href="#projects" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Projects</a>
+            <a href="#experience" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Experience</a>
+            <a href="#about" class="px-3 py-1 rounded-full text-neutral-600 hover:text-noir">Perspective</a>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-6 sm:px-12 pt-14 pb-20 w-full">
-        <section class="mb-14 border-b border-borderline pb-12">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-                <div class="max-w-3xl space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-claymuted/60 text-terracotta text-xs font-mono font-medium tracking-wide uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse"></span>
-                        Computational Research & Modeling
+    <main class="flex-grow max-w-7xl mx-auto px-6 sm:px-12 py-10 w-full">
+
+        <!-- ========================================================= -->
+        <!-- VIEW 1: CURATED PROJECTS BOARD (Pinterest-style Masonry) -->
+        <!-- ========================================================= -->
+        <section id="view-projects" class="portfolio-view">
+            <!-- Editorial Hero -->
+            <div class="mb-12 border-b border-stoneborder pb-10">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+                    <div class="max-w-3xl space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider">
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracotta animate-ping"></span>
+                            Production AI & Quantitative Engineering
+                        </div>
+                        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-noir leading-[1.04]">
+                            Structured models in <span class="italic text-terracotta font-serif">diffusion</span>, topological physics & markets.
+                        </h1>
+                        <p class="text-slatewood/80 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                            A curated index of open-source research codebases spanning continuous-time diffusion forecasting, topological Kitaev wavelets, structural causal CNN disentanglement, and agentic evaluation harnesses.
+                        </p>
                     </div>
-                    <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-normal text-noir tracking-tight leading-[1.08]">
-                        Curated systems in <span class="italic text-terracotta">Generative AI</span>, Physics & Markets.
-                    </h1>
-                    <p class="text-slatewood/80 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-                        A dynamic board of open-source research codebases exploring spatio-temporal diffusion models, topological phase transitions, agentic explainability, and stochastic pricing.
-                    </p>
+
+                    <!-- Compact Metric Pill Box -->
+                    <div class="bg-white p-4 rounded-2xl border border-stoneborder shadow-2xs flex items-center divide-x divide-stoneborder self-start lg:self-end font-mono text-xs">
+                        <div class="px-3 text-center">
+                            <span class="block text-xl font-serif font-bold text-noir">6</span>
+                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Systems</span>
+                        </div>
+                        <div class="px-3 text-center">
+                            <span class="block text-xl font-serif font-bold text-terracotta">Py • JL</span>
+                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Engines</span>
+                        </div>
+                        <div class="px-3 text-center">
+                            <span class="block text-xl font-serif font-bold text-sageash">SOTA</span>
+                            <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Benchmarked</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stats summary card -->
-                <div class="bg-white/80 p-5 rounded-2xl border border-borderline shadow-xs flex items-center divide-x divide-borderline self-start lg:self-end">
-                    <div class="px-4 text-center">
-                        <span class="block text-2xl font-serif font-bold text-noir">6</span>
-                        <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500">Repositories</span>
-                    </div>
-                    <div class="px-4 text-center">
-                        <span class="block text-2xl font-serif font-bold text-terracotta">Py & JL</span>
-                        <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500">Core Stacks</span>
-                    </div>
-                    <div class="px-4 text-center">
-                        <span class="block text-2xl font-serif font-bold text-sageash">MIT</span>
-                        <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500">Open Source</span>
-                    </div>
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2 pt-8">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 mr-2">Filter Board:</span>
+                    <button onclick="filterBoard('all')" id="tag-all" class="board-filter active-filter px-4 py-1.5 rounded-full text-xs font-mono border border-noir bg-noir text-white transition-all">All Works (6)</button>
+                    <button onclick="filterBoard('generative')" id="tag-generative" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Generative & SDEs</button>
+                    <button onclick="filterBoard('physics-quant')" id="tag-physics-quant" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Physics & Derivatives</button>
+                    <button onclick="filterBoard('agentic')" id="tag-agentic" class="board-filter px-4 py-1.5 rounded-full text-xs font-mono border border-stoneborder bg-white text-slatewood hover:border-terracotta transition-all">Agentic & Causal</button>
                 </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2 pt-10">
-                <span class="text-xs font-mono uppercase text-neutral-400 mr-2">Filter Board:</span>
-                <button onclick="filterCards('all')" id="btn-all" class="filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-mono tracking-wide border border-noir bg-noir text-white transition-all">
-                    All Works (6)
-                </button>
-                <button onclick="filterCards('deep-learning')" id="btn-deep-learning" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-wide border border-borderline bg-white/70 text-slatewood hover:border-terracotta transition-all">
-                    Deep Learning & Generative
-                </button>
-                <button onclick="filterCards('physics-quant')" id="btn-physics-quant" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-wide border border-borderline bg-white/70 text-slatewood hover:border-terracotta transition-all">
-                    Physics & Quantitative Systems
-                </button>
-                <button onclick="filterCards('agentic')" id="btn-agentic" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono tracking-wide border border-borderline bg-white/70 text-slatewood hover:border-terracotta transition-all">
-                    Agentic & Causal AI
-                </button>
+            <!-- The Masonry Grid -->
+            <div id="masonry-container" class="masonry-board w-full">
+
+                <!-- CARD 1: TrafficDiffusion -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="generative">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#181615] relative p-5 flex flex-col justify-between overflow-hidden">
+                        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-terracotta/20 rounded-full blur-2xl"></div>
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-dustyrose rounded-full backdrop-blur-xs border border-white/10">
+                                SDE Diffusion
+                            </span>
+                            <a href="https://github.com/sbajaj4/TrafficDiffusion_public" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="z-10">
+                            <svg class="w-full h-16 stroke-dustyrose fill-none opacity-85" viewBox="0 0 280 60">
+                                <path d="M0,35 Q35,5 70,35 T140,35 T210,15 T280,45" stroke-width="2.5" />
+                                <path d="M0,40 Q45,65 90,40 T180,20 T280,30" stroke-width="1.2" stroke-dasharray="3,3" />
+                                <circle cx="70" cy="35" r="3" class="fill-terracotta"/>
+                                <circle cx="140" cy="35" r="3" class="fill-terracotta"/>
+                                <circle cx="210" cy="15" r="3" class="fill-terracotta"/>
+                            </svg>
+                            <div class="text-[10px] font-mono text-neutral-400 flex justify-between pt-1">
+                                <span>Spatiotemporal SDE Noise Schedule</span>
+                                <span class="text-terracotta font-semibold">PeMS-08</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/TrafficDiffusion_public</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Atlanta Traffic Diffusion</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Continuous-time score-based diffusion model designed for non-linear metropolitan highway sensor topologies. Integrates spatio-temporal graph neural networks with stochastic denoisers to conquer structural covariate shifts.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Score-Based SDEs</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">ST-GCNs</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">PyTorch</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/traffic-diffusion" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Generative Modeling</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 2: KitaevWavelet -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="physics-quant">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#121715] relative p-5 flex flex-col justify-between overflow-hidden">
+                        <div class="absolute -left-6 -top-6 w-36 h-36 bg-sageash/25 rounded-full blur-2xl"></div>
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-emerald-200 rounded-full backdrop-blur-xs border border-white/10">
+                                Quantum Matter
+                            </span>
+                            <a href="https://github.com/sbajaj4/KitaevWavelet_public" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="z-10 flex items-center justify-center">
+                            <svg class="w-48 h-18 stroke-[#8DA893] fill-none opacity-80" viewBox="0 0 180 65">
+                                <polygon points="30,10 50,10 60,28 50,45 30,45 20,28" stroke-width="1.8"/>
+                                <polygon points="60,28 80,28 90,45 80,62 60,62 50,45" stroke-width="1.8"/>
+                                <polygon points="90,10 110,10 120,28 110,45 90,45 80,28" stroke-width="1.8"/>
+                                <circle cx="30" cy="10" r="2.5" class="fill-[#8DA893]"/>
+                                <circle cx="50" cy="10" r="2.5" class="fill-[#8DA893]"/>
+                                <circle cx="60" cy="28" r="2.5" class="fill-terracotta"/>
+                            </svg>
+                        </div>
+                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
+                            <span>Honeycomb Lattice Kitaev</span>
+                            <span class="text-[#8DA893]">H = -∑ J_γ S_i^γ S_j^γ</span>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-sageash uppercase tracking-wider block">sbajaj4/KitaevWavelet_public</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Kitaev Wavelet Classifier</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Topological phase classification of Quantum Spin Liquids on honeycomb lattices. Combines 2D Continuous Wavelet Transforms (CWT) with vectorized high-performance Monte Carlo parallel tempering in Julia.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Multiscale Wavelets</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Julia Monte Carlo</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Parallel Tempering</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/kitaev-wavelet" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Statistical Physics</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 3: CausalAI -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="agentic">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#181413] relative p-5 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-dustyrose rounded-full border border-white/10">
+                                Counterfactual DAGs
+                            </span>
+                            <a href="https://github.com/sbajaj4/CausalAI" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="z-10 flex items-center justify-center">
+                            <svg class="w-48 h-18 stroke-dustyrose fill-none" viewBox="0 0 200 60">
+                                <circle cx="30" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
+                                <text x="30" y="34" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">X</text>
+                                <circle cx="100" cy="18" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
+                                <text x="100" y="22" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">Z*</text>
+                                <circle cx="170" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
+                                <text x="170" y="34" font-size="9" text-anchor="middle" fill="#C98A7D" font-family="monospace">Y</text>
+                                <path d="M42,30 L88,20" stroke-width="1.5"/>
+                                <path d="M112,20 L158,30" stroke-width="1.5"/>
+                                <path d="M42,33 Q100,52 158,33" stroke-width="1" stroke-dasharray="2,2"/>
+                            </svg>
+                        </div>
+                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
+                            <span>Gumbel-Softmax Agentic Masks</span>
+                            <span class="text-terracotta">do(X := x)</span>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/CausalAI</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Causal CNN Disentanglement</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Disentangles spurious background correlation from invariant causal semantic features in deep vision networks using an Agentic Observation Module with Gumbel-Softmax discrete latent sampling.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Structural Causal Models</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Gumbel-Softmax</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">CNN Latent Interventions</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/causal-ai" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Explainability</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 4: healthcare-agent-poc -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="agentic">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#17191C] relative p-5 flex flex-col justify-between font-mono text-xs overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] tracking-widest uppercase px-2.5 py-1 bg-white/10 text-slate-300 rounded-full border border-white/10">
+                                Multimodal Agent
+                            </span>
+                            <a href="https://github.com/sbajaj4/healthcare-agent-poc" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="bg-black/50 rounded-xl p-3 text-[10px] space-y-1 text-slate-300 border border-white/5 z-10">
+                            <div class="flex items-center gap-1.5 text-terracotta font-semibold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+                                <span>[Clinical Evaluator] Grounding Pass</span>
+                            </div>
+                            <div class="text-neutral-400">FHIR / EHR Query &rarr; Hybrid Dense-Sparse RAG</div>
+                            <div class="text-emerald-400">Safety &amp; Hallucination Check: Verified (0.982)</div>
+                        </div>
+                        <div class="text-[10px] text-neutral-400 flex justify-between z-10">
+                            <span>Clinical RAG Safety Harness</span>
+                            <span class="text-slate-300">HIPAA-Aware</span>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block">sbajaj4/healthcare-agent-poc</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">Clinical Healthcare Agent</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Enterprise-grade medical agent test harness incorporating self-correcting RAG loops, medical ontology alignment, and deterministic safety verification across complex unstructured clinical documents.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Agent Evaluation Harness</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">LlamaIndex / LangChain</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">EHR Guardrails</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/healthcare-agent" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Agentic AI</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 5: MLFinancialMarkets -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="physics-quant">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#151918] relative p-5 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-emerald-200 rounded-full border border-white/10">
+                                Derivatives & Volatility
+                            </span>
+                            <a href="https://github.com/sbajaj4/MLFinancialMarkets" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <!-- Candlestick Visual Graphic -->
+                        <div class="z-10 flex items-center justify-around h-16 px-6">
+                            <div class="flex flex-col items-center">
+                                <div class="w-0.5 h-3 bg-emerald-400/60"></div>
+                                <div class="w-2.5 h-8 bg-emerald-500 rounded-xs"></div>
+                                <div class="w-0.5 h-4 bg-emerald-400/60"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-0.5 h-4 bg-rose-400/60"></div>
+                                <div class="w-2.5 h-6 bg-rose-500 rounded-xs"></div>
+                                <div class="w-0.5 h-2 bg-rose-400/60"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-0.5 h-2 bg-emerald-400/60"></div>
+                                <div class="w-2.5 h-11 bg-emerald-500 rounded-xs"></div>
+                                <div class="w-0.5 h-2 bg-emerald-400/60"></div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-0.5 h-5 bg-emerald-400/60"></div>
+                                <div class="w-2.5 h-5 bg-emerald-500 rounded-xs"></div>
+                                <div class="w-0.5 h-3 bg-emerald-400/60"></div>
+                            </div>
+                        </div>
+                        <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
+                            <span>Implied Volatility Smile</span>
+                            <span class="text-emerald-300">GBDT + Deep Hedging</span>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/MLFinancialMarkets</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">ML Financial Derivatives</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Mathematical frameworks evaluating options surface calibration, stochastic arbitrage constraints, and deep reinforcement learning hedging policies against high-frequency market order dynamics.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Volatility Surfaces</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Options Pricing</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Risk Regularization</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/financial-markets" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Quant Finance</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 6: GTAthletics -->
+                <article class="masonry-pin bg-white rounded-3xl border border-stoneborder overflow-hidden shadow-2xs group" data-category="generative">
+                    <!-- Pin Header Visual -->
+                    <div class="h-48 bg-[#1C1814] relative p-5 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-amber-200 rounded-full border border-white/10">
+                                Dynamic Probability
+                            </span>
+                            <a href="https://github.com/sbajaj4/GTAthletics" target="_blank" rel="noreferrer" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="z-10 py-1">
+                            <svg class="w-full h-14 stroke-amber-200 fill-none opacity-85" viewBox="0 0 260 50">
+                                <line x1="0" y1="25" x2="260" y2="25" stroke="#443D36" stroke-width="1" stroke-dasharray="3,3"/>
+                                <path d="M0,25 Q30,20 60,38 T120,14 T180,44 T220,12 T260,6" stroke-width="2" />
+                                <circle cx="260" cy="6" r="3" class="fill-terracotta"/>
+                            </svg>
+                            <div class="text-[10px] font-mono text-neutral-400 flex justify-between pt-1">
+                                <span>Play-by-Play Possessions (NCAA)</span>
+                                <span class="text-amber-200 font-semibold">P(Win): 94.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="p-6 space-y-3.5">
+                        <div class="space-y-1">
+                            <span class="text-[11px] font-mono text-terracotta uppercase tracking-wider block">sbajaj4/GTAthletics</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">GT Athletics In-Game WP</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slatewood/80 leading-relaxed font-light">
+                            Real-time in-game win probability model and live telemetric dashboard for Division I NCAA basketball. Implements game-state Markov transitions and LightGBM calibrated against high-density play-by-play logs.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px]">
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Win Probability</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Markov State Space</span>
+                            <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">LightGBM Calibration</span>
+                        </div>
+                        <div class="pt-4 border-t border-stoneborder flex items-center justify-between text-xs font-mono">
+                            <a href="#project/gt-athletics" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">Read Deep Dive &rarr;</a>
+                            <span class="text-neutral-400">Sports Modeling</span>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </section>
 
-        <div id="cards-container" class="masonry-grid w-full">
 
-            <!-- Card 1: TrafficDiffusion_public -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="deep-learning">
-                <!-- Visual Pin Header (Abstract Generative Waves / Graph Heatmap) -->
-                <div class="h-44 bg-[#1E1C1A] relative p-5 flex flex-col justify-between overflow-hidden">
-                    <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-terracotta/25 rounded-full blur-2xl"></div>
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-rosedust rounded-full backdrop-blur-xs border border-white/10">
-                            Spatio-Temporal
-                        </span>
-                        <a href="https://github.com/sbajaj4/TrafficDiffusion_public" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                    <!-- Generative Wave Vector Graphic -->
-                    <div class="z-10 space-y-1">
-                        <svg class="w-full h-14 stroke-rosedust fill-none opacity-80" viewBox="0 0 300 60">
-                            <path d="M0,30 Q40,5 80,30 T160,30 T240,15 T300,45" stroke-width="2.5" />
-                            <path d="M0,35 Q50,60 100,35 T200,20 T300,30" stroke-width="1.2" stroke-dasharray="3,3" />
-                            <circle cx="80" cy="30" r="3" class="fill-terracotta"/>
-                            <circle cx="160" cy="30" r="3" class="fill-terracotta"/>
-                            <circle cx="240" cy="15" r="3" class="fill-terracotta"/>
-                        </svg>
-                        <div class="text-[11px] font-mono text-neutral-400 flex items-center justify-between">
-                            <span>Forward SDE Noise Schedule</span>
-                            <span class="text-rosedust">t ∈ [0, 1]</span>
+        <!-- ========================================================= -->
+        <!-- VIEW 2: EXPERIENCE & INDUSTRY LEDGER (Tailored for Jobs) -->
+        <!-- ========================================================= -->
+        <section id="view-experience" class="portfolio-view hidden">
+            <div class="max-w-4xl mx-auto space-y-14">
+                
+                <!-- Section Header -->
+                <div class="border-b border-stoneborder pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider mb-3">
+                            Curriculum &amp; Industry Impact
                         </div>
+                        <h2 class="font-serif text-4xl sm:text-5xl font-light text-noir">Experience &amp; Systems Ledger</h2>
+                        <p class="text-slatewood/80 text-sm sm:text-base font-light mt-2 max-w-xl">
+                            Proven experience spanning machine learning research laboratories, production retrieval evaluation frameworks, and enterprise clinical data platforms.
+                        </p>
                     </div>
+                    <a href="https://github.com/sbajaj4" target="_blank" rel="noreferrer" class="self-start md:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-noir text-white text-xs font-mono hover:bg-terracotta transition-colors shadow-sm">
+                        <span>sbajaj4 on GitHub</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
                 </div>
 
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-terracotta uppercase tracking-wider">sbajaj4/TrafficDiffusion_public</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            TrafficDiffusion
+                <!-- Structured Timeline -->
+                <div class="space-y-12">
+                    
+                    <!-- ROLE 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
+                        <div class="md:col-span-4 space-y-1">
+                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Summer 2024</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir">GoFundMe</h3>
+                            <div class="text-xs font-mono text-neutral-500">Artificial Intelligence Intern</div>
+                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-terracottaSoft text-terracotta rounded-full">
+                                Agent Evaluation &amp; Retrieval
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
+                            <p>
+                                Developed end-to-end evaluation harness architectures and benchmark datasets for internal data-retrieval agents. Spearheaded rigorous evaluation criteria calculating context relevancy, ground truth fidelity, and hallucination bounds over mission-critical internal data lakes.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Agent Evaluation</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Internal Data Agents</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Retrieval Benchmarking</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Python</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
+                        <div class="md:col-span-4 space-y-1">
+                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Spring 2024</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir">Beep Inc.</h3>
+                            <div class="text-xs font-mono text-neutral-500">R&amp;D Machine Learning Practicum</div>
+                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-mosssoft text-sageash rounded-full">
+                                Autonomous Knowledge Services
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
+                            <p>
+                                Engineered production-grade retrieval evaluation frameworks and continuous test suites for autonomous mobility telematics and passenger assistance systems. Streamlined domain-adapted knowledge distillation for low-latency edge retrieval.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Autonomous Systems</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Evaluation Frameworks</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Low-Latency Vector Indices</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 3 -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
+                        <div class="md:col-span-4 space-y-1">
+                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">2022 &mdash; 2023</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir">UnitedHealth Group</h3>
+                            <div class="text-xs font-mono text-neutral-500">Data Science &amp; Analytics Intern</div>
+                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-sandstone text-slatewood rounded-full">
+                                Healthcare BI &amp; Diagnostics
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
+                            <p>
+                                Designed high-impact executive dashboards and partner performance metrics across millions of insured lives. Formulated statistical anomaly detection routines identifying claims distribution skews and operational discrepancies.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Healthcare Analytics</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Partner KPIs</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Statistical Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 4 -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-white rounded-3xl border border-stoneborder shadow-2xs hover:shadow-md transition-shadow">
+                        <div class="md:col-span-4 space-y-1">
+                            <span class="text-xs font-mono uppercase tracking-wider text-terracotta font-semibold">Prior Practicum</span>
+                            <h3 class="font-serif text-2xl font-bold text-noir">Optum Enterprise Imaging</h3>
+                            <div class="text-xs font-mono text-neutral-500">Data Engineering &amp; SQL Architecture</div>
+                            <div class="inline-block mt-2 text-[10px] font-mono px-2.5 py-1 bg-sandstone text-slatewood rounded-full">
+                                High-Throughput Pipelines
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-slatewood/85 leading-relaxed">
+                            <p>
+                                Architected robust relational schemas, optimized complex multi-table SQL stored procedures, and enforced data integrity pipelines managing clinical radiology repositories and multi-hospital diagnostic imaging systems.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">SQL Optimization</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Enterprise DICOM / EHR</span>
+                                <span class="px-2.5 py-1 bg-sandstone rounded-full text-slatewood">Relational Schemas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESEARCH LAB -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 bg-[#171615] text-parchment rounded-3xl border border-noir shadow-md">
+                        <div class="md:col-span-4 space-y-1">
+                            <span class="text-xs font-mono uppercase tracking-wider text-dustyrose font-semibold">Academic Lab</span>
+                            <h3 class="font-serif text-2xl font-bold text-white">Efficient &amp; Intelligent Computing Lab</h3>
+                            <div class="text-xs font-mono text-neutral-400">Undergraduate Research Fellow</div>
+                        </div>
+                        <div class="md:col-span-8 space-y-3 text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">
+                            <p>
+                                Investigated algorithmic pruning and structural efficiency in generative architectures. Benchmarked parameter redundancy, continuous diffusion formulations, and latency trade-offs on high-throughput compute clusters.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px]">
+                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">Diffusion Efficiency</span>
+                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">Model Compression</span>
+                                <span class="px-2.5 py-1 bg-white/10 rounded-full text-white">PyTorch Profiling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================= -->
+        <!-- VIEW 3: ABOUT / PERSPECTIVE (Human Profile & Aesthetic) -->
+        <!-- ========================================================= -->
+        <section id="view-about" class="portfolio-view hidden">
+            <div class="max-w-4xl mx-auto space-y-16">
+                
+                <!-- Hero Bio Header -->
+                <div class="border-b border-stoneborder pb-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+                    <div class="space-y-4 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sandstone text-terracotta text-[11px] font-mono font-medium uppercase tracking-wider">
+                            About &amp; Intellectual Taste
+                        </div>
+                        <h2 class="font-serif text-4xl sm:text-6xl font-light text-noir leading-[1.08]">
+                            At the intersection of <span class="italic text-terracotta font-serif">mathematical rigor</span> and deliberate aesthetic systems.
                         </h2>
                     </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Deep generative continuous diffusion formulations tailored for spatio-temporal dynamics and complex urban traffic telemetry forecasting. Couples graph neural networks with stochastic denoisers.
-                    </p>
-                    <!-- Key architectural tags -->
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Diffusion Models</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Spatial-Temporal Graphs</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">PyTorch</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('traffic')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Architecture &rarr;
-                        </button>
-                        <span class="text-neutral-400">Generative AI</span>
+
+                    <!-- Stylized Monogram Pin -->
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white border border-stoneborder shadow-xs flex flex-col items-center justify-center p-4 text-center shrink-0">
+                        <span class="font-serif text-4xl font-bold text-terracotta">SB</span>
+                        <span class="text-[10px] font-mono text-neutral-400 mt-1 uppercase tracking-widest">Atlanta, GA</span>
                     </div>
                 </div>
-            </article>
 
-            <!-- Card 2: KitaevWavelet_public -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="physics-quant">
-                <!-- Visual Pin Header: Quantum Lattice Pattern -->
-                <div class="h-44 bg-[#141A1B] relative p-5 flex flex-col justify-between overflow-hidden">
-                    <div class="absolute -left-6 -top-6 w-36 h-36 bg-sageash/20 rounded-full blur-2xl"></div>
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-white rounded-full backdrop-blur-xs border border-white/10">
-                            Quantum Matter & Julia
-                        </span>
-                        <a href="https://github.com/sbajaj4/KitaevWavelet_public" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <!-- Editorial Columns -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-5 text-sm sm:text-base font-light text-slatewood/85 leading-relaxed">
+                        <h3 class="font-serif text-2xl font-bold text-noir">Computational Philosophy</h3>
+                        <p>
+                            I view machine learning not merely as function approximation, but as an empirical laboratory for discovering structure. Whether that manifests as uncovering the boundary between topological spin liquid states with 2D Continuous Wavelet Transforms, or preventing hallucination in high-stakes clinical retrieval harnesses, the underlying mandate remains identical: <em>clarity over spurious correlation</em>.
+                        </p>
+                        <p>
+                            My background combines rigorous computational analytics with deep technical immersion in PyTorch, Julia, and distributed systems. I care as much about numerical stability and reproducible seeds as I do about clean APIs and human-centered design.
+                        </p>
+                    </div>
+
+                    <div class="space-y-5 text-sm sm:text-base font-light text-slatewood/85 leading-relaxed">
+                        <h3 class="font-serif text-2xl font-bold text-noir">Taste, Mediums &amp; Structure</h3>
+                        <p>
+                            This portfolio is designed to mimic an editorial moodboard: crisp Swiss typography, architectural proportions, and warm ecru textures. Beyond the terminal, I draw inspiration from brutalist architecture, editorial book printing, continuous stochastic mechanics, and collegiate athletics dynamics.
+                        </p>
+                        <div class="p-5 rounded-2xl bg-white border border-stoneborder space-y-2 text-xs font-mono">
+                            <div class="text-terracotta font-semibold uppercase tracking-wider">Core Tooling Stack:</div>
+                            <div class="text-slatewood/80">• PyTorch, Julia Lang, JAX, Python, C++</div>
+                            <div class="text-slatewood/80">• LangChain, LlamaIndex, ChromaDB, Cohere</div>
+                            <div class="text-slatewood/80">• Monte Carlo Tempering, Score SDEs, SCMs</div>
+                            <div class="text-slatewood/80">• PostgreSQL, Redis, Scikit-Learn, LightGBM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Contact / Touchpoints -->
+                <div class="p-8 sm:p-10 bg-white rounded-3xl border border-stoneborder flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <h4 class="font-serif text-2xl font-bold text-noir">Ready to discuss engineering or research?</h4>
+                        <p class="text-xs sm:text-sm text-neutral-500 font-light">Available for AI Engineering, Quantitative Research, and Data Science opportunities.</p>
+                    </div>
+                    <div class="flex items-center gap-3 font-mono text-xs">
+                        <a href="https://github.com/sbajaj4" target="_blank" rel="noreferrer" class="px-5 py-2.5 rounded-full bg-noir text-white hover:bg-terracotta transition-colors shadow-sm">
+                            Inspect GitHub Repos
                         </a>
-                    </div>
-                    <!-- Hexagonal Kitaev Honeycomb representation -->
-                    <div class="z-10 flex items-center justify-center py-1">
-                        <svg class="w-48 h-16 stroke-[#93B099] fill-none opacity-80" viewBox="0 0 200 65">
-                            <polygon points="30,10 50,10 60,28 50,45 30,45 20,28" stroke-width="1.8"/>
-                            <polygon points="60,28 80,28 90,45 80,62 60,62 50,45" stroke-width="1.8"/>
-                            <polygon points="90,10 110,10 120,28 110,45 90,45 80,28" stroke-width="1.8"/>
-                            <circle cx="30" cy="10" r="2.5" class="fill-[#93B099]"/>
-                            <circle cx="50" cy="10" r="2.5" class="fill-[#93B099]"/>
-                            <circle cx="60" cy="28" r="2.5" class="fill-terracotta"/>
-                        </svg>
-                    </div>
-                    <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                        <span>Honeycomb Kitaev Hamiltonian</span>
-                        <span class="text-[#93B099]">H = -∑ J_γ S_i^γ S_j^γ</span>
-                    </div>
-                </div>
-
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-sageash uppercase tracking-wider">sbajaj4/KitaevWavelet_public</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            KitaevWavelet
-                        </h2>
-                    </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Machine learning classification and wavelet decomposition of magnetic phases across Kitaev Spin Liquids. Harnesses high-performance Julia Monte Carlo simulations with parallel tempering algorithms.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Monte Carlo</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Wavelet Transforms</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Julia Lang</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Parallel Tempering</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('kitaev')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Pipeline &rarr;
+                        <button onclick="copyShareLink()" class="px-4 py-2.5 rounded-full border border-stoneborder hover:border-terracotta transition-colors">
+                            Copy Portfolio
                         </button>
-                        <span class="text-neutral-400">Condensed Matter</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 3: CausalAI -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="agentic">
-                <!-- Visual Pin Header: Causal DAG Graph -->
-                <div class="h-44 bg-[#1B1716] relative p-5 flex flex-col justify-between overflow-hidden">
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-rosedust rounded-full border border-white/10">
-                            Counterfactual Explanations
-                        </span>
-                        <a href="https://github.com/sbajaj4/CausalAI" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                    <!-- Minimal Causal Node Diagram -->
-                    <div class="z-10 flex items-center justify-center">
-                        <svg class="w-48 h-16 stroke-rosedust fill-none" viewBox="0 0 200 60">
-                            <circle cx="30" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                            <text x="30" y="34" font-size="9" text-anchor="middle" fill="#C98B7C" font-family="monospace">X</text>
-                            <circle cx="100" cy="18" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                            <text x="100" y="22" font-size="9" text-anchor="middle" fill="#C98B7C" font-family="monospace">Z*</text>
-                            <circle cx="170" cy="30" r="12" stroke-width="1.5" class="fill-[#2B2321]"/>
-                            <text x="170" y="34" font-size="9" text-anchor="middle" fill="#C98B7C" font-family="monospace">Y</text>
-                            <path d="M42,30 L88,20" stroke-width="1.5" marker-end="url(#arrow)"/>
-                            <path d="M112,20 L158,30" stroke-width="1.5"/>
-                            <path d="M42,33 Q100,52 158,33" stroke-width="1" stroke-dasharray="2,2"/>
-                        </svg>
-                    </div>
-                    <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                        <span>Gumbel-Softmax Masking</span>
-                        <span class="text-terracotta">do(X := x)</span>
                     </div>
                 </div>
 
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-terracotta uppercase tracking-wider">sbajaj4/CausalAI</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            CausalAI
-                        </h2>
-                    </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Causal feature identification within Convolutional Neural Networks using Gumbel-Softmax agentic observation masks. Disentangles spurious correlational signals from foundational invariant features.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Causal Inference</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Agentic Observation</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Explainability</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">CNNs</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('causal')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Formulation &rarr;
-                        </button>
-                        <span class="text-neutral-400">Interpretability</span>
-                    </div>
-                </div>
-            </article>
+            </div>
+        </section>
 
-            <!-- Card 4: healthcare-agent-poc -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="agentic">
-                <!-- Visual Pin Header: Terminal / Agent Orchestration snippet -->
-                <div class="h-44 bg-[#18191D] relative p-5 flex flex-col justify-between font-mono text-xs overflow-hidden">
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] tracking-widest uppercase px-2.5 py-1 bg-white/10 text-[#8FA3BF] rounded-full border border-white/10">
-                            LLM Harness & RAG
-                        </span>
-                        <a href="https://github.com/sbajaj4/healthcare-agent-poc" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                    <div class="bg-black/40 rounded-lg p-3 text-[10px] space-y-1 text-slate-300 border border-white/5">
-                        <div class="flex items-center gap-1.5 text-terracotta font-semibold">
-                            <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
-                            <span>[Agent Dispatcher] Running clinical verification</span>
-                        </div>
-                        <div class="text-neutral-400">Query -> VectorSearch(TopK=5) -> CohereRerank()</div>
-                        <div class="text-emerald-400">Validated against HIPAA-compliant ontology check: Passed</div>
-                    </div>
-                    <div class="text-[10px] text-neutral-400 flex justify-between">
-                        <span>Autonomous Clinical Loop</span>
-                        <span class="text-[#8FA3BF]">p99 &lt; 420ms</span>
-                    </div>
-                </div>
-
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-[#8FA3BF] uppercase tracking-wider">sbajaj4/healthcare-agent-poc</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            Healthcare Agent POC
-                        </h2>
-                    </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Autonomous clinical trial evaluation and medical document question-answering agent harness. Features self-correcting RAG loops, medical ontology groundings, and deterministic safety filters.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Agentic RAG</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">LangChain / LlamaIndex</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Verification</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('healthcare')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Workflow &rarr;
-                        </button>
-                        <span class="text-neutral-400">LLM Systems</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 5: MLFinancialMarkets -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="physics-quant">
-                <!-- Visual Pin Header: Candlestick & Volatility Curve -->
-                <div class="h-44 bg-[#181C1A] relative p-5 flex flex-col justify-between overflow-hidden">
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-[#A8C7B0] rounded-full border border-white/10">
-                            Quantitative Finance
-                        </span>
-                        <a href="https://github.com/sbajaj4/MLFinancialMarkets" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                    <!-- Minimalist Financial Candlestick Diagram -->
-                    <div class="z-10 flex items-center justify-around h-16 px-4">
-                        <div class="flex flex-col items-center">
-                            <div class="w-0.5 h-3 bg-emerald-400/60"></div>
-                            <div class="w-2.5 h-8 bg-emerald-500 rounded-xs"></div>
-                            <div class="w-0.5 h-4 bg-emerald-400/60"></div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-0.5 h-4 bg-rose-400/60"></div>
-                            <div class="w-2.5 h-6 bg-rose-500 rounded-xs"></div>
-                            <div class="w-0.5 h-2 bg-rose-400/60"></div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-0.5 h-2 bg-emerald-400/60"></div>
-                            <div class="w-2.5 h-11 bg-emerald-500 rounded-xs"></div>
-                            <div class="w-0.5 h-2 bg-emerald-400/60"></div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-0.5 h-5 bg-emerald-400/60"></div>
-                            <div class="w-2.5 h-5 bg-emerald-500 rounded-xs"></div>
-                            <div class="w-0.5 h-3 bg-emerald-400/60"></div>
-                        </div>
-                    </div>
-                    <div class="z-10 text-[10px] font-mono text-neutral-400 flex justify-between">
-                        <span>Implied Volatility Surface</span>
-                        <span class="text-[#A8C7B0]">Black-Scholes + GBDT</span>
-                    </div>
-                </div>
-
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-terracotta uppercase tracking-wider">sbajaj4/MLFinancialMarkets</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            ML Financial Markets
-                        </h2>
-                    </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Machine learning frameworks for asset price prediction, option contract valuations, and quantitative portfolio allocation. Implements advanced financial feature engineering and high-frequency time series models.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Options Valuation</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Time Series</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Scikit-Learn / XGBoost</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('finance')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Pricing Models &rarr;
-                        </button>
-                        <span class="text-neutral-400">Quantitative</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 6: GTAthletics -->
-            <article class="masonry-item bg-white rounded-3xl border border-borderline overflow-hidden shadow-xs hover:shadow-xl group" data-category="deep-learning">
-                <!-- Visual Pin Header: Win Probability Chart -->
-                <div class="h-44 bg-[#1E1B17] relative p-5 flex flex-col justify-between overflow-hidden">
-                    <div class="flex justify-between items-start z-10">
-                        <span class="text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 bg-white/10 text-amber-200 rounded-full border border-white/10">
-                            Sports Analytics & WP
-                        </span>
-                        <a href="https://github.com/sbajaj4/GTAthletics" target="_blank" class="p-2 rounded-full bg-white/10 hover:bg-white/30 text-white transition-all">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        </a>
-                    </div>
-                    <!-- Win Probability Curve Simulation -->
-                    <div class="z-10 py-1">
-                        <svg class="w-full h-14 stroke-amber-200 fill-none opacity-80" viewBox="0 0 260 50">
-                            <line x1="0" y1="25" x2="260" y2="25" stroke="#443E38" stroke-width="1" stroke-dasharray="3,3"/>
-                            <path d="M0,25 Q30,22 60,35 T120,15 T180,42 T220,12 T260,8" stroke-width="2" />
-                            <circle cx="260" cy="8" r="3" class="fill-terracotta"/>
-                        </svg>
-                        <div class="text-[10px] font-mono text-neutral-400 flex justify-between">
-                            <span>Q1 -> Q4 Live Win Probability</span>
-                            <span class="text-amber-200">Final: 94.2%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pin Body Content -->
-                <div class="p-6 space-y-4">
-                    <div class="space-y-1.5">
-                        <span class="text-xs font-mono text-terracotta uppercase tracking-wider">sbajaj4/GTAthletics</span>
-                        <h2 class="font-serif text-2xl font-bold text-noir group-hover:text-terracotta transition-colors">
-                            GTAthletics
-                        </h2>
-                    </div>
-                    <p class="text-sm text-slatewood/80 leading-relaxed font-light">
-                        Real-time in-game win probability modeling and collegiate athletic telemetry analytics. Employs game-state Markov chains and gradient boosting over NCAA historical possession records.
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Win Probability</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Sports Modeling</span>
-                        <span class="text-[11px] px-2.5 py-1 bg-sandstone rounded-full font-mono text-slatewood">Pandas / LightGBM</span>
-                    </div>
-                    <div class="pt-4 border-t border-borderline flex items-center justify-between text-xs font-mono">
-                        <button onclick="openModal('athletics')" class="text-terracotta hover:underline font-medium inline-flex items-center gap-1">
-                            Inspect Analytics &rarr;
-                        </button>
-                        <span class="text-neutral-400">Predictive Modeling</span>
-                    </div>
-                </div>
-            </article>
-
-        </div>
     </main>
 
-    <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4 transition-opacity">
-        <div class="bg-parchment w-full max-w-2xl rounded-3xl border border-borderline shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
-            <div class="flex items-start justify-between">
-                <div>
-                    <span id="modal-category" class="text-xs font-mono text-terracotta uppercase tracking-wider block">Category</span>
-                    <h3 id="modal-title" class="font-serif text-3xl font-bold text-noir mt-1">Project Name</h3>
+    <!-- ========================================================= -->
+    <!-- DEDICATED CASE STUDY MODAL / PAGE CONTAINER -->
+    <!-- ========================================================= -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4 sm:p-6 transition-opacity">
+        <div class="bg-parchment w-full max-w-3xl rounded-3xl border border-stoneborder shadow-2xl p-6 sm:p-10 space-y-6 max-h-[92vh] overflow-y-auto">
+            
+            <div class="flex items-start justify-between border-b border-stoneborder pb-5">
+                <div class="space-y-1">
+                    <span id="modal-tag" class="text-xs font-mono text-terracotta uppercase tracking-wider block font-semibold">Category</span>
+                    <h2 id="modal-title" class="font-serif text-3xl sm:text-4xl font-bold text-noir">Project Title</h2>
+                    <span id="modal-repo-name" class="text-xs font-mono text-neutral-400 block">github.com/...</span>
                 </div>
-                <button onclick="closeModal()" class="w-8 h-8 rounded-full border border-borderline flex items-center justify-center hover:bg-noir hover:text-white transition-all">
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full border border-stoneborder flex items-center justify-center hover:bg-noir hover:text-white transition-all text-lg" title="Close modal">
                     &times;
                 </button>
             </div>
 
-            <div id="modal-content" class="space-y-4 text-sm text-slatewood/85 leading-relaxed font-light">
-                <!-- Injected via JS -->
+            <!-- Deep Dive Body -->
+            <div id="modal-body" class="space-y-5 text-sm sm:text-base text-slatewood/90 leading-relaxed font-light">
+                <!-- Dynamic Content injected via JS -->
             </div>
 
-            <div class="pt-4 border-t border-borderline flex items-center justify-between">
-                <a id="modal-repo-link" href="#" target="_blank" class="px-5 py-2.5 rounded-full bg-noir text-white text-xs font-mono tracking-wide hover:bg-terracotta transition-colors inline-flex items-center gap-2">
-                    <span>View Repository on GitHub</span>
+            <!-- Modal Footer Links -->
+            <div class="pt-5 border-t border-stoneborder flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs">
+                <a id="modal-github-btn" href="#" target="_blank" rel="noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-full bg-noir text-white text-center hover:bg-terracotta transition-colors inline-flex items-center justify-center gap-2">
+                    <span>Inspect Codebase on GitHub</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
-                <button onclick="closeModal()" class="text-xs font-mono text-neutral-500 hover:text-noir transition-colors">
-                    Close Window
+                <button onclick="closeModal()" class="text-neutral-500 hover:text-noir transition-colors">
+                    Back to Portfolio Board
                 </button>
             </div>
+
         </div>
     </div>
 
+    <!-- Toast Notification for Copy -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-noir text-white px-4 py-2.5 rounded-2xl shadow-xl font-mono text-xs opacity-0 pointer-events-none transition-opacity duration-300">
         Portfolio link copied to clipboard
     </div>
 
-    <footer class="border-t border-borderline py-10 px-6 sm:px-12 bg-white/40">
+    <footer class="border-t border-stoneborder py-10 px-6 sm:px-12 bg-white/40 mt-12">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
             <div class="flex items-center space-x-2">
                 <span class="w-2 h-2 rounded-full bg-terracotta"></span>
-                <span>Designed with an editorial Pinterest silhouette &mdash; Curated for GitHub Pages</span>
+                <span>Editorial board engineered for GitHub Pages &mdash; sbajaj4.github.io</span>
             </div>
             <div>
-                &copy; <span id="current-year"></span> sbajaj4. All rights reserved.
+                &copy; <span id="year-tag"></span> S. Bajaj. All rights reserved.
             </div>
         </div>
     </footer>
 
+    <!-- ========================================================= -->
+    <!-- CLIENT-SIDE ROUTER & MODAL LOGIC -->
+    <!-- ========================================================= -->
     <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.getElementById('year-tag').textContent = new Date().getFullYear();
 
-        const projectDetails = {
-            traffic: {
-                title: "TrafficDiffusion",
-                category: "Deep Generative Modeling & Spatial Networks",
-                repo: "https://github.com/sbajaj4/TrafficDiffusion_public",
-                body: `
-                    <p>Traffic forecasting models frequently collapse under sudden domain shifts such as traffic accidents or unexpected weather spikes. <strong>TrafficDiffusion</strong> reformulates traffic trajectory generation as a continuous-time reverse stochastic differential equation (SDE).</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Spatio-temporal graph convolutional blocks for network topology.</div>
-                        <div>• Continuous denoising diffusion probabilistic model (DDPM) objective.</div>
-                        <div>• Evaluated on benchmark PeMS-04 and PeMS-08 telemetry datasets.</div>
+        // Technical deep dive documentation for all 6 repositories
+        const projectsData = {
+            'traffic-diffusion': {
+                tag: 'Deep Generative Continuous SDEs',
+                title: 'Atlanta Traffic Diffusion',
+                repoName: 'sbajaj4/TrafficDiffusion_public',
+                url: 'https://github.com/sbajaj4/TrafficDiffusion_public',
+                html: `
+                    <p>Metropolitan highway networks exhibit severe non-linear spatiotemporal volatility. Conventional autoregressive LSTM or generic graph convolutional networks collapse under sudden covariate shifts, such as multi-car pileups or flash adverse weather.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
+                        <div>• Continuous-time score-based reverse Stochastic Differential Equation (SDE) formulation.</div>
+                        <div>• Spatio-temporal graph convolution blocks (ST-GCN) extracting highway sensor adjacency dynamics.</div>
+                        <div>• Continuous denoising diffusion objective (DDPM) calibrated on PeMS-04 and PeMS-08 telemetry streams.</div>
                     </div>
+                    <p>The system reformulates traffic speed forecasting as a stochastic denoising process, outputting probabilistic confidence intervals rather than brittle point estimates. This allows city traffic operators to quantify downside congestion tail-risks.</p>
                 `
             },
-            kitaev: {
-                title: "KitaevWavelet",
-                category: "Condensed Matter & Statistical Physics",
-                repo: "https://github.com/sbajaj4/KitaevWavelet_public",
-                body: `
-                    <p>Quantum spin liquids possess long-range entanglement and lack conventional magnetic order, rendering standard order parameters ineffective. This project marries <strong>Continuous Wavelet Transforms (CWT)</strong> with high-performance Monte Carlo simulations in <strong>Julia</strong> to extract scale-space invariant features of spin liquid candidate materials.</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Metropolis-Hastings with parallel tempering over Kitaev honeycomb lattices.</div>
-                        <div>• Multi-resolution 2D spatial wavelet decompositions of correlation tensors.</div>
-                        <div>• Automated unsupervised and supervised boundary detection of topological spin liquid regimes.</div>
+            'kitaev-wavelet': {
+                tag: 'Condensed Matter Physics & Multiscale Decomposition',
+                title: 'Kitaev Honeycomb Wavelet Analysis',
+                repoName: 'sbajaj4/KitaevWavelet_public',
+                url: 'https://github.com/sbajaj4/KitaevWavelet_public',
+                html: `
+                    <p>Quantum spin liquids (QSLs) are exotic states of matter featuring topological order and long-range quantum entanglement without conventional broken symmetries. Because traditional local order parameters fail, detecting QSL phase boundaries requires novel diagnostic metrics.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-sageash font-semibold">Technical Architecture:</div>
+                        <div>• Vectorized Monte Carlo simulation engine with parallel tempering implemented in Julia.</div>
+                        <div>• Simulated Kitaev Hamiltonian on 2D honeycomb crystal lattices: <em>H = -∑ J_γ S_i^γ S_j^γ</em>.</div>
+                        <div>• 2D Continuous Wavelet Transforms (CWT) to extract multiscale spatial invariant correlation textures.</div>
                     </div>
+                    <p>By mapping multiscale scale-space coefficients directly to supervised and unsupervised boundary classifiers, this pipeline isolates the topological spin liquid regime from trivial ordered magnetic phases at near-zero thermal noise.</p>
                 `
             },
-            causal: {
-                title: "CausalAI",
-                category: "Explainability & Counterfactual Inference",
-                repo: "https://github.com/sbajaj4/CausalAI",
-                body: `
-                    <p>Standard CNN saliency maps highlight correlative correlations that deceive validation. <strong>CausalAI</strong> implements an agentic observation module utilizing Gumbel-Softmax reparameterization to locate minimally sufficient causal subsets of image representations.</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Counterfactual interventional testing via Structural Causal Models (SCMs).</div>
-                        <div>• Discrete latent masking with differentiable Gumbel-Softmax gradient estimators.</div>
-                        <div>• Substantial reduction in background spurious correlation sensitivity.</div>
+            'causal-ai': {
+                tag: 'Structural Causal Models & Vision Interpretability',
+                title: 'Causal CNN Feature Disentanglement',
+                repoName: 'sbajaj4/CausalAI',
+                url: 'https://github.com/sbajaj4/CausalAI',
+                html: `
+                    <p>Convolutional Neural Networks frequently rely on spurious contextual correlations (e.g., classifying a waterbird solely based on a water background). Conventional saliency maps simply highlight correlations rather than actual counterfactual causes.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
+                        <div>• Agentic Observation Module utilizing Gumbel-Softmax discrete latent masks.</div>
+                        <div>• Structural Causal Model (SCM) formulation applying interventional testing <em>do(X := x)</em>.</div>
+                        <div>• Optimization loss balancing minimal sufficient feature size against invariant class prediction fidelity.</div>
                     </div>
+                    <p>This method explicitly suppresses non-causal background signals, guaranteeing that deep vision models maintain robustness even when tested on hostile out-of-distribution background alterations.</p>
                 `
             },
-            healthcare: {
-                title: "Healthcare Agent POC",
-                category: "Autonomous LLM Harness & Retrieval",
-                repo: "https://github.com/sbajaj4/healthcare-agent-poc",
-                body: `
-                    <p>A rigorous proof-of-concept testing harness for clinical trial verification and patient report question-answering. Built to resolve hallucination risks in high-stakes domain retrieval.</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Recursive document chunking with metadata-filtered vector indices.</div>
-                        <div>• Dynamic self-correction loops assessing claim faithfulness before final generation.</div>
-                        <div>• Strict schema validation for automated electronic health record parsing.</div>
+            'healthcare-agent': {
+                tag: 'Agent Evaluation Harness & Clinical RAG',
+                title: 'Clinical Healthcare Agent POC',
+                repoName: 'sbajaj4/healthcare-agent-poc',
+                url: 'https://github.com/sbajaj4/healthcare-agent-poc',
+                html: `
+                    <p>High-stakes medical retrieval demands zero-tolerance hallucination guardrails and auditable medical ontology citations. This proof-of-concept harness was constructed to systematically benchmark clinical LLM agent workflows.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-neutral-600 font-semibold">Technical Architecture:</div>
+                        <div>• Automated evaluation harness verifying clinical claim grounding against PubMed &amp; EHR schemas.</div>
+                        <div>• Dynamic query decomposition with dense vector retrieval paired with Cohere reranking.</div>
+                        <div>• Self-correcting reflection loops assessing citation consistency prior to answer dispatch.</div>
                     </div>
+                    <p>Demonstrates sub-500ms retrieval latencies across complex medical literature while filtering unauthorized queries via deterministic HIPAA-compliant boundary checks.</p>
                 `
             },
-            finance: {
-                title: "ML Financial Markets",
-                category: "Quantitative Finance & Derivatives",
-                repo: "https://github.com/sbajaj4/MLFinancialMarkets",
-                body: `
-                    <p>Quantitative toolkit investigating market microstructures, options volatility smiles, and algorithmic price forecasting using machine learning and classical econometric benchmarks.</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Machine learning approximation of the Black-Scholes implied volatility surface.</div>
-                        <div>• Rolling Sharpe-ratio portfolio optimizer with transaction-cost regularization.</div>
-                        <div>• Feature engineering across order book imbalance and historical volatility.</div>
+            'financial-markets': {
+                tag: 'Quantitative Modeling & Stochastic Volatility',
+                title: 'ML in Financial Derivatives',
+                repoName: 'sbajaj4/MLFinancialMarkets',
+                url: 'https://github.com/sbajaj4/MLFinancialMarkets',
+                html: `
+                    <p>Option pricing and dynamic portfolio hedging require estimating complex implied volatility surfaces that respect non-arbitrage constraints and extreme market tail events.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-terracotta font-semibold">Technical Architecture:</div>
+                        <div>• Black-Scholes benchmark comparisons against Gradient Boosted Decision Trees and Deep Hedging networks.</div>
+                        <div>• Microstructure feature engineering across limit order books, bid-ask spread liquidity, and rolling skew.</div>
+                        <div>• Sharpe ratio and Maximum Drawdown regularization enforcing downside risk penalties.</div>
                     </div>
+                    <p>This repository provides production notebooks and backtesting harnesses for evaluating hedging performance in volatile high-frequency asset pricing environments.</p>
                 `
             },
-            athletics: {
-                title: "GTAthletics",
-                category: "Sports Telemetry & Live Probability",
-                repo: "https://github.com/sbajaj4/GTAthletics",
-                body: `
-                    <p>An analytics dashboard and predictive engine for tracking in-game win probability for college athletics (Georgia Tech focus). Analyzes historical possession dynamics, score differentials, and momentum shifts.</p>
-                    <div class="p-4 rounded-xl bg-sandstone font-mono text-xs space-y-1">
-                        <div class="text-slatewood font-semibold">Technical Highlights:</div>
-                        <div>• Real-time second-by-second win probability calibrated via logistic regression and LightGBM.</div>
-                        <div>• Possession-level expected value calculations.</div>
-                        <div>• Interactive visualization of win-probability swing swings.</div>
+            'gt-athletics': {
+                tag: 'Dynamic Game Telemetry & Bayesian Updating',
+                title: 'Georgia Tech Athletics Win Probability',
+                repoName: 'sbajaj4/GTAthletics',
+                url: 'https://github.com/sbajaj4/GTAthletics',
+                html: `
+                    <p>In-game win probability modeling in Division I college basketball requires handling high tempo shifts, foul bonuses, momentum scoring runs, and variable possession lengths.</p>
+                    <div class="p-4 rounded-2xl bg-sandstone font-mono text-xs space-y-1.5 border border-stoneborder">
+                        <div class="text-amber-700 font-semibold">Technical Architecture:</div>
+                        <div>• Possession-level Markov chain transitions representing clock state, point differentials, and timeouts.</div>
+                        <div>• LightGBM and logistic calibration on thousands of historical NCAA basketball possession records.</div>
+                        <div>• Real-time second-by-second win probability calculation and swing chart generation.</div>
                     </div>
+                    <p>Engineered for real-time telemetry streaming, translating possession-level play outcomes into dynamic probabilistic forecasts for coaches and sports analytics desks.</p>
                 `
             }
         };
 
-        function filterCards(category) {
-            const items = document.querySelectorAll('.masonry-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-noir', 'text-white', 'border-noir');
-                btn.classList.add('bg-white/70', 'text-slatewood', 'border-borderline');
-            });
-
-            const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-noir', 'text-white', 'border-noir');
-                activeBtn.classList.remove('bg-white/70', 'text-slatewood', 'border-borderline');
+        // Router Implementation
+        function handleRouting() {
+            const hash = window.location.hash || '#projects';
+            
+            // Check if hash is a project deep-dive
+            if (hash.startsWith('#project/')) {
+                const slug = hash.replace('#project/', '');
+                openModal(slug);
+                return;
+            } else {
+                closeModal(false);
             }
 
-            items.forEach(item => {
-                const itemCat = item.getAttribute('data-category');
-                if (category === 'all' || itemCat === category) {
-                    item.style.display = 'block';
-                    setTimeout(() => { item.style.opacity = '1'; }, 10);
+            // Normal Tab Routing
+            const views = document.querySelectorAll('.portfolio-view');
+            views.forEach(v => v.classList.add('hidden'));
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(l => {
+                l.classList.remove('bg-noir', 'text-white', 'shadow-2xs');
+                l.classList.add('text-neutral-600');
+            });
+
+            if (hash === '#experience') {
+                document.getElementById('view-experience').classList.remove('hidden');
+                document.getElementById('nav-experience')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
+                document.getElementById('nav-experience')?.classList.remove('text-neutral-600');
+            } else if (hash === '#about') {
+                document.getElementById('view-about').classList.remove('hidden');
+                document.getElementById('nav-about')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
+                document.getElementById('nav-about')?.classList.remove('text-neutral-600');
+            } else {
+                document.getElementById('view-projects').classList.remove('hidden');
+                document.getElementById('nav-projects')?.classList.add('bg-noir', 'text-white', 'shadow-2xs');
+                document.getElementById('nav-projects')?.classList.remove('text-neutral-600');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('load', handleRouting);
+
+        // Filter Board Pins
+        function filterBoard(cat) {
+            const pins = document.querySelectorAll('.masonry-pin');
+            const btns = document.querySelectorAll('.board-filter');
+
+            btns.forEach(b => {
+                b.classList.remove('bg-noir', 'text-white', 'border-noir');
+                b.classList.add('bg-white', 'text-slatewood', 'border-stoneborder');
+            });
+
+            const current = document.getElementById(`tag-${cat}`);
+            if (current) {
+                current.classList.add('bg-noir', 'text-white', 'border-noir');
+                current.classList.remove('bg-white', 'text-slatewood', 'border-stoneborder');
+            }
+
+            pins.forEach(pin => {
+                const pinCat = pin.getAttribute('data-category');
+                if (cat === 'all' || pinCat === cat) {
+                    pin.style.display = 'block';
+                    setTimeout(() => { pin.style.opacity = '1'; }, 20);
                 } else {
-                    item.style.opacity = '0';
-                    setTimeout(() => { item.style.display = 'none'; }, 250);
+                    pin.style.opacity = '0';
+                    setTimeout(() => { pin.style.display = 'none'; }, 200);
                 }
             });
         }
 
+        // Modal Deep Dive Handlers
         function openModal(key) {
-            const data = projectDetails[key];
-            if (!data) return;
+            const item = projectsData[key];
+            if (!item) return;
 
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-category').textContent = data.category;
-            document.getElementById('modal-content').innerHTML = data.body;
-            document.getElementById('modal-repo-link').setAttribute('href', data.repo);
+            document.getElementById('modal-tag').textContent = item.tag;
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-repo-name').textContent = item.repoName;
+            document.getElementById('modal-body').innerHTML = item.html;
+            document.getElementById('modal-github-btn').setAttribute('href', item.url);
 
             const modal = document.getElementById('project-modal');
             modal.classList.remove('hidden');
         }
 
-        function closeModal() {
-            document.getElementById('project-modal').classList.add('hidden');
+        function closeModal(updateHash = true) {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            if (updateHash && window.location.hash.startsWith('#project/')) {
+                window.location.hash = '#projects';
+            }
         }
 
-        // Close modal when clicking outside content
+        // Click outside modal to close
         document.getElementById('project-modal').addEventListener('click', (e) => {
             if (e.target.id === 'project-modal') {
                 closeModal();
             }
         });
 
-        function copyPortfolioLink() {
-            const url = window.location.href;
-            const dummy = document.createElement("input");
-            document.body.appendChild(dummy);
-            dummy.value = url;
-            dummy.select();
+        // Copy Share Link Helper
+        function copyShareLink() {
+            const temp = document.createElement("input");
+            document.body.appendChild(temp);
+            temp.value = window.location.origin + window.location.pathname;
+            temp.select();
             document.execCommand("copy");
-            document.body.removeChild(dummy);
+            document.body.removeChild(temp);
 
             const toast = document.getElementById('toast');
             toast.classList.remove('opacity-0', 'pointer-events-none');
