@@ -160,15 +160,12 @@
       color: var(--ink);
     }
 
-/* GANTT-STYLE SPAN TIMELINE */
+    /* RESPONSIVE GANTT TIMELINE (FITS LAPTOP SCREENS) */
     .timeline-section {
       border-top: 1px solid var(--border-light);
       padding-top: 36px;
     }
     .timeline-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
       margin-bottom: 24px;
     }
     .timeline-header-row h3 {
@@ -178,81 +175,70 @@
       text-transform: uppercase;
       color: var(--ink);
     }
-    .timeline-legend {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      gap: 20px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .legend-swatch {
-      width: 14px;
-      height: 6px;
-      border-radius: 2px;
-    }
-    .swatch-edu { background: var(--edu-bar); }
-    .swatch-exp { background: var(--exp-bar); }
 
     .gantt-scroll-wrap {
+      width: 100%;
       overflow-x: auto;
-      padding: 10px 0 20px;
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
     }
     .gantt-board {
-      min-width: 1200px;
+      width: 100%;
+      min-width: 860px;
       position: relative;
     }
 
     /* Grid vertical guidelines */
     .gantt-grid {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 44px;
+      top: 0; left: 0; right: 120px; bottom: 32px;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       pointer-events: none;
       border-left: 1px dashed var(--border);
-      border-right: 1px dashed var(--border);
     }
     .grid-col {
       border-right: 1px dashed rgba(226, 220, 200, 0.6);
       height: 100%;
     }
 
-    /* Rows */
-    .gantt-row {
+    .track-row-wrap {
       position: relative;
-      height: 44px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
+      padding-right: 120px;
+    }
+    .track-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
     }
 
-    /* Spanning Activity Bar with Title Precedence */
+    .gantt-row {
+      position: relative;
+      height: 38px;
+      margin-bottom: 14px;
+    }
+
+    /* Activity Bars */
     .gantt-bar {
       position: absolute;
-      height: 32px;
+      top: 0;
+      height: 36px;
       border-radius: 4px;
       display: flex;
       align-items: center;
-      padding: 0 14px;
+      justify-content: space-between;
+      padding: 0 10px;
       cursor: pointer;
       transition: var(--transition);
       box-shadow: var(--shadow-sm);
       color: #FFF;
-      min-width: 165px; /* Ensures short internships have enough runway to show their title */
       z-index: 2;
     }
-    .gantt-bar.edu {
-      background: var(--edu-bar);
-    }
-    .gantt-bar.exp {
-      background: var(--exp-bar);
-    }
+    .gantt-bar.edu { background: var(--edu-bar); }
+    .gantt-bar.exp { background: var(--exp-bar); }
     .gantt-bar:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
@@ -260,59 +246,35 @@
       z-index: 10;
     }
 
-    /* Diamond Terminal Ends */
-    .diamond-cap {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      transform: rotate(45deg);
-      background: inherit;
-      top: 11px;
-      pointer-events: none;
-    }
-    .diamond-cap.left { left: -5px; }
-    .diamond-cap.right { right: -5px; }
-
-    /* Title takes absolute precedence */
     .bar-label {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      flex: 1 1 auto;
-      min-width: 0;
       z-index: 2;
     }
-
-    /* Date yields space or hides if tight */
     .bar-duration {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
+      font-size: 9px;
       opacity: 0.85;
-      margin-left: 10px;
+      margin-left: 6px;
       white-space: nowrap;
-      flex: 0 0 auto;
       z-index: 2;
     }
 
-    /* Hide dates on compact bars so title stays fully legible */
-    .gantt-bar.compact .bar-duration {
-      display: none;
-    }
-
-    /* Floating tooltip on hover showing complete title + date */
+    /* Hover Tooltip */
     .gantt-bar::after {
       content: attr(data-tooltip);
       position: absolute;
-      bottom: calc(100% + 8px);
+      bottom: calc(100% + 6px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
       background: var(--ink);
       color: #FFF;
       font-family: 'JetBrains Mono', monospace;
       font-size: 10.5px;
-      padding: 5px 10px;
+      padding: 4px 8px;
       border-radius: 4px;
       white-space: nowrap;
       opacity: 0;
@@ -326,88 +288,75 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Bottom Axis */
+    /* "What's Next" Spanning Card (Spans Both Tracks) */
+    .adventure-block {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      width: 105px;
+      height: 116px;
+      background: #FFF;
+      border: 1.5px dashed var(--accent);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px 6px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      z-index: 5;
+    }
+    .adventure-block:hover {
+      background: var(--accent-soft);
+      transform: scale(1.03);
+      box-shadow: var(--shadow-md);
+    }
+    .adventure-star {
+      color: var(--accent);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .adventure-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .adventure-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--accent);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* Bottom Time Axis */
     .gantt-axis {
-      margin-top: 14px;
+      margin-top: 10px;
+      margin-right: 120px;
       border-top: 2px solid #8C8275;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      padding-top: 10px;
-      position: relative;
+      grid-template-columns: repeat(4, 1fr);
+      padding-top: 8px;
     }
     .axis-tick {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-muted);
       position: relative;
     }
     .axis-tick::before {
       content: '';
       position: absolute;
-      top: -12px;
+      top: -10px;
       left: 0;
       width: 1px;
-      height: 6px;
+      height: 5px;
       background: #8C8275;
-    }
-
-    /* Lane track indicator labels */
-    .track-header-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .single-lane-experience {
-      height: 40px;
-      margin-bottom: 18px;
-    }
-
-    /* Terminal Next Adventure Flag */
-    .swatch-next {
-      background: var(--ink);
-      border: 1px solid var(--accent);
-    }
-
-    .terminal-milestone {
-      position: absolute;
-      right: -10px;
-      top: -30px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--surface);
-      border: 1.5px dashed var(--accent);
-      padding: 5px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      z-index: 15;
-    }
-    .terminal-milestone:hover {
-      transform: scale(1.06) translateY(-2px);
-      background: var(--accent-soft);
-      box-shadow: var(--shadow-md);
-    }
-    .milestone-star {
-      color: var(--accent);
-      font-size: 14px;
-      animation: pulseStar 2s infinite ease-in-out;
-    }
-    @keyframes pulseStar {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 1; }
-    }
-    .milestone-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
     }
 
     /* PROJECTS SECTION */
@@ -426,32 +375,33 @@
       color: var(--text-muted);
     }
 
-/* PINTEREST MASONRY CARDS */
+    /* NATURAL LEFT-TO-RIGHT PROJECT GRID */
     .projects-masonry {
-      column-count: 3;
-      column-gap: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: stretch;
     }
     @media (max-width: 1100px) {
-      .projects-masonry { column-count: 2; }
+      .projects-masonry { grid-template-columns: repeat(2, 1fr); }
       .profile-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
-      .projects-masonry { column-count: 1; }
+      .projects-masonry { grid-template-columns: 1fr; }
       header { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
 
     .project-card {
-      break-inside: avoid;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      margin-bottom: 28px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
       cursor: pointer;
       transition: var(--transition);
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
     .project-card:hover {
       transform: translateY(-5px);
@@ -470,6 +420,9 @@
     }
     .project-body {
       padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
     .project-rank {
       font-family: 'JetBrains Mono', monospace;
@@ -491,6 +444,7 @@
       font-size: 13.5px;
       color: var(--text-muted);
       margin-bottom: 18px;
+      flex-grow: 1;
     }
     .metric-badge {
       display: inline-block;
@@ -503,6 +457,7 @@
       font-weight: 500;
       margin-bottom: 14px;
       border: 1px solid var(--accent-border);
+      align-self: flex-start;
     }
     .tag-row {
       display: flex;
@@ -717,119 +672,82 @@
       </div>
     </div>
 
-<!-- GANTT-STYLE SPAN TIMELINE -->
+    <!-- RESPONSIVE GANTT TIMELINE -->
     <div class="timeline-section">
       <div class="timeline-header-row">
         <h3>Journey &amp; Track Record</h3>
-        <div class="timeline-legend">
-          <div class="legend-item"><span class="legend-swatch swatch-edu"></span> Education (Degrees)</div>
-          <div class="legend-item"><span class="legend-swatch swatch-exp"></span> Professional Experience (Sequential)</div>
-          <div class="legend-item"><span class="legend-swatch swatch-next"></span> What's Next</div>
-        </div>
       </div>
 
       <div class="gantt-scroll-wrap">
         <div class="gantt-board">
-          <!-- Background Grid Guidelines (Aug 2022 to Dec 2026 = 52 Months Total) -->
+          <!-- Background Grid Guidelines -->
           <div class="gantt-grid">
             <div class="grid-col"></div>
             <div class="grid-col"></div>
             <div class="grid-col"></div>
             <div class="grid-col"></div>
-            <div class="grid-col"></div>
           </div>
 
-          <!-- TRACK A: EDUCATION -->
-          <div class="track-header-label">Track A &bullet; Academic Foundations</div>
-          
-          <!-- B.S. Mathematics (Aug 2022 – May 2025: 33 months / 52 = 63.5%) -->
-          <div class="gantt-row">
-            <div class="gantt-bar edu" style="left: 0%; width: 63.5%;" onclick="openTimelineModal('bs-gt')" data-tooltip="B.S. in Mathematics (High Honors) • Georgia Tech • Aug 2022 – May 2025">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">B.S. in Mathematics (High Honors) &bullet; Georgia Tech</span>
-              <span class="bar-duration">Aug 2022 – May 2025</span>
-              <span class="diamond-cap right"></span>
-            </div>
+          <!-- "What's Next" Spanning Card -->
+          <div class="adventure-block" onclick="openTimelineModal('next-adventure')" data-tooltip="Graduating Dec 2026 • Seeking Full-Time Roles!">
+            <div class="adventure-star">&#10022;</div>
+            <div class="adventure-title">What's Next?</div>
+            <div class="adventure-sub">Finding My Next Adventure</div>
           </div>
 
-          <!-- M.S. Analytics (Aug 2025 – Dec 2026: Month 36 to 52 = 30.7%) -->
-          <div class="gantt-row">
-            <div class="gantt-bar edu" style="left: 69.2%; width: 30.8%;" onclick="openTimelineModal('ms-gt')" data-tooltip="M.S. in Analytics (Computational Track, GPA 4.00) • Georgia Tech • Aug 2025 – Dec 2026">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">M.S. in Analytics (GPA 4.00) &bullet; Georgia Tech</span>
-              <span class="bar-duration">Aug 2025 – Dec 2026</span>
-              <span class="diamond-cap right"></span>
-            </div>
-          </div>
-
-          <!-- TRACK B: SEQUENTIAL PROFESSIONAL EXPERIENCE (Single Aligned Lane) -->
-          <div class="track-header-label" style="margin-top: 14px;">Track B &bullet; Industry &amp; Research Track (Continuous)</div>
-          
-          <div class="gantt-row single-lane-experience">
-            <!-- 1. iBoss (Nov 2023 – May 2024: m15 to m21 = 11.5%) -->
-            <div class="gantt-bar exp compact" style="left: 28.8%; width: 11.5%;" onclick="openTimelineModal('iboss')" data-tooltip="AI Consulting Intern • iBoss Tech Solutions • Nov 2023 – May 2024">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">iBoss Tech</span>
-              <span class="diamond-cap right"></span>
-            </div>
-
-            <!-- 2. Optum (Jun 2024 – May 2025: m22 to m33 = 21.1%) -->
-            <div class="gantt-bar exp" style="left: 42.3%; width: 21.1%;" onclick="openTimelineModal('optum')" data-tooltip="Data Analyst Intern • Optum Enterprise Imaging • Jun 2024 – May 2025">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">Optum Imaging</span>
-              <span class="bar-duration">Jun '24 – May '25</span>
-              <span class="diamond-cap right"></span>
-            </div>
-
-            <!-- 3. UHC DS (Jun 2025 – Aug 2025: m34 to m36 = 5.8%) -->
-            <div class="gantt-bar exp compact" style="left: 65.4%; width: 5.8%;" onclick="openTimelineModal('uhc')" data-tooltip="Data Science Intern • UnitedHealth Group • Jun 2025 – Aug 2025">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">UHC</span>
-              <span class="diamond-cap right"></span>
-            </div>
-
-            <!-- 4. GT EIC Lab (Sep 2025 – Dec 2025: m37 to m40 = 7.7%) -->
-            <div class="gantt-bar exp compact" style="left: 71.2%; width: 7.7%;" onclick="openTimelineModal('eic')" data-tooltip="Graduate Research Intern • GT EIC Lab • Sep 2025 – Dec 2025">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">EIC Lab</span>
-              <span class="diamond-cap right"></span>
-            </div>
-
-            <!-- 5. GoFundMe (May 2026 – Aug 2026: m45 to m48 = 7.7%) -->
-            <div class="gantt-bar exp compact" style="left: 84.6%; width: 7.7%;" onclick="openTimelineModal('gofundme')" data-tooltip="Artificial Intelligence Intern • GoFundMe • May 2026 – Aug 2026">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">GoFundMe</span>
-              <span class="diamond-cap right"></span>
-            </div>
-
-            <!-- 6. Beep (Aug 2026 – Dec 2026: m48 to m52 = 7.7%) -->
-            <div class="gantt-bar exp compact" style="left: 92.3%; width: 7.7%;" onclick="openTimelineModal('beep')" data-tooltip="R&D Intern (Practicum) • Beep, Inc. • Aug 2026 – Dec 2026">
-              <span class="diamond-cap left"></span>
-              <span class="bar-label">Beep R&amp;D</span>
-              <span class="diamond-cap right"></span>
+          <!-- TRACK A: EDUCATION (Single Row) -->
+          <div class="track-row-wrap">
+            <div class="track-header-label">Academic Foundations</div>
+            <div class="gantt-row">
+              <div class="gantt-bar edu" style="left: 0%; width: 63.5%;" onclick="openTimelineModal('bs-gt')" data-tooltip="B.S. in Mathematics (High Honors) • Georgia Tech • Aug 2022 – May 2025">
+                <span class="bar-label">B.S. Mathematics (High Honors) &bullet; Georgia Tech</span>
+                <span class="bar-duration">2022 – 2025</span>
+              </div>
+              <div class="gantt-bar edu" style="left: 69.2%; width: 30.8%;" onclick="openTimelineModal('ms-gt')" data-tooltip="M.S. in Analytics (Computational Track, GPA 4.00) • Georgia Tech • Aug 2025 – Dec 2026">
+                <span class="bar-label">M.S. Analytics (GPA 4.00) &bullet; Georgia Tech</span>
+                <span class="bar-duration">Aug '25 – Dec '26</span>
+              </div>
             </div>
           </div>
 
-          <!-- TIME AXIS WITH FINAL ADVENTURE MILESTONE -->
+          <!-- TRACK B: SEQUENTIAL PROFESSIONAL EXPERIENCE (Single Row) -->
+          <div class="track-row-wrap">
+            <div class="track-header-label">Industry &amp; Lab Experience</div>
+            <div class="gantt-row">
+              <div class="gantt-bar exp" style="left: 28.8%; width: 11.5%;" onclick="openTimelineModal('iboss')" data-tooltip="AI Consulting Intern • iBoss Tech Solutions • Nov 2023 – May 2024">
+                <span class="bar-label">iBoss Tech</span>
+              </div>
+              <div class="gantt-bar exp" style="left: 41.5%; width: 22%;" onclick="openTimelineModal('optum')" data-tooltip="Data Analyst Intern • Optum Enterprise Imaging • Jun 2024 – May 2025">
+                <span class="bar-label">Optum Imaging</span>
+              </div>
+              <div class="gantt-bar exp" style="left: 64.5%; width: 6%;" onclick="openTimelineModal('uhc')" data-tooltip="Data Science Intern • UnitedHealth Group • Jun 2025 – Aug 2025">
+                <span class="bar-label">UHC</span>
+              </div>
+              <div class="gantt-bar exp" style="left: 71.5%; width: 7.5%;" onclick="openTimelineModal('eic')" data-tooltip="Graduate Research Intern • GT EIC Lab • Sep 2025 – Dec 2025">
+                <span class="bar-label">EIC Lab</span>
+              </div>
+              <div class="gantt-bar exp" style="left: 84.5%; width: 7.5%;" onclick="openTimelineModal('gofundme')" data-tooltip="Artificial Intelligence Intern • GoFundMe • May 2026 – Aug 2026">
+                <span class="bar-label">GoFundMe</span>
+              </div>
+              <div class="gantt-bar exp" style="left: 92.5%; width: 7.5%;" onclick="openTimelineModal('beep')" data-tooltip="R&D Intern (Practicum) • Beep, Inc. • Aug 2026 – Dec 2026">
+                <span class="bar-label">Beep R&amp;D</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Time Axis -->
           <div class="gantt-axis">
             <div class="axis-tick">Fall 2022</div>
             <div class="axis-tick">2023</div>
             <div class="axis-tick">2024</div>
             <div class="axis-tick">2025</div>
-            <div class="axis-tick">2026</div>
-
-            <!-- TERMINAL MILESTONE: Finding My Next Adventure -->
-            <div class="terminal-milestone" onclick="openTimelineModal('next-adventure')" data-tooltip="Ready for full-time ML/AI roles starting 2027!">
-              <div class="milestone-star">&#10022;</div>
-              <div class="milestone-text">Finding my next adventure!</div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS SECTION -->
+  <!-- PROJECTS SECTION (Natural Left-to-Right Grid) -->
   <div class="projects-head">
     <h2>Research &amp; Engineering Projects</h2>
     <p>Ranked by theoretical depth and empirical validation. Click any card to inspect technical specifications and repo links.</p>
@@ -852,8 +770,8 @@
       <div class="project-body">
         <div class="project-rank">Project 01 &bullet; Deep Learning</div>
         <h3>Causal Feature Identification in CNNs</h3>
-        <p class="project-summary">Engineered an Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection and multi-view intervention loops to isolate causally necessary features on Waterbirds.</p>
-        <div class="metric-badge">Worst-Group: 78.5% | OOD: 88.35% (&lt;12% Pixels)</div>
+        <p class="project-summary">Engineered an Agentic Observation Module (AOM) utilizing Gumbel-Softmax discrete patch selection and multi-view intervention loops to isolate causally necessary features on Waterbirds[cite: 2].</p>
+        <div class="metric-badge">Worst-Group: 78.5% | OOD: 88.35% (&lt;12% Pixels)[cite: 2]</div>
         <div class="tag-row">
           <span class="tag">PyTorch</span>
           <span class="tag">Gumbel-Softmax</span>
@@ -878,7 +796,7 @@
       <div class="project-body">
         <div class="project-rank">Project 02 &bullet; Modeling &amp; Simulation</div>
         <h3>Parallel Tempering of Kitaev Spin Systems</h3>
-        <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with Parallel Tempering across 30 replicas, navigating frustrated honeycomb energy manifolds and classifying vortex phases via 2D DWT.</p>
+        <p class="project-summary">Custom Julia Metropolis Monte Carlo sampler with Parallel Tempering across 30 replicas, navigating frustrated honeycomb energy manifolds and classifying vortex phases via 2D DWT[cite: 3].</p>
         <div class="metric-badge">30x Wavelet Efficiency over Fourier</div>
         <div class="tag-row">
           <span class="tag">Julia</span>
@@ -902,7 +820,7 @@
       <div class="project-body">
         <div class="project-rank">Project 03 &bullet; Data &amp; Visual Analytics</div>
         <h3>Atlanta Traffic Forecasting and Visualization</h3>
-        <p class="project-summary">LSTM-backed conditional diffusion model predicting near-term highway volume on Atlanta's I-285 perimeter using 260K+ GDOT sensor counts and hourly weather telemetry.</p>
+        <p class="project-summary">LSTM-backed conditional diffusion model predicting near-term highway volume on Atlanta's I-285 perimeter using 260K+ GDOT sensor counts and hourly weather telemetry[cite: 1].</p>
         <div class="metric-badge">RMSE: 510.4 | R²: 0.95 | MAE: 255.3</div>
         <div class="tag-row">
           <span class="tag">PyTorch</span>
@@ -928,8 +846,8 @@
       <div class="project-body">
         <div class="project-rank">Project 04 &bullet; Autonomous Systems</div>
         <h3>Multi-Agent Clinical Payment Integrity Pipeline</h3>
-        <p class="project-summary">Enterprise claim audit system combining deterministic Z-score statistical bounds with token-efficient Gemini LLM workers for ICD-10 laterality contradiction screening.</p>
-        <div class="metric-badge">Deterministic Guards &bullet; uv Packaging</div>
+        <p class="project-summary">Enterprise claim audit system combining deterministic Z-score statistical bounds with token-efficient Gemini LLM workers for ICD-10 laterality contradiction screening[cite: 5].</p>
+        <div class="metric-badge">Deterministic Guards &bullet; uv Packaging[cite: 5]</div>
         <div class="tag-row">
           <span class="tag">Python 3.12</span>
           <span class="tag">Google Gemini</span>
@@ -953,7 +871,7 @@
       <div class="project-body">
         <div class="project-rank">Project 05 &bullet; Quantitative Finance</div>
         <h3>Options Exit Algorithm &amp; Synthetic Greeks</h3>
-        <p class="project-summary">Engineered financial features including cubic spline derivatives (Delta and Gamma proxies) and correlation-aware reduction to classify ideal exit timing for ATM short straddles.</p>
+        <p class="project-summary">Engineered financial features including cubic spline derivatives (Delta and Gamma proxies) and correlation-aware reduction to classify ideal exit timing for ATM short straddles[cite: 6].</p>
         <div class="metric-badge">~70% Accuracy | Spline Greeks</div>
         <div class="tag-row">
           <span class="tag">Python</span>
@@ -977,8 +895,8 @@
       <div class="project-body">
         <div class="project-rank">Project 06 &bullet; Sports Analytics</div>
         <h3>College Basketball Win Probability Engine</h3>
-        <p class="project-summary">Estimated in-game victory likelihood using historical play-by-play statistics, comparing interpretable Logistic Regression baselines with calibrated XGBoost models.</p>
-        <div class="metric-badge">XGBoost &bullet; Play-by-Play Telemetry</div>
+        <p class="project-summary">Estimated in-game victory likelihood using historical play-by-play statistics, comparing interpretable Logistic Regression baselines with calibrated XGBoost models[cite: 4].</p>
+        <div class="metric-badge">XGBoost &bullet; Play-by-Play Telemetry[cite: 4]</div>
         <div class="tag-row">
           <span class="tag">Python</span>
           <span class="tag">XGBoost</span>
@@ -1129,17 +1047,17 @@
       subtitle: 'Saumya Bajaj, Nikolaos Kakonas, Tejas Khandwekar, Vivek Prakash &bullet; CS 4644/7643',
       content: `
         <h4>Methodological Core</h4>
-        <p>Addresses shortcut learning on the Waterbirds benchmark, where standard CNNs rely on background textures (water vs. land) rather than avian features, causing failure out-of-distribution (OOD).</p>
+        <p>Addresses shortcut learning on the Waterbirds benchmark, where standard CNNs rely on background textures (water vs. land) rather than avian features, causing failure out-of-distribution (OOD)[cite: 2].</p>
         <ul>
-          <li><strong>Agentic Observation Module (AOM):</strong> Lightweight patch selector utilizing Gumbel-Softmax discrete relaxation with a Straight-Through Estimator (STE) to produce sparse binary masks selecting 45&times;45 pixel patches.</li>
+          <li><strong>Agentic Observation Module (AOM):</strong> Lightweight patch selector utilizing Gumbel-Softmax discrete relaxation with a Straight-Through Estimator (STE) to produce sparse binary masks selecting 45&times;45 pixel patches[cite: 2].</li>
           <li><strong>Intervention Training Loop:</strong> Implemented counterfactual testing (background swaps from Places dataset buffer, blur, Gaussian noise) penalized via Jensen-Shannon Divergence stability loss.</li>
           <li><strong>Multi-Task Loss:</strong> Combined cross-entropy, JS stability, delayed-ramp L1 sparsity penalty, total variation (spatial continuity), and entropy regularization.</li>
         </ul>
         <h4>Empirical Results</h4>
         <ul>
-          <li><strong>Worst-Group Accuracy:</strong> 78.50% (vs. Vanilla ResNet-18 at 47.51%).</li>
-          <li><strong>OOD Accuracy:</strong> 88.35% (outperforming Group DRO Oracle at 86.14% without requiring group labels during training).</li>
-          <li><strong>Information Bottleneck:</strong> Achieved superior robustness using &lt;12% of the original image pixels.</li>
+          <li><strong>Worst-Group Accuracy:</strong> 78.50% (vs. Vanilla ResNet-18 at 47.51%)[cite: 2].</li>
+          <li><strong>OOD Accuracy:</strong> 88.35% (outperforming Group DRO Oracle at 86.14% without requiring group labels during training)[cite: 2].</li>
+          <li><strong>Information Bottleneck:</strong> Achieved superior robustness using &lt;12% of the original image pixels[cite: 2].</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/CausalAI'
@@ -1151,7 +1069,7 @@
       subtitle: 'Saumya Bajaj, Katherine Bridges, Nikolai Simonov, Roshan Trivedi',
       content: `
         <h4>Computational Physics Context</h4>
-        <p>Distinguishing true multi-q magnetic ground states from domain-averaged responses of multiple single-q phases in honeycomb cobaltates (Na<sub>3</sub>Co<sub>2</sub>SbO<sub>6</sub>) is a longstanding challenge in scattering experiments.</p>
+        <p>Distinguishing true multi-q magnetic ground states from domain-averaged responses of multiple single-q phases in honeycomb cobaltates (Na<sub>3</sub>Co<sub>2</sub>SbO<sub>6</sub>) is a longstanding challenge in scattering experiments[cite: 3].</p>
         <ul>
           <li><strong>Custom Julia MMC Simulator:</strong> Built a custom Metropolis Monte Carlo engine using cone updates with dynamic temperature scaling (&theta;<sub>max</sub> &prop; 1/&radic;&beta;) to maintain 30–50% acceptance.</li>
           <li><strong>Parallel Tempering Protocol:</strong> Simulated 30 replicas on a logarithmic temperature grid (T = 0.005 K to 1.0 K) with replica exchanges to overcome flat energy landscapes and deep metastable wells.</li>
@@ -1168,10 +1086,10 @@
       subtitle: 'GDOT & Weather Underground Study',
       content: `
         <h4>Generative Time-Series Architecture</h4>
-        <p>Short-term highway congestion forecasting around Atlanta's I-285 perimeter using continuous conditional diffusion.</p>
+        <p>Short-term highway congestion forecasting around Atlanta's I-285 perimeter using continuous conditional diffusion[cite: 1].</p>
         <ul>
           <li><strong>Model Architecture:</strong> Single-layer LSTM encoder in PyTorch with sinusoidal time embeddings and an MLP denoising head conditioned on 24-hour rolling windows (lagged volume, temporal cycles, weather parameters).</li>
-          <li><strong>Data Ingestion:</strong> Merged, cleaned, and standardized 260K+ hourly vehicle sensor records across 10+ GDOT stations with scraped Weather Underground telemetry.</li>
+          <li><strong>Data Ingestion:</strong> Merged, cleaned, and standardized 260K+ hourly vehicle sensor records across 10+ GDOT stations with scraped Weather Underground telemetry[cite: 1].</li>
           <li><strong>Empirical Superiority:</strong> Diffusion achieved <strong>510.4 RMSE, 255.3 MAE, and R² = 0.95</strong>, outperforming Random Forest (561.9 RMSE), LSTM (667.3 RMSE), and SARIMAX (1348.6 RMSE).</li>
           <li><strong>Compressed Single-File App:</strong> Designed a standalone HTML dashboard using Leaflet.js and Pako.js client-side decompression, compressing 300K+ records by 75% to under 2MB.</li>
         </ul>
@@ -1185,12 +1103,12 @@
       subtitle: 'Enterprise Automated Claim Audit Engine',
       content: `
         <h4>Hybrid Audit Design</h4>
-        <p>High-throughput automated clinical claim audit architecture reconciling billing records with medical documentation.</p>
+        <p>High-throughput automated clinical claim audit architecture reconciling billing records with medical documentation[cite: 5].</p>
         <ul>
-          <li><strong>Deterministic Guardrails:</strong> Local statistical Z-score calculations intercept gross unit and billing outliers deterministically prior to LLM evaluation.</li>
-          <li><strong>Semantic Screening:</strong> Uses <code>gemini-3.1-flash-lite</code> with specialized token-efficient system prompts to identify deep laterality contradictions (e.g. ICD-10 side designations vs. operational prose).</li>
-          <li><strong>Contract Enforcement:</strong> Rigid Pydantic schemas enforce deterministic JSON structure across audit artifacts.</li>
-          <li><strong>Hermetic Tooling:</strong> Built with Python 3.12 and <code>uv</code> for sub-second, isolated execution.</li>
+          <li><strong>Deterministic Guardrails:</strong> Local statistical Z-score calculations intercept gross unit and billing outliers deterministically prior to LLM evaluation[cite: 5].</li>
+          <li><strong>Semantic Screening:</strong> Uses <code>gemini-3.1-flash-lite</code> with specialized token-efficient system prompts to identify deep laterality contradictions (e.g. ICD-10 side designations vs. operational prose)[cite: 5].</li>
+          <li><strong>Contract Enforcement:</strong> Rigid Pydantic schemas enforce deterministic JSON structure across audit artifacts[cite: 5].</li>
+          <li><strong>Hermetic Tooling:</strong> Built with Python 3.12 and <code>uv</code> for sub-second, isolated execution[cite: 5].</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/healthcare-agent-poc'
@@ -1202,11 +1120,11 @@
       subtitle: 'Saumya Bajaj, Abinav Chari, Mark Rodrigues, Riya Bhadani, Daniel Wu',
       content: `
         <h4>Quantitative Modeling</h4>
-        <p>Classification framework determining ideal trade exit times for at-the-money short straddle positions on SPX contracts.</p>
+        <p>Classification framework determining ideal trade exit times for at-the-money short straddle positions on SPX contracts[cite: 6].</p>
         <ul>
-          <li><strong>Synthetic Greek Differentiation:</strong> Fitted cubic splines to straddle exit value versus SPX close prices to compute 1st and 2nd numerical derivatives (&Delta; and &Gamma; indicators).</li>
+          <li><strong>Synthetic Greek Differentiation:</strong> Fitted cubic splines to straddle exit value versus SPX close prices to compute 1st and 2nd numerical derivatives (&Delta; and &Gamma; indicators)[cite: 6].</li>
           <li><strong>Feature Importance:</strong> Engineered Greeks ranked 6th and 16th in overall feature importance among 115+ technical indicators, boosting Random Forest accuracy to 69%.</li>
-          <li><strong>Model Comparison:</strong> Evaluated GARCH, SVM, Gradient Boosting, CNN, and LSTM architectures across multiple lookback windows (5, 10, 20 steps).</li>
+          <li><strong>Model Comparison:</strong> Evaluated GARCH, SVM, Gradient Boosting, CNN, and LSTM architectures across multiple lookback windows (5, 10, 20 steps)[cite: 6].</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/MLFinancialMarkets'
@@ -1218,11 +1136,11 @@
       subtitle: 'GT Athletics Subteam 7',
       content: `
         <h4>Real-Time Match Modeling</h4>
-        <p>Estimates team win probability throughout college basketball games using play-by-play telemetry.</p>
+        <p>Estimates team win probability throughout college basketball games using play-by-play telemetry[cite: 4].</p>
         <ul>
-          <li>Ingested, cleaned, and aligned play-by-play datasets across multiple NCAA seasons.</li>
+          <li>Ingested, cleaned, and aligned play-by-play datasets across multiple NCAA seasons[cite: 4].</li>
           <li>Engineered differential scoring rates, elapsed time factors, and discrete possession states.</li>
-          <li>Benchmarked interpretable Logistic Regression models against an XGBoost classifier for calibrated live probability curves.</li>
+          <li>Benchmarked interpretable Logistic Regression models against an XGBoost classifier for calibrated live probability curves[cite: 4].</li>
         </ul>
       `,
       repo: 'https://github.com/sbajaj4/GTAthletics'
